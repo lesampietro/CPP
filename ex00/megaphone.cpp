@@ -6,7 +6,7 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 17:07:34 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/06/02 17:31:41 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/06/02 17:43:43 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 		char *str = argv[i];
 		while (*str)
 		{
-			if (*str >= 'a' || *str <= 'z')
+			if (*str >= 'a' && *str <= 'z')
 				*str = std::toupper(*str);
 			std::cout << *str;
 			str++;
