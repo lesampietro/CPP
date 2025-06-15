@@ -13,8 +13,8 @@
 #include "Zombie.hpp"
 
 void	Zombie::announce(void){
-	std::cout << this->name << ": ";
-	std::cout << "BraiiiiiiinnnzzzZ..." << std::endl;
+	std::cout << YELLOW << this->name << ": ";
+	std::cout << "BraiiiiiiinnnzzzZ..." << RST << std::endl;
 }
 
 Zombie::Zombie(){
