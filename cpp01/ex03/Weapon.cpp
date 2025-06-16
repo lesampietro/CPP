@@ -6,7 +6,7 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 12:30:49 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/06/16 16:44:09 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/06/16 19:20:12 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ const std::string	&Weapon::getType(){
 }
 
 void	Weapon::setType(std::string newWeaponType){
+	std::cout << "Setting new type of weapon." << std::endl;
 	this->type = newWeaponType;
 }

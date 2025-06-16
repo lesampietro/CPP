@@ -6,7 +6,7 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 12:33:38 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/06/16 17:50:38 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/06/16 19:25:31 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,24 @@ HumanB::HumanB(std::string name){
 HumanB::~HumanB(){}
 
 void	HumanB::attack(){
-	std::cout << this->name << " attacks with their ";
 	if (this->weapon) {
-		std::cout << this->weapon->getType(); //uses ->getType() because the object is pointed to by a pointer
+		std::cout << BOLD << this->name << RST;
+		std::cout << " attacks with their ";
+		std::cout << GREEN << this->weapon->getType() << "." << RST; //uses ->getType() because the object is pointed to by a pointer
 	}
 	else {
-		std::cout << "Five Point Palm Exploding Heart Technique";
+		std::cout << BOLD << this->name;
+		std::cout << MAGENTA << " has no weapon." << RST;
+		std::cout << std::endl;
+		std::cout << this->name << " uses their ";
+		std::cout << "Five Point Palm Exploding Heart Technique.";
 	}
 	std::cout << std::endl;
 }
 
 void	HumanB::setWeapon(Weapon &newWeapon){
-	this->weapon = &newWeapon; //stores the address
+	std::cout << "Creating a weapon for ";
+	std::cout << BOLD << this->name << "." << RST;
+	std::cout << std::endl;
+	this->weapon = &newWeapon; // stores the address
 }

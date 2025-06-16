@@ -6,7 +6,7 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 12:33:38 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/06/16 17:12:30 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/06/16 19:26:01 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ HumanA::HumanA(std::string name, Weapon &weapon) : weapon(weapon){
 HumanA::~HumanA(){}
 
 void	HumanA::attack(){
-	std::cout << this->name << " attacks with their ";
-	std::cout << this->weapon.getType(); // uses .getType() because it's a reference
+	std::cout << BOLD << this->name << RST;
+	std::cout << " attacks with their ";
+	std::cout << GREEN << this->weapon.getType() << "." << RST; // uses .getType() because it's a reference
 	std::cout << std::endl;
 }
