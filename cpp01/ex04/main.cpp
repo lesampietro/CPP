@@ -6,7 +6,7 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:17:15 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/06/16 20:03:39 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/06/16 20:27:06 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,30 @@
 // 	std::cout << std::endl;
 // }
 
-// int main(int argc, char **argv)
-int	main(void)
+// int	main(void)
+int main(int argc, char **argv)
 {	
-	// if (argc != 4)
-	// {
-	// 	std::cerr << "Usage: <filename> <string_1> <string_2>" << std::endl;
-	// 	return (1);
-	// }
-	std::string	toBeReplaced;
-	std::ifstream	file01("file01");
-	while (std::getline(file01, toBeReplaced)){
-		std::cout << toBeReplaced;
+	if (argc != 4){
+		std::cerr << "Usage: <filename> <string_1> <string_2>";
+		std::cerr << std::endl;
+		return (1);
 	}
-	file01.close();
+	std::string	temp;
+	std::string	toBeReplaced = argv[2];
+	std::string	toReplace = argv[3];
+	if (toBeReplaced.empty() || toReplace.empty()){
+		std::cerr << "Error: <string_1> and <string_2> cannot be empty.";
+		std::cerr << std::endl;
+		return (1);
+	}
+	std::ifstream	inputFile("file01");
+	std::ofstream	outputFile("output");
+	while (std::getline(inputFile, temp)){
+		if (toBeReplaced.compare(temp) == 0)
+			outputFile << toReplace;
+	}
+	inputFile.close();
+	outputFile.close();
 	// displayMessage("HumanA");
 	return 0;
 }
