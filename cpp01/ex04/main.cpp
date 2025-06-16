@@ -6,11 +6,11 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:17:15 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/06/16 19:41:39 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/06/16 20:03:39 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#include "Replace.hpp"
 
 // IDEIAS:
 // begin(): Returns an iterator pointing to the first character of the string
@@ -34,13 +34,20 @@
 // 	std::cout << std::endl;
 // }
 
-int main(int argc, char **argv)
-{
-	if (argc != 4)
-	{
-		std::cerr << "Usage: <filename> <string_1> <string_2>" << std::endl;
-		return (1);
+// int main(int argc, char **argv)
+int	main(void)
+{	
+	// if (argc != 4)
+	// {
+	// 	std::cerr << "Usage: <filename> <string_1> <string_2>" << std::endl;
+	// 	return (1);
+	// }
+	std::string	toBeReplaced;
+	std::ifstream	file01("file01");
+	while (std::getline(file01, toBeReplaced)){
+		std::cout << toBeReplaced;
 	}
+	file01.close();
 	// displayMessage("HumanA");
 	return 0;
 }
