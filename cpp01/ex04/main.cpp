@@ -6,7 +6,7 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:17:15 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/06/16 20:27:06 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/06/16 21:16:29 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,26 +38,55 @@
 int main(int argc, char **argv)
 {	
 	if (argc != 4){
-		std::cerr << "Usage: <filename> <string_1> <string_2>";
+		std::cerr << "Usage: " << argv[0];
+		std::cerr << " <filename> <string_1> <string_2>";
 		std::cerr << std::endl;
-		return (1);
+		return 1;
 	}
-	std::string	temp;
+
+	std::string	filename = argv[1];
 	std::string	toBeReplaced = argv[2];
 	std::string	toReplace = argv[3];
-	if (toBeReplaced.empty() || toReplace.empty()){
-		std::cerr << "Error: <string_1> and <string_2> cannot be empty.";
+
+	if (toBeReplaced.empty()){
+		std::cerr << "Error: <string_1> cannot be empty.";
 		std::cerr << std::endl;
-		return (1);
+		return 1;
 	}
-	std::ifstream	inputFile("file01");
-	std::ofstream	outputFile("output");
-	while (std::getline(inputFile, temp)){
-		if (toBeReplaced.compare(temp) == 0)
-			outputFile << toReplace;
+	
+	std::ifstream	inputFile(filename.c_str());
+	if (!inputFile.is_open()){
+		std::cerr << "Error: Could not open file '";
+		std::cerr << filename << "'." << std::endl;
+		return 1;
+	}
+	
+	std::string		outputFileName = filename + ".replace";
+	std::ofstream	outputFile(outputFileName.c_str());
+	if (!outputFile.is_open())
+	{
+		std::cerr << "Error: Could not create output file '";
+		std::cerr << outputFileName << "'." << std::endl;
+		return 1;
+	}
+
+	std::string	line;
+	size_t		i;
+	while (std::getline(inputFile, line)){
+		i = 0;
+		while ((i = line.find(toBeReplaced, i)) != std::string::npos)
+		{
+			line.erase(i, toBeReplaced.length());
+			line.insert(i, toReplace);
+			i += toReplace.length();
+		}
+		outputFile << line;
+		if (!inputFile.eof()){
+			outputFile << std::endl;
+		}
+		i++;
 	}
 	inputFile.close();
 	outputFile.close();
-	// displayMessage("HumanA");
 	return 0;
 }
