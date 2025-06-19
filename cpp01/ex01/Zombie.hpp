@@ -6,7 +6,7 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:12:29 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/06/19 18:37:25 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/06/19 19:29:10 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <cctype>
 # include <iostream>
+# include <stdlib.h>
 
 # define GREEN "\033[0;32m"
 # define YELLOW "\033[0;33m"
@@ -31,7 +32,7 @@ class	Zombie{
 		Zombie(void);
 		~Zombie(void);
 
-		void	announce(void);
+		void	announce(int N);
 		void	setName(std::string name);
 };
 	

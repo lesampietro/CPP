@@ -6,14 +6,14 @@
 #    By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/31 17:07:39 by lsampiet          #+#    #+#              #
-#    Updated: 2025/06/14 18:53:25 by lsampiet         ###   ########.fr        #
+#    Updated: 2025/06/19 19:29:46 by lsampiet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= Brainz
+NAME	= moarBrainz
 CC		= c++
 CFLAGS	= -Wall -Wextra -Werror -std=c++98
-SRC		= main.cpp Zombie.cpp randomChump.cpp newZombie.cpp 
+SRC		= main.cpp Zombie.cpp zombieHorde.cpp 
 OBJ		= $(SRC:.cpp=.o)
 
 all: $(NAME) clean

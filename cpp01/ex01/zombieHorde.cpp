@@ -6,20 +6,26 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:45 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/06/19 18:37:56 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/06/19 19:44:50 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-Zombie *zombieHorde(int N, std::string name){
-	Zombie *zombie[N] = new Zombie();
+Zombie *zombieHorde(int N, std::string name)
+{
+	std::cout << "\nCreating an array of " << N << " zombies called ";
+	std::cout << name << ".\n";
+	std::cout << std::endl;
+
+	// Allocates all on one memory block - new[] for object array
+	Zombie *horde = new Zombie[N];
 	int	i = 0;
+	
 	while (i < N){
-		zombie[i]->setName(name);
-		std::cout << std::endl;
-		zombie[i]->announce();
+		horde[i].setName(name);
 		i++;
 	}
-	return *zombie[];
+	
+	return horde;
 }
