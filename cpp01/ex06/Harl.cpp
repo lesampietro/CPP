@@ -6,7 +6,7 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 14:19:56 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/06/19 18:08:39 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/06/19 20:24:57 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,52 @@ void	Harl::error(void){
 	std::cout << std::endl;
 }
 
-void	Harl::complain(std::string level)
-{
-	void (Harl::*functions[4])(void) = {
-		&Harl::debug,
-		&Harl::info,
-		&Harl::warning,
-		&Harl::error,
-	};
+void	Harl::other(void){
+	// std::cout << MAGENTA << "\nERROR" << RST << std::endl;
+	std::cout << "Harl complains about something else.\n";
+	std::cout << std::endl;
+}
 
-	std::string levels[4] = {
+// void	Harl::complain(std::string level)
+// {
+// 	void (Harl::*functions[4])(void) = {
+// 		&Harl::debug,
+// 		&Harl::info,
+// 		&Harl::warning,
+// 		&Harl::error,
+// 	};
+
+// 	std::string levels[4] = {
+// 		"DEBUG",
+// 		"INFO",
+// 		"WARNING",
+// 		"ERROR"
+// 	};
+	
+// 	int	i = 0;
+
+// 	while (levels[i] != level){
+// 		i++;
+// 	}
+	
+// 	(this->*functions[i])();
+// }
+
+void	Harl::switchComplain(std::string level)
+{
+	// void (Harl::*functions[4])(void) = {
+	// 	&Harl::debug,
+	// 	&Harl::info,
+	// 	&Harl::warning,
+	// 	&Harl::error,
+	// };
+
+	std::string levels[5] = {
 		"DEBUG",
 		"INFO",
 		"WARNING",
-		"ERROR"
+		"ERROR",
+		"OTHER"
 	};
 	
 	int	i = 0;
@@ -62,6 +94,21 @@ void	Harl::complain(std::string level)
 	while (levels[i] != level){
 		i++;
 	}
-	
-	(this->*functions[i])();
+
+	switch(i){
+		case 0:
+			this->debug();
+			break;
+		case 1:
+			this->info();
+			break;
+		case 2:
+			this->warning();
+			break;
+		case 3:
+			this->error();
+			break;
+		default:
+			this->other();
+	}
 }

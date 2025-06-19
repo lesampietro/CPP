@@ -6,7 +6,7 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 14:19:56 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/06/19 16:14:10 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/06/19 20:21:04 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,13 @@ class	Harl{
 		void	info(void);
 		void	warning(void);
 		void	error(void);
+		void	other(void);
 
 	public:
 		Harl();
 		~Harl();
 
-		void	complain(std::string level);
+		void	switchComplain(std::string level);
 };
 
 #endif
