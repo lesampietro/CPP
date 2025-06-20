@@ -6,7 +6,7 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 14:19:56 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/06/19 20:24:57 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/06/19 20:29:17 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,13 +98,10 @@ void	Harl::switchComplain(std::string level)
 	switch(i){
 		case 0:
 			this->debug();
-			break;
 		case 1:
 			this->info();
-			break;
 		case 2:
 			this->warning();
-			break;
 		case 3:
 			this->error();
 			break;
