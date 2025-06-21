@@ -6,7 +6,7 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:17:15 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/06/19 19:47:24 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/06/21 12:27:53 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,11 @@ int	main(int argc, char **argv)
 	// Uses zombieHorde to allocate dinamically N zombies with name
 	Zombie *horde = zombieHorde(N, name);
 
-	// Uses ->announce because horde is a pointer to an array.
-	// Receives N as parameter for the loop
-	horde->announce(N);
+	int	i = 0;
+	while (i < N){
+		horde[i].announce(i + 1);
+		i++;
+	}
 
 	delete[] horde;
 

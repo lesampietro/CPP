@@ -6,13 +6,13 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 12:33:38 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/06/16 19:26:01 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/06/21 12:43:34 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "HumanA.hpp"
 
-// The weapon object MUST be initialized on the Constructor's initialization list, it's a C++ rule
+// The weapon object MUST be initialized on the Constructor's initialization list, it's a C++ rule - because its a reference
 HumanA::HumanA(std::string name, Weapon &weapon) : weapon(weapon){ 
 	this->name = name;
 	// this->weapon = &weapon; - it is FORBIDDEN to assign a reference after initialization

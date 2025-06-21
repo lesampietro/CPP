@@ -6,7 +6,7 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 12:33:38 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/06/16 19:25:31 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/06/21 12:44:29 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@ void	HumanB::attack(){
 	if (this->weapon) {
 		std::cout << BOLD << this->name << RST;
 		std::cout << " attacks with their ";
-		std::cout << GREEN << this->weapon->getType() << "." << RST; //uses ->getType() because the object is pointed to by a pointer
+		std::cout << GREEN << this->weapon->getType() << "."; //uses ->getType() because the object is pointed to by a pointer
 	}
 	else {
 		std::cout << BOLD << this->name;
 		std::cout << MAGENTA << " has no weapon." << RST;
 		std::cout << std::endl;
 		std::cout << this->name << " uses their ";
-		std::cout << "Five Point Palm Exploding Heart Technique.";
+		std::cout << GREEN << "Five Point Palm Exploding Heart Technique.";
 	}
-	std::cout << std::endl;
+	std::cout << RST << std::endl;
 }
 
 void	HumanB::setWeapon(Weapon &newWeapon){
