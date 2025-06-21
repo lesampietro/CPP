@@ -6,7 +6,7 @@
 #    By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/31 17:07:39 by lsampiet          #+#    #+#              #
-#    Updated: 2025/06/21 13:22:25 by lsampiet         ###   ########.fr        #
+#    Updated: 2025/06/21 13:48:52 by lsampiet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ $(BIN_DIR):
 $(NAME): $(OBJS)
 	@echo "Linking $(NAME)..."
 	@$(CC) $(CFLAGS) -o $@ $^
-	@echo "\n$(CYAN)----- $(MAG)❤ $(GREEN)$(NAME) compiled! $(MAG)❤ $(CYAN)-----$(RST)"
+	@echo "\n$(CYAN)----- $(MAG)❤ $(GREEN)$(NAME) compiled! $(MAG)❤ $(CYAN)-----$(RST)\n"
 
 $(BIN_DIR)/%.o: $(SRC_DIR)/%.cpp | $(BIN_DIR)
 	@echo "Compiling $<..."
