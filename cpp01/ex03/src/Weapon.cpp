@@ -6,11 +6,11 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 12:30:49 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/06/16 19:20:12 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/06/21 13:51:49 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Weapon.hpp"
+#include "../includes/Weapon.hpp"
 
 Weapon::Weapon(){}
 

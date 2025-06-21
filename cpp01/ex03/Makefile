@@ -6,28 +6,48 @@
 #    By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/31 17:07:39 by lsampiet          #+#    #+#              #
-#    Updated: 2025/06/16 16:44:54 by lsampiet         ###   ########.fr        #
+#    Updated: 2025/06/21 13:50:06 by lsampiet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= ViolenceIsNotTheAnswer
-CC		= c++
-CFLAGS	= -Wall -Wextra -Werror -std=c++98
-SRC		= main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
-OBJ		= $(SRC:.cpp=.o)
+GREEN	:= \033[0;32m
+MAG		:= \033[0;35m
+CYAN	:= \033[0;36m
+RST		:= \033[0m
 
-all: $(NAME) clean
+NAME	:= violenceIsNotTheAnswer
+CC		:= c++
+CFLAGS	:= -Wall -Wextra -Werror -std=c++98
+SRC_DIR	:= src
+INC_DIR	:= includes
+BIN_DIR	:= bin
+SRCS	:= main.cpp \
+			$(SRC_DIR)/Weapon.cpp \
+			$(SRC_DIR)/HumanA.cpp \
+			$(SRC_DIR)/HumanB.cpp
 
-$(NAME): $(OBJ)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
+OBJS	:= $(patsubst $(SRC_DIR)/%.cpp,$(BIN_DIR)/%.o,$(SRCS))
 
-%.o: %.cpp
-	@$(CC) $(CFLAGS) -c $< -o $@
+all: $(BIN_DIR) $(NAME)
+
+$(BIN_DIR):
+	@mkdir -p $(BIN_DIR)
+
+$(NAME): $(OBJS)
+	@echo "Linking $(NAME)..."
+	@$(CC) $(CFLAGS) -o $@ $^
+	@echo "\n$(CYAN)----- $(MAG)❤ $(GREEN)$(NAME) compiled! $(MAG)❤ $(CYAN)-----$(RST)\n"
+
+$(BIN_DIR)/%.o: $(SRC_DIR)/%.cpp | $(BIN_DIR)
+	@echo "Compiling $<..."
+	@$(CC) $(CFLAGS) -I $(INC_DIR) -c $< -o $@
 
 clean:
-	@rm -f $(OBJ)
+	@echo "Cleaning objects..."
+	@rm -rf $(BIN_DIR)
 
 fclean: clean
+	@echo "Cleaning executable..."
 	@rm -f $(NAME)
 
 re: fclean all

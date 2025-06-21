@@ -6,12 +6,12 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:17:15 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/06/16 19:29:06 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/06/21 13:52:43 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
-#include "HumanB.hpp"
+#include "includes/HumanA.hpp"
+#include "includes/HumanB.hpp"
 
 void	displayMessage(std::string human){
 	std::cout << std::endl;

@@ -6,11 +6,11 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 12:33:38 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/06/21 12:44:29 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/06/21 13:51:43 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanB.hpp"
+#include "../includes/HumanB.hpp"
 
 HumanB::HumanB(){}
 
