@@ -6,15 +6,9 @@
 #    By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/31 17:07:39 by lsampiet          #+#    #+#              #
-#    Updated: 2025/06/21 14:02:24 by lsampiet         ###   ########.fr        #
+#    Updated: 2025/06/21 15:18:17 by lsampiet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-NAME	= replace
-CC		= c++
-CFLAGS	= -Wall -Wextra -Werror -std=c++98
-SRC		= main.cpp
-OBJ		= $(SRC:.cpp=.o)
 
 GREEN	:= \033[0;32m
 MAG		:= \033[0;35m
@@ -28,7 +22,7 @@ SRC_DIR	:= src
 INC_DIR	:= includes
 BIN_DIR	:= bin
 SRCS	:= main.cpp \
-			$(SRC_DIR)/replace.cpp
+			$(SRC_DIR)/Replace.cpp
 
 OBJS	:= $(patsubst $(SRC_DIR)/%.cpp,$(BIN_DIR)/%.o,$(SRCS))
 
