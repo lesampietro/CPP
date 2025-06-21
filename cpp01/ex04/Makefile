@@ -6,7 +6,7 @@
 #    By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/31 17:07:39 by lsampiet          #+#    #+#              #
-#    Updated: 2025/06/21 15:18:17 by lsampiet         ###   ########.fr        #
+#    Updated: 2025/06/21 15:43:45 by lsampiet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,8 @@ $(BIN_DIR)/%.o: $(SRC_DIR)/%.cpp | $(BIN_DIR)
 clean:
 	@echo "Cleaning objects..."
 	@rm -rf $(BIN_DIR)
+	@echo "Removing all .replace files..."
+	@find . -type f -name "*.replace" -delete
 
 fclean: clean
 	@echo "Cleaning executable..."

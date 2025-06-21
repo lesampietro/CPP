@@ -6,32 +6,54 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 13:55:40 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/06/21 15:16:40 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/06/21 16:55:35 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Replace.hpp"
 
-bool	replace(std::string filename, std::string oldStr, std::string newStr){
-	if (oldStr.empty()){
-		std::cerr << "Error: <string_1> cannot be empty.";
-		std::cerr << std::endl;
+bool	isValidFile(const std::string &filename, std::ifstream &file)
+{
+	file.open(filename.c_str()); // Open input file. c_str() converts string to const *char (expected by the open method)
+	if (!file.is_open()){ //Checks if open was possible
+		std::cerr << "Error: Could not open file '" << filename << "'" << std::endl;
 		return false;
 	}
-	
-	std::ifstream	inputFile(filename.c_str());
-	if (!inputFile.is_open()){
-		std::cerr << "Error: Could not open file '";
-		std::cerr << filename << "'." << std::endl;
+
+	// Check for empty file
+	std::string line;
+	bool hasContent = false;
+	while (std::getline(file, line)){ // Loops until end of file
+		if (!line.empty() && line != "\n" && line != "\r" && line != "\r\n")
+		{
+			hasContent = true; // Found a line with content(other than spaces)
+			break;
+		}
+	}
+	if (!hasContent){
+		std::cerr << MAGENTA << "Error: " << filename << " is empty or contains only blank lines.";
+		std::cerr << RST << std::endl;
 		return false;
 	}
-	
-	std::string		outputFileName = filename + ".replace";
-	std::ofstream	outputFile(outputFileName.c_str());
+
+	file.seekg(0, std::ios::beg); // Goes back to file start
+
+	return true;
+}
+
+bool	replace(const std::string &filename, const std::string &oldStr, const std::string &newStr)
+{
+	std::ifstream	inputFile;
+	if (!isValidFile(filename, inputFile))
+		return false;
+
+	std::string		outputFileName = filename + ".replace"; // Creating name to be used in the outfile creation
+	std::ofstream	outputFile(outputFileName.c_str()); // Creating out file
+	// Checking if it was possible to create/open out file
 	if (!outputFile.is_open())
 	{
-		std::cerr << "Error: Could not create output file '";
-		std::cerr << outputFileName << "'." << std::endl;
+		std::cerr << MAGENTA << "Error: Could not create output file '";
+		std::cerr << RST << outputFileName << "'." << std::endl;
 		return false;
 	}
 
