@@ -6,7 +6,7 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 13:55:40 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/06/21 16:55:35 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/06/22 15:57:17 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,11 @@ bool	replace(const std::string &filename, const std::string &oldStr, const std::
 
 	std::string	line;
 	size_t		i;
-	while (std::getline(inputFile, line)){
+	while (std::getline(inputFile, line))
+	{
 		i = 0;
-		while ((i = line.find(oldStr, i)) != std::string::npos)
+		// find() updates i when finds an occurence of the oldstr on the line. return value is std::string::npos if oldStr is not found
+		while ((i = line.find(oldStr, i)) != std::string::npos) // Loops till theres is no more occurences of oldStr on the line
 		{
 			line.erase(i, oldStr.length());
 			line.insert(i, newStr);
@@ -71,7 +73,6 @@ bool	replace(const std::string &filename, const std::string &oldStr, const std::
 		if (!inputFile.eof()){
 			outputFile << std::endl;
 		}
-		i++;
 	}
 	inputFile.close();
 	outputFile.close();

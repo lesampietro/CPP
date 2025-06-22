@@ -6,7 +6,7 @@
 #    By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/31 17:07:39 by lsampiet          #+#    #+#              #
-#    Updated: 2025/06/21 15:43:45 by lsampiet         ###   ########.fr        #
+#    Updated: 2025/06/22 15:53:34 by lsampiet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,10 @@ $(NAME): $(OBJS)
 $(BIN_DIR)/%.o: $(SRC_DIR)/%.cpp | $(BIN_DIR)
 	@echo "Compiling $<..."
 	@$(CC) $(CFLAGS) -I $(INC_DIR) -c $< -o $@
+
+test: all
+	@echo "Executing test...\n"
+	@./replace file/samplefile Matrix Dawg
 
 clean:
 	@echo "Cleaning objects..."
