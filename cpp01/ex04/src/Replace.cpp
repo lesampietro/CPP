@@ -16,7 +16,8 @@ bool	isValidFile(const std::string &filename, std::ifstream &file)
 {
 	file.open(filename.c_str()); // Open input file. c_str() converts string to const *char (expected by the open method)
 	if (!file.is_open()){ //Checks if open was possible
-		std::cerr << "Error: Could not open file '" << filename << "'" << std::endl;
+		std::cerr << MAGENTA << "Error: Could not open file '" << filename;
+		std::cout << RST << "'" << std::endl;
 		return false;
 	}
 
@@ -27,6 +28,7 @@ bool	isValidFile(const std::string &filename, std::ifstream &file)
 		if (!line.empty() && line != "\n" && line != "\r" && line != "\r\n")
 		{
 			hasContent = true; // Found a line with content(other than spaces)
+			file.close(); // Closes file to go back to the start
 			break;
 		}
 	}
@@ -54,6 +56,7 @@ bool	replace(const std::string &filename, const std::string &oldStr, const std::
 	{
 		std::cerr << MAGENTA << "Error: Could not create output file '";
 		std::cerr << RST << outputFileName << "'." << std::endl;
+		inputFile.close(); // Closes input file before returning
 		return false;
 	}
 

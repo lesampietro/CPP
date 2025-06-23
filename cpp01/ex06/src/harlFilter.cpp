@@ -55,11 +55,10 @@ void	Harl::switchComplain(std::string level)
 	};
 	
 	int	i = 0;
-	int	levelIndex = 4;
 
-	while (i < 4){
+	while (i <= 4)
+	{
 		if (levels[i] == level){
-			levelIndex = i;
 			break;
 		}
 		i++;
