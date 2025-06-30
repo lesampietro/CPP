@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/29 21:01:29 by lsampiet          #+#    #+#             */
+/*   Updated: 2025/06/29 21:01:31 by lsampiet         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/Fixed.hpp"
 
 Fixed::Fixed() : _fixedPointValue(0) {
     std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed &other) : _fixedPointValue(other._fixedPointValue) {
+Fixed::Fixed(const Fixed &copy) : _fixedPointValue(copy._fixedPointValue) {
     std::cout << "Copy constructor called" << std::endl;
 }
 
