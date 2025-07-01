@@ -6,7 +6,7 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:39 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/06/29 21:04:01 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/07/01 19:51:39 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,30 @@
 # include <iostream>
 # include <cmath>
 
-// class Fixed {
-// 	private:
-// 		int					_fixedPointValue;
-// 		static const int	_fractionalBits = 8;
+# define GREEN "\033[0;32m"
+# define YELLOW "\033[0;33m"
+# define MAGENTA "\033[0;35m"
+# define CYAN "\033[0;36m"
+# define RST "\033[0m"
 
-// 	public:
-// 		Fixed();
-// 		Fixed(const Fixed &other);
-// 		Fixed &operator=(const Fixed &other);
-// 		~Fixed();
+class	Fixed {
+	private:
+		int					_fixedPointValue;
+		static const int	_fractionalBits = 8;
 
-// 		int		getRawBits(void) const;
-// 		void	setRawBits(int const raw);
-// };
+	public:
+		Fixed();
+		Fixed(const int _value);
+		Fixed(const float _value);
+		Fixed(const Fixed &other);
+		Fixed &operator=(const Fixed &other);
+		Fixed &operator<<(int _fixedPointValue);
+		~Fixed();
+
+		int					getRawBits(void) const;
+		void				setRawBits(int const raw);
+		// int					toInt(void) const; //converts fixed point to integer
+		// float				toFloat(void) const;//converts fixed point to float
+};
 
 #endif
