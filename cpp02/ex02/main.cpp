@@ -6,7 +6,7 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:18 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/06/29 21:05:39 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/07/04 17:50:38 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,3 +25,5 @@ int main(void)
 	std::cout << Fixed::max(a, b) << std::endl;
 	return 0;
 }
+
+// In C++, comparison operator overloading allows the standard comparison operators ( ==, !=, <, >, <=, >= ) to be defined for user-defined types (classes or structs). This enables objects of these types to be compared using familiar syntax, making code more intuitive and readable.

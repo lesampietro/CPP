@@ -53,6 +53,6 @@ void Fixed::setRawBits(int const raw) {
 
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed)
 {
-    out << fixed.toFloat();
-    return out;
+	out << fixed.toFloat();
+	return out;
 }
