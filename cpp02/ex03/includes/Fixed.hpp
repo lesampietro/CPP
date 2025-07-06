@@ -6,29 +6,56 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:39 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/06/29 21:07:09 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/07/05 19:52:54 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FIXED_HPP
-# define FIXED_HPP
+#define FIXED_HPP
 
-# include <iostream>
-# include <cmath>
+#include <iostream>
+#include <cmath>
 
-// class Fixed {
-// 	private:
-// 		int					_fixedPointValue;
-// 		static const int	_fractionalBits = 8;
+class Fixed
+{
+private:
+	int _fixedPointValue;
+	static const int _fractionalBits = 8;
 
-// 	public:
-// 		Fixed();
-// 		Fixed(const Fixed &other);
-// 		Fixed &operator=(const Fixed &other);
-// 		~Fixed();
+public:
+	Fixed();
+	Fixed(const int value);
+	Fixed(const float value);
+	Fixed(const Fixed &copy);
+	Fixed &operator=(const Fixed &other);
+	~Fixed();
 
-// 		int		getRawBits(void) const;
-// 		void	setRawBits(int const raw);
-// };
+	int toInt(void) const;
+	float toFloat(void) const;
+
+	bool operator>(const Fixed &other) const;
+	bool operator<(const Fixed &other) const;
+	bool operator>=(const Fixed &other) const;
+	bool operator<=(const Fixed &other) const;
+	bool operator==(const Fixed &other) const;
+	bool operator!=(const Fixed &other) const;
+
+	Fixed operator+(const Fixed &other) const;
+	Fixed operator-(const Fixed &other) const;
+	Fixed operator*(const Fixed &other) const;
+	Fixed operator/(const Fixed &other) const;
+
+	Fixed &operator++();
+	Fixed operator++(int);
+	Fixed &operator--();
+	Fixed operator--(int);
+
+	static Fixed &min(Fixed &first, Fixed &scnd);
+	static const Fixed &min(const Fixed &first, const Fixed &scnd);
+	static Fixed &max(Fixed &first, Fixed &scnd);
+	static const Fixed &max(const Fixed &first, const Fixed &scnd);
+};
+
+std::ostream &operator<<(std::ostream &out, const Fixed &fixed);
 
 #endif
