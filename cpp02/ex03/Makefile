@@ -11,7 +11,9 @@ SRC_DIR	:= src
 INC_DIR	:= includes
 BIN_DIR	:= bin
 SRCS	:= main.cpp \
-			$(SRC_DIR)/Fixed.cpp
+			$(SRC_DIR)/Fixed.cpp \
+			$(SRC_DIR)/Point.cpp \
+			$(SRC_DIR)/bsp.cpp
 
 OBJS	:= $(patsubst $(SRC_DIR)/%.cpp,$(BIN_DIR)/%.o,$(SRCS))
 

@@ -6,14 +6,14 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 19:44:38 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/05 21:05:40 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/07/06 15:58:02 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef POINT_HPP
 # define POINT_HPP
 
-# include "includes/Fixed.hpp"
+# include "Fixed.hpp"
 
 class Point
 {
@@ -31,6 +31,7 @@ public:
 	Fixed	getY() const;
 };
 
+std::ostream &operator<<(std::ostream &out, const Point &point);
 bool	bsp( Point const a, Point const b, Point const c, Point const point);
 
 #endif

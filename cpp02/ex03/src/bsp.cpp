@@ -6,7 +6,7 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 20:11:53 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/05 21:55:06 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/07/06 16:56:46 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,15 @@ bool	checkVertexes(Point const &a, Point const &b, Point const &c, Point const &
 		|| (point.getX() == b.getX() && point.getY() == b.getY()) \
 		|| (point.getX() == c.getX() && point.getY() == c.getY()))
 		return true;
+	return false;
 }
 
 bool	bsp(Point const a, Point const b, Point const c, Point const point)
 {
-	if (checkVertexes)
+	if (checkVertexes(a,b,c, point)){
+		std::cout << "The point is located at a vertex" << std::endl;
 		return (false);
+	}
 	// Calculates the area of original triangle
 	Fixed areaABC = triangleArea(a, b, c);
 
@@ -51,6 +54,15 @@ bool	bsp(Point const a, Point const b, Point const c, Point const point)
 	// Sums up all the sub-triangle areas. If the totalArea is equal to area ABC, it means the point is inside the triangle.
 	Fixed totalArea = areaPAB + areaPBC + areaPCA;
 
-	// Verifica se são iguais (considerando possível imprecisão)
-	return (areaABC == totalArea);
+	if (areaABC < totalArea)
+	{
+		std::cout << "The point is " << MAGENTA << "not inside ";
+		std::cout << RST << "the triangle" << std::endl;
+		return (false);
+	}
+	else {
+		std::cout << "The point is " << GREEN << "inside ";
+		std::cout << RST << "the triangle" << std::endl;
+		return (false);
+	}
 }
