@@ -6,7 +6,7 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 20:11:53 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/06 16:56:46 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/07/06 20:51:01 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,40 +29,56 @@ Fixed	triangleArea(Point const &p1, Point const &p2, Point const &p3)
 	return area;
 }
 
-bool	checkVertexes(Point const &a, Point const &b, Point const &c, Point const &point) {
-	if ((point.getX() == a.getX() && point.getY() == a.getY()) \
+bool	isOnVertex(Point const &a, Point const &b, Point const &c, Point const &point) {
+	return ((point.getX() == a.getX() && point.getY() == a.getY()) \
 		|| (point.getX() == b.getX() && point.getY() == b.getY()) \
-		|| (point.getX() == c.getX() && point.getY() == c.getY()))
-		return true;
-	return false;
+		|| (point.getX() == c.getX() && point.getY() == c.getY()));
+}
+
+bool	isOnEdge(Fixed &areaPAB, Fixed &areaPBC, Fixed &areaPCA)
+{
+	return (areaPAB == Fixed(0) || areaPBC == Fixed(0) || areaPCA == Fixed(0));
 }
 
 bool	bsp(Point const a, Point const b, Point const c, Point const point)
 {
-	if (checkVertexes(a,b,c, point)){
-		std::cout << "The point is located at a vertex" << std::endl;
+	if (isOnVertex(a, b, c, point)){
+		std::cout << "The point is " << MAGENTA << "on a vertex.";
+		std::cout << std::endl;
 		return (false);
 	}
+
 	// Calculates the area of original triangle
 	Fixed areaABC = triangleArea(a, b, c);
-
+	
 	// Calculates the area of sub-triangles (triangles formed considering two vertexes from the original triangle plus the point we want to analyse)
 	Fixed areaPAB = triangleArea(point, a, b);
 	Fixed areaPBC = triangleArea(point, b, c);
 	Fixed areaPCA = triangleArea(point, c, a);
 
-	// Sums up all the sub-triangle areas. If the totalArea is equal to area ABC, it means the point is inside the triangle.
-	Fixed totalArea = areaPAB + areaPBC + areaPCA;
+	std::cout << "areaPAB: " << areaPAB << std::endl;
+	std::cout << "areaPBC: " << areaPBC <<std::endl;
+	std::cout << "areaPCA: " << areaPCA << std::endl;
 
-	if (areaABC < totalArea)
+	if (isOnEdge(areaPAB, areaPBC, areaPCA))
 	{
-		std::cout << "The point is " << MAGENTA << "not inside ";
-		std::cout << RST << "the triangle" << std::endl;
+		std::cout << "The point is " << MAGENTA << "on an edge.";
+		std::cout << std::endl;
 		return (false);
 	}
-	else {
+
+	// Sums up all the sub-triangle areas. If the totalArea is equal to area ABC, it means the point is inside the triangle.
+	Fixed totalArea = areaPAB + areaPBC + areaPCA;
+	
+	if (areaABC == totalArea)
+	{
 		std::cout << "The point is " << GREEN << "inside ";
-		std::cout << RST << "the triangle" << std::endl;
+		std::cout << RST << "the triangle." << std::endl;
+		return (true);
+	}
+	else {
+		std::cout << "The point is " << MAGENTA << "outside ";
+		std::cout << RST << "the triangle." << std::endl;
 		return (false);
 	}
 }

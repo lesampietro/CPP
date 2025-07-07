@@ -6,7 +6,7 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 19:53:48 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/06 16:10:14 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/07/06 19:36:43 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ Point::Point(const float first, const float scnd) : _x(Fixed(first)), _y(Fixed(s
 }
 
 Point::Point(const Point &copy) : _x(copy._x), _y(copy._y) {
-	std::cout << "Copy constructor called" << std::endl;
+	// std::cout << "Copy constructor called" << std::endl;
 }
 
 Point &Point::operator=(const Point &other) {
@@ -38,10 +38,10 @@ Fixed	Point::getY() const {
 }
 
 Point::~Point() {
-	std::cout << "~Destructor called" << std::endl;
+	// std::cout << "~Destructor called" << std::endl;
 }
 
 std::ostream	&operator<<(std::ostream &out, const Point &point) {
-	out << "(" << point.getX() << "," << point.getY() << ")";
+	out << "(" << point.getX() << ", " << point.getY() << ")";
 	return out;
 }
