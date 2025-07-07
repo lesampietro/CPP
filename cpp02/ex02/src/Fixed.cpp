@@ -6,7 +6,7 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:29 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/05 18:00:26 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/07/06 22:19:29 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,28 +51,75 @@ float	Fixed::toFloat(void) const {
 }
 
 bool	Fixed::operator>(const Fixed &other) const {
-	return (this->_fixedPointValue > other._fixedPointValue);
+	// return (this->_fixedPointValue > other._fixedPointValue);
+	if (this->_fixedPointValue > other._fixedPointValue) {
+		std::cout << GREEN << "(true) " << RST;
+		return (true);
+	}
+	else {
+		std::cout << MAGENTA << "(false) " << RST;
+		return (false);
+	}
 }
 
 bool	Fixed::operator<(const Fixed &other) const {
-	return (this->_fixedPointValue < other._fixedPointValue);
+	// return (this->_fixedPointValue < other._fixedPointValue);
+	if (this->_fixedPointValue < other._fixedPointValue) {
+		std::cout << GREEN << "(true) " << RST;
+		return (true);
+	}
+	else {
+		std::cout << MAGENTA << "(false) " << RST;
+		return (false);
+	}
 }
 
 bool	Fixed::operator>=(const Fixed &other) const {
-	return (this->_fixedPointValue >= other._fixedPointValue);
+	// return (this->_fixedPointValue >= other._fixedPointValue);
+	if (this->_fixedPointValue >= other._fixedPointValue) {
+		std::cout << GREEN << "(true) " << RST;
+		return (true);
+	}
+	else {
+		std::cout << MAGENTA << "(false) " << RST;
+		return (false);
+	}
 }
 
 bool	Fixed::operator<=(const Fixed &other) const {
-	return (this->_fixedPointValue <= other._fixedPointValue);
+	// return (this->_fixedPointValue <= other._fixedPointValue);
+	if (this->_fixedPointValue <= other._fixedPointValue) {
+		std::cout << GREEN << "(true) " << RST;
+		return (true);
+	}
+	else {
+		std::cout << MAGENTA << "(false) " << RST;
+		return (false);
+	}
 }
 
 bool	Fixed::operator==(const Fixed &other) const {
-	return (this->_fixedPointValue == other._fixedPointValue);
+	// return (this->_fixedPointValue == other._fixedPointValue);
+	if (this->_fixedPointValue == other._fixedPointValue) {
+		std::cout << GREEN << "(true) " << RST;
+		return (true);
+	}
+	else {
+		std::cout << MAGENTA << "(false) " << RST;
+		return (false);
+	}
 }
 
-bool	Fixed::operator!=(const Fixed &other) const
-{
-	return (this->_fixedPointValue != other._fixedPointValue);
+bool	Fixed::operator!=(const Fixed &other) const {
+	// return (this->_fixedPointValue != other._fixedPointValue);
+	if (this->_fixedPointValue != other._fixedPointValue) {
+		std::cout << GREEN << "(true) " << RST;
+		return (true);
+	}
+	else {
+		std::cout << MAGENTA << "(false) " << RST;
+		return (false);
+	}
 }
 
 Fixed	Fixed::operator+(const Fixed &other) const {
@@ -98,6 +145,21 @@ Fixed	Fixed::operator/(const Fixed &other) const {
 	result._fixedPointValue = (this->_fixedPointValue << _fractionalBits) / other._fixedPointValue;
 	return (result);
 }
+
+// Fixed Fixed::operator/(const Fixed &other) const
+// {
+// 	Fixed result;
+// 	if (other._fixedPointValue == 0)
+// 	{
+// 		std::cerr << "Error: Division by zero." << std::endl;
+// 		result._fixedPointValue = 0;
+// 	}
+// 	else
+// 	{
+// 		result._fixedPointValue = (this->_fixedPointValue / other._fixedPointValue) * (1 << _fractionalBits);
+// 	}
+// 	return (result);
+// }
 
 Fixed&	Fixed::operator++() {
 	this->_fixedPointValue++;
