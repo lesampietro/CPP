@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: leticia-sampietro <leticia-sampietro@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:39 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/06 21:14:17 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/07/11 16:54:00 by leticia-sam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ public:
 	Fixed&				operator=(const Fixed &other);
 	~Fixed();
 
+	int					getRawBits(void) const;
+	void				setRawBits(int const raw);
 	int					toInt(void) const;
 	float				toFloat(void) const;
 

@@ -40,9 +40,7 @@ float Fixed::toFloat(void) const {
 	return static_cast<float>(_fixedPointValue) / (1 << _fractionalBits);
 }
 
-int Fixed::getRawBits(void) const
-{
-	std::cout << "getRawBits member function called" << std::endl;
+int Fixed::getRawBits(void) const{
 	return _fixedPointValue;
 }
 

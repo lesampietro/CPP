@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bsp.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: leticia-sampietro <leticia-sampietro@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 20:11:53 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/06 20:51:01 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/07/11 18:00:50 by leticia-sam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,13 @@ bool	bsp(Point const a, Point const b, Point const c, Point const point)
 	Fixed areaPBC = triangleArea(point, b, c);
 	Fixed areaPCA = triangleArea(point, c, a);
 
+	std::cout << CYAN << "Area of triangle ABC: " << areaABC;
+	std::cout << RST << "\n----------" << std::endl;
 	std::cout << "areaPAB: " << areaPAB << std::endl;
 	std::cout << "areaPBC: " << areaPBC <<std::endl;
 	std::cout << "areaPCA: " << areaPCA << std::endl;
-
+	std::cout << "----------" << std::endl;
+	
 	if (isOnEdge(areaPAB, areaPBC, areaPCA))
 	{
 		std::cout << "The point is " << MAGENTA << "on an edge.";
@@ -69,6 +72,8 @@ bool	bsp(Point const a, Point const b, Point const c, Point const point)
 
 	// Sums up all the sub-triangle areas. If the totalArea is equal to area ABC, it means the point is inside the triangle.
 	Fixed totalArea = areaPAB + areaPBC + areaPCA;
+	std::cout << CYAN << "Sum of sub-triangles: " << totalArea;
+	std::cout << RST << "\n----------" << std::endl;
 	
 	if (areaABC == totalArea)
 	{

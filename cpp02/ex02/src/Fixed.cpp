@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: leticia-sampietro <leticia-sampietro@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:29 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/06 22:19:29 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/07/11 17:23:21 by leticia-sam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,24 +142,14 @@ Fixed	Fixed::operator*(const Fixed &other) const {
 
 Fixed	Fixed::operator/(const Fixed &other) const {
 	Fixed	result;
+	if (other._fixedPointValue == 0)
+	{
+		std::cerr << "Error: Division by zero." << std::endl;
+		result._fixedPointValue = 0;
+	}
 	result._fixedPointValue = (this->_fixedPointValue << _fractionalBits) / other._fixedPointValue;
 	return (result);
 }
-
-// Fixed Fixed::operator/(const Fixed &other) const
-// {
-// 	Fixed result;
-// 	if (other._fixedPointValue == 0)
-// 	{
-// 		std::cerr << "Error: Division by zero." << std::endl;
-// 		result._fixedPointValue = 0;
-// 	}
-// 	else
-// 	{
-// 		result._fixedPointValue = (this->_fixedPointValue / other._fixedPointValue) * (1 << _fractionalBits);
-// 	}
-// 	return (result);
-// }
 
 Fixed&	Fixed::operator++() {
 	this->_fixedPointValue++;
@@ -215,4 +205,13 @@ std::ostream& operator<<(std::ostream& out, const Fixed &fixed)
 {
 	out << fixed.toFloat();
 	return out;
+}
+
+int Fixed::getRawBits(void) const{
+	return _fixedPointValue;
+}
+
+void Fixed::setRawBits(int const raw) {
+	std::cout << "setRawBits member function called" << std::endl;
+	_fixedPointValue = raw;
 }
