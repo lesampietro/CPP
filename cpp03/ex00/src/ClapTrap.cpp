@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: leticia-sampietro <leticia-sampietro@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:29 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/13 20:43:38 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/07/16 00:24:42 by leticia-sam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 ClapTrap::ClapTrap() : _name("Unknown"), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
 	std::cout << "Default constructor called" << std::endl;
-	std::cout << "Claptrap " << BLUE << _name;
+	std::cout << "Claptrap " << CYAN << _name;
 	std::cout << RST << " created.\n" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
+	std::cout << "Custom constructor called" << std::endl;
 	std::cout << "Claptrap " << CYAN << _name;
 	std::cout << RST << " created.\n" << std::endl;
 }
@@ -45,70 +46,95 @@ ClapTrap::~ClapTrap() {
 	std::cout << RST << " has been destroyed." << std::endl;
 }
 
-bool	ClapTrap::isZero(int _energyPoints) {
-	return (_energyPoints == 0);
+bool	ClapTrap::isZero(int points) {
+	return (points == 0);
 }
 
 void	ClapTrap::attack(const std::string &target) {
 	if (isZero(_energyPoints)) {
 		std::cout << CYAN << this->_name;
 		std::cout << RST << ": I can't attack anymore because ";
-		std::cout << MAGENTA << "I'm dead.\n";
+		std::cout << MAGENTA << "I'm too tired." << std::endl;
 		std::cout << CYAN << "\t\t\t( x_x)\n" << RST << std::endl;
-		std::cout << RST << "(ClapTrap " << CYAN << this->_name;
-		std::cout << RST << " has " << MAGENTA << this->_energyPoints;
-		std::cout << RST << " _energyPoints left)." << std::endl;
-		std::cout << "-------------------------" << std::endl;
-		return;
 	}
-	std::cout << "ClapTrap " << this->_name;
-	std::cout << MAGENTA << " attacks " << RST << target << ", causing ";
-	std::cout << MAGENTA << this->_attackDamage << RST << " points of damage!";
-	std::cout << std::endl;
-	std::cout << CYAN << this->_name << RST;
-	std::cout << ": FIRE! PEW PEW PEW PEW!\n" << CYAN << "\t\t\t(∩`-´)⊃━";
-	std::cout << YELLOW << " ☆ﾟ.*･｡ﾟ\n" << RST << std::endl;
-	this->_energyPoints--;
-
+	else if (isZero(_hitPoints)) {
+		std::cout << CYAN << this->_name;
+		std::cout << RST << ": I can't attack anymore because ";
+		std::cout << MAGENTA << "I'm dead." << std::endl;
+		std::cout << CYAN << "\t\t\t( x_x)\n" << RST << std::endl;
+	}
+	else {	
+		std::cout << "ClapTrap " << this->_name;
+		std::cout << MAGENTA << " attacks " << RST << target << ", causing ";
+		std::cout << MAGENTA << this->_attackDamage;
+		std::cout << RST << " points of damage!" << std::endl;
+		std::cout << CYAN << this->_name << RST;
+		std::cout << ": FIRE! PEW PEW PEW PEW!\n" << CYAN << "\t\t\t(∩`-´)⊃━";
+		std::cout << BLUE << " ☆ﾟ.*･｡ﾟ\n" << RST << std::endl;
+		this->_energyPoints--;
+	}
 	std::cout << "(ClapTrap " << this->_name << " has ";
-	if (isZero(_energyPoints))
-		std::cout << MAGENTA << this->_energyPoints;
-	else
-		std::cout << GREEN << this->_energyPoints;
-	std::cout << RST << " _energyPoints left).\n";
-	std::cout << "-------------------------" << std::endl;
+	std::cout << YELLOW << this->_energyPoints << RST << " _energyPoints and ";
+	std::cout << YELLOW << this->_hitPoints << RST << " _hitPoints left).";
+	std::cout << std::endl;
+	std::cout << "-------------------------\n" << std::endl;
 }
 
 void	ClapTrap::takeDamage(unsigned int amount) {
-	std::cout << "ClapTrap " << this->_name;
-	std::cout << " has taken " << amount << " damage points.";
+	if (isZero(_energyPoints)) {
+		std::cout << CYAN << this->_name;
+		std::cout << RST << ": I can't take damage anymore because ";
+		std::cout << MAGENTA << "I'm too tired." << std::endl;
+		std::cout << CYAN << "\t\t\t( x_x)\n" << RST << std::endl;
+	}
+	else if (isZero(_hitPoints)) {
+		std::cout << CYAN << this->_name;
+		std::cout << RST << ": I can't take damage anymore because ";
+		std::cout << MAGENTA << "I'm dead." << std::endl;
+		std::cout << CYAN << "\t\t\t( x_x)\n" << RST << std::endl;
+	}
+	else {
+		std::cout << "ClapTrap " << this->_name;
+		std::cout << " takes " << MAGENTA << amount; 
+		std::cout << RST << " damage points." << std::endl;
+		std::cout << CYAN << this->_name;
+		std::cout << RST << ": OUCH!!! That hurts!" << std::endl;
+		std::cout << CYAN << "\t\t\t(ಥ﹏ಥ)\n" << RST << std::endl;
+		this->_hitPoints -= amount;		
+	}
+	std::cout << "(ClapTrap " << this->_name << " has ";
+	std::cout << YELLOW << this->_energyPoints << RST << " _energyPoints and ";
+	std::cout << YELLOW << this->_hitPoints << RST << " _hitPoints left).";
 	std::cout << std::endl;
+	std::cout << "-------------------------\n" << std::endl;
 }
 
 void	ClapTrap::beRepaired(unsigned int amount) {
 	if (isZero(_energyPoints)) {
 		std::cout << CYAN << this->_name;
 		std::cout << RST << ": I can't repair myself anymore because ";
-		std::cout << MAGENTA << "I'm dead.\n";
+		std::cout << MAGENTA << "I'm too tired." << std::endl;
 		std::cout << CYAN << "\t\t\t( x_x)\n" << RST << std::endl;
-		std::cout << "(ClapTrap " << this->_name << " has ";
-		std::cout << MAGENTA << this->_energyPoints;
-		std::cout << RST << " _energyPoints left).\n";
-		std::cout << "-------------------------" << std::endl;
-		return ;
 	}
-	std::cout << "ClapTrap " << this->_name;
-	std::cout << GREEN << " has been repaired";
-	std::cout << RST << " by " << GREEN << amount;
-	std::cout << RST << " _hitPoints." << std::endl;
-	this->_hitPoints += amount;
-	this->_energyPoints--;
+	else if (isZero(_hitPoints)) {
+		std::cout << CYAN << this->_name;
+		std::cout << RST << ": I can't repair myself anymore because ";
+		std::cout << MAGENTA << "I'm dead." << std::endl;
+		std::cout << CYAN << "\t\t\t( x_x)\n" << RST << std::endl;
+	}
+	else {
+		std::cout << "ClapTrap " << this->_name;
+		std::cout << GREEN << " repairs itself";
+		std::cout << RST << " by " << GREEN << amount;
+		std::cout << RST << " _hitPoints." << std::endl;
+		std::cout << CYAN << "\t\t\t\\('ヮ')/\n" << RST << std::endl;
+		this->_hitPoints += amount;
+		this->_energyPoints--;
+	}
 	std::cout << "(ClapTrap " << this->_name << " has ";
-	if (isZero(_energyPoints))
-		std::cout << MAGENTA << this->_energyPoints;
-	else
-		std::cout << GREEN << this->_energyPoints;
-	std::cout << RST << " _energyPoints left).\n";
-	std::cout << "-------------------------" << std::endl;
+	std::cout << YELLOW << this->_energyPoints << RST << " _energyPoints and ";
+	std::cout << YELLOW << this->_hitPoints << RST << " _hitPoints left).";
+	std::cout << std::endl;
+	std::cout << "-------------------------\n" << std::endl;
 }
 
