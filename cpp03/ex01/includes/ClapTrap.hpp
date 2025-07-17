@@ -6,7 +6,7 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:39 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/17 15:15:08 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/07/17 15:14:56 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define RST "\033[0m"
 
 class ClapTrap {
-	private:
+	protected:
 		std::string 	_name;
 		unsigned int	_hitPoints;
 		unsigned int	_energyPoints;
