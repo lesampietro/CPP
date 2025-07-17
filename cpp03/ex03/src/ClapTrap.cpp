@@ -6,7 +6,7 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:29 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/17 19:05:57 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/07/17 16:46:19 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,16 +96,12 @@ void	ClapTrap::takeDamage(unsigned int amount) {
 	}
 	else {
 		std::cout << "ClapTrap " << this->_name;
-		std::cout << " takes " << MAGENTA << amount;
+		std::cout << " takes " << MAGENTA << amount; 
 		std::cout << RST << " damage points." << std::endl;
 		std::cout << CYAN << this->_name;
 		std::cout << RST << ": OUCH!!! That hurts!" << std::endl;
-		std::cout << CYAN << "\t\t\t(╥﹏╥)\n"
-				  << RST << std::endl;
-		if (amount > this->_hitPoints)
-			this->_hitPoints = 0;
-		else
-			this->_hitPoints -= amount;
+		std::cout << CYAN << "\t\t\t(╥﹏╥)\n" << RST << std::endl;
+		this->_hitPoints -= amount;		
 	}
 	std::cout << "(ClapTrap " << this->_name << " has ";
 	std::cout << YELLOW << this->_energyPoints << RST << " _energyPoints and ";

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.cpp                                       :+:      :+:    :+:   */
+/*   DiamondTrap.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:29 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/17 19:07:28 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/07/17 19:13:58 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ScavTrap.hpp"
+#include "../includes/DiamondTrap.hpp"
 
 // Default Constructor
 ScavTrap::ScavTrap() : ClapTrap() {
@@ -61,7 +61,7 @@ void	ScavTrap::attack(const std::string &target) {
 		std::cout << CYAN << this->_name;
 		std::cout << RST << ": Actually...";
 		std::cout << MAGENTA << "I'm dead." << std::endl;
-		std::cout << CYAN << "\t\t\t( ×-×)\n"
+		std::cout << CYAN << "\t\t\t( ｡×_×)〵\n"
 				  << RST << std::endl;
 	}
 	else {	
@@ -81,9 +81,10 @@ void	ScavTrap::attack(const std::string &target) {
 	std::cout << "-------------------------\n" << std::endl;
 }
 
+
 void	ScavTrap::guardGate() {
 		std::cout << CYAN << this->_name;
-		std::cout << RST << ": Do not talk to me. I am in Gate Keeper mode!\n";
+		std::cout << RST << ": Do not talk to me. I am in Gate Keeper mode!";
 		std::cout << CYAN << "\t\t\tᕙ(`ᴖ´)ᕗ\n" << RST << std::endl;
 		std::cout << "-------------------------\n" << std::endl;
 }

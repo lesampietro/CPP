@@ -6,41 +6,28 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:18 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/17 19:11:33 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/07/17 18:57:15 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ClapTrap.hpp"
+#include "includes/FragTrap.hpp"
 
 //BASIC TESTS
 int main(void) 
 {
-	ClapTrap noName;
-	ClapTrap bob("Bob");
+	ClapTrap clap("Bob");
+	std::cout << std::endl;
+	ScavTrap scav("Pierre");
+	FragTrap frag("Bilu");
 
 	std::cout << YELLOW << "--- Testing basic actions ---\n";
 	std::cout << RST << std::endl;
-	noName.attack("Bob");
-	bob.takeDamage(5);
-	bob.beRepaired(4);
-	bob.attack("Unknown");
-	noName.takeDamage(100);
-	noName.beRepaired(4);
-	noName.attack("Bob");
-
-	// std::cout << YELLOW << "\n--- Testing loosing all energyPoints ---";
-	// std::cout << RST << std::endl;
-	// bob.attack("Unknown"); // 7
-	// bob.attack("Unknown"); // 6
-	// bob.attack("Unknown"); // 5
-	// bob.attack("Unknown"); // 4
-	// bob.attack("Unknown"); // 3
-	// bob.attack("Unknown"); // 2
-	// bob.attack("Unknown"); // 1
-	// bob.beRepaired(4);
-	// bob.attack("Unknown"); // 0
-	// bob.beRepaired(4);
-	// std::cout << std::endl;
-
+	clap.attack("Bilu");
+	frag.takeDamage(5);
+	scav.attack("Bilu");
+	frag.takeDamage(20);
+	frag.beRepaired(5);
+	frag.attack("Pierre");
+	frag.highFivesGuys();
 	return 0;
 }

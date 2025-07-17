@@ -6,7 +6,7 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:29 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/17 16:54:59 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/07/17 19:05:25 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,14 @@
 ClapTrap::ClapTrap() : _name("Unknown"), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
 		std::cout << "ClapTrap default constructor called" << std::endl;
 		std::cout << "Claptrap " << CYAN << _name;
-		std::cout << RST << " created.\n"
-				  << std::endl;
+		std::cout << RST << " created.\n" << std::endl;
 	}
 
 	ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 	{
 		std::cout << "ClapTrap custom constructor called" << std::endl;
 		std::cout << "Claptrap " << CYAN << _name;
-		std::cout << RST << " created.\n"
-				  << std::endl;
+		std::cout << RST << " created.\n" << std::endl;
 	}
 
 	ClapTrap::ClapTrap(const ClapTrap &copy) : _name(copy._name), _hitPoints(copy._hitPoints), _energyPoints(copy._energyPoints), _attackDamage(copy._attackDamage)
@@ -65,16 +63,14 @@ ClapTrap::ClapTrap() : _name("Unknown"), _hitPoints(10), _energyPoints(10), _att
 			std::cout << CYAN << this->_name;
 			std::cout << RST << ": I can't attack anymore because ";
 			std::cout << MAGENTA << "I'm too tired." << std::endl;
-			std::cout << CYAN << "\t\t\t( x_x)\n"
-					  << RST << std::endl;
+			std::cout << CYAN << "\t\t\t( x_x)\n" << RST << std::endl;
 		}
 		else if (isZero(_hitPoints))
 		{
 			std::cout << CYAN << this->_name;
 			std::cout << RST << ": I can't attack anymore because ";
 			std::cout << MAGENTA << "I'm dead." << std::endl;
-			std::cout << CYAN << "\t\t\t( x_x)\n"
-					  << RST << std::endl;
+			std::cout << CYAN << "\t\t\t( x_x)\n" << RST << std::endl;
 		}
 		else
 		{
@@ -83,18 +79,16 @@ ClapTrap::ClapTrap() : _name("Unknown"), _hitPoints(10), _energyPoints(10), _att
 			std::cout << MAGENTA << this->_attackDamage;
 			std::cout << RST << " points of damage!" << std::endl;
 			std::cout << CYAN << this->_name << RST;
-			std::cout << ": FIRE! PEW PEW PEW PEW!\n"
-					  << CYAN << "\t\t\t(∩`-´)⊃━";
-			std::cout << BLUE << " ☆ﾟ.*･｡ﾟ\n"
-					  << RST << std::endl;
+			std::cout << ": FIRE! PEW PEW PEW PEW!\n";
+			std::cout << CYAN << "\t\t\t(∩`-´)⊃━" << BLUE << " ☆ﾟ.*･｡ﾟ\n";
+			std::cout << RST << std::endl;
 			this->_energyPoints--;
 		}
 		std::cout << "(ClapTrap " << this->_name << " has ";
 		std::cout << YELLOW << this->_energyPoints << RST << " _energyPoints and ";
 		std::cout << YELLOW << this->_hitPoints << RST << " _hitPoints left).";
 		std::cout << std::endl;
-		std::cout << "-------------------------\n"
-				  << std::endl;
+		std::cout << "-------------------------\n" << std::endl;
 	}
 
 	void ClapTrap::takeDamage(unsigned int amount)
@@ -104,16 +98,14 @@ ClapTrap::ClapTrap() : _name("Unknown"), _hitPoints(10), _energyPoints(10), _att
 			std::cout << CYAN << this->_name;
 			std::cout << RST << ": I can't take damage anymore because ";
 			std::cout << MAGENTA << "I'm too tired." << std::endl;
-			std::cout << CYAN << "\t\t\t( x_x)\n"
-					  << RST << std::endl;
+			std::cout << CYAN << "\t\t\t( x_x)\n" << RST << std::endl;
 		}
 		else if (isZero(_hitPoints))
 		{
 			std::cout << CYAN << this->_name;
 			std::cout << RST << ": I can't take damage anymore because ";
 			std::cout << MAGENTA << "I'm dead." << std::endl;
-			std::cout << CYAN << "\t\t\t( x_x)\n"
-					  << RST << std::endl;
+			std::cout << CYAN << "\t\t\t( x_x)\n" << RST << std::endl;
 		}
 		else
 		{
@@ -122,9 +114,11 @@ ClapTrap::ClapTrap() : _name("Unknown"), _hitPoints(10), _energyPoints(10), _att
 			std::cout << RST << " damage points." << std::endl;
 			std::cout << CYAN << this->_name;
 			std::cout << RST << ": OUCH!!! That hurts!" << std::endl;
-			std::cout << CYAN << "\t\t\t(╥﹏╥)\n"
-					  << RST << std::endl;
-			this->_hitPoints -= amount;
+			std::cout << CYAN << "\t\t\t(╥﹏╥)\n" << RST << std::endl;
+			if (amount > this->_hitPoints)
+				this->_hitPoints = 0;
+			else
+				this->_hitPoints -= amount;
 		}
 		std::cout << "(ClapTrap " << this->_name << " has ";
 		std::cout << YELLOW << this->_energyPoints << RST << " _energyPoints and ";
