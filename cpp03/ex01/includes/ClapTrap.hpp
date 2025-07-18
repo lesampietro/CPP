@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: leticia-sampietro <leticia-sampietro@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:39 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/17 15:14:56 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/07/18 14:42:53 by leticia-sam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ class ClapTrap {
 
 	public:
 		ClapTrap(); //Default Constructor
-		ClapTrap(std::string _name);
+		ClapTrap(std::string name);
 		ClapTrap(const ClapTrap &other); //Copy Constructor
 		ClapTrap &operator=(const ClapTrap &other); //Copy assignment operator
 		~ClapTrap(); //Default Destructor

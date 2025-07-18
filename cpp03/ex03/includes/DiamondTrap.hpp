@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: leticia-sampietro <leticia-sampietro@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:39 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/17 19:20:09 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/07/18 14:56:11 by leticia-sam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "FragTrap.hpp"
 
-class DiamondTrap : public FragTrap, public ScavTrap {
+class DiamondTrap : public ScavTrap, public FragTrap {
 	private:
 		std::string _name;
 
@@ -26,8 +26,8 @@ class DiamondTrap : public FragTrap, public ScavTrap {
 		DiamondTrap &operator=(const DiamondTrap &other); // Def. Assignment Operator
 		~DiamondTrap();									  // Default Destructor
 
-		void attack(const std::string &target); // Overwrite ClapTrap::attack()
-		void guardGate();						// New method
+		using ScavTrap::attack;
+		void whoAmI();
 };
 
 #endif
