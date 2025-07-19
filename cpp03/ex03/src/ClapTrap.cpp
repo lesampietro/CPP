@@ -6,7 +6,7 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:29 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/17 16:46:19 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/07/19 18:58:04 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,4 +138,3 @@ void	ClapTrap::beRepaired(unsigned int amount) {
 	std::cout << std::endl;
 	std::cout << "-------------------------\n" << std::endl;
 }
-

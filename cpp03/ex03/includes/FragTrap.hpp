@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leticia-sampietro <leticia-sampietro@st    +#+  +:+       +#+        */
+/*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:39 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/18 14:37:15 by leticia-sam      ###   ########.fr       */
+/*   Updated: 2025/07/19 18:58:17 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,3 +27,5 @@ class FragTrap : virtual public ClapTrap {
 };
 
 #endif
+
+//It's necessary to use virtual inheritance to solve the "Diamond Problem", which happens when a class inherits two other Classes, which share the same "base" Class. Whithout the "virtual" keyword, DiamondTrap would inherit two copies of ClapTrap, causing ambiguity and duplicated memory allocation.

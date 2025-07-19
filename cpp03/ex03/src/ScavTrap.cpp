@@ -6,7 +6,7 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:29 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/17 18:55:39 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/07/19 18:58:00 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ ScavTrap::ScavTrap() : ClapTrap() {
 	_attackDamage = 20;
 	std::cout << "ScavTrap default constructor called" << std::endl;
 	std::cout << "ScavTrap " << CYAN << _name;
-	std::cout << RST << " created.\n" << std::endl;
+	std::cout << RST << " created." << std::endl;
 }
 
 // Custom Constructor
@@ -29,7 +29,7 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name) {
 	_attackDamage = 20;
 	std::cout << "ScavTrap custom constructor called" << std::endl;
 	std::cout << "ScavTrap " << CYAN << _name;
-	std::cout << RST << " created.\n" << std::endl;
+	std::cout << RST << " created." << std::endl;
 }
 
 ScavTrap::ScavTrap(const ScavTrap &copy) : ClapTrap(copy) {
@@ -81,10 +81,9 @@ void	ScavTrap::attack(const std::string &target) {
 	std::cout << "-------------------------\n" << std::endl;
 }
 
-
 void	ScavTrap::guardGate() {
 		std::cout << CYAN << this->_name;
-		std::cout << RST << ": Do not talk to me. I am in Gate Keeper mode!";
+		std::cout << RST << ": Do not talk to me. I am in Gate Keeper mode!\n";
 		std::cout << CYAN << "\t\t\tᕙ(`ᴖ´)ᕗ\n" << RST << std::endl;
 		std::cout << "-------------------------\n" << std::endl;
 }

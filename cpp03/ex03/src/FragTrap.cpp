@@ -6,7 +6,7 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:29 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/17 18:52:24 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/07/19 18:57:55 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ FragTrap::FragTrap() : ClapTrap() {
 	_attackDamage = 30;
 	std::cout << "FragTrap default constructor called" << std::endl;
 	std::cout << "FragTrap " << CYAN << _name;
-	std::cout << RST << " created.\n" << std::endl;
+	std::cout << RST << " created." << std::endl;
 }
 
 // Custom Constructor
@@ -29,7 +29,7 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name) {
 	_attackDamage = 30;
 	std::cout << "FragTrap custom constructor called" << std::endl;
 	std::cout << "FragTrap " << CYAN << _name;
-	std::cout << RST << " created.\n" << std::endl;
+	std::cout << RST << " created." << std::endl;
 }
 
 FragTrap::FragTrap(const FragTrap &copy) : ClapTrap(copy) {
