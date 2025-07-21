@@ -1,0 +1,165 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/29 21:01:29 by lsampiet          #+#    #+#             */
+/*   Updated: 2025/07/20 21:59:53 by lsampiet         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/Animal.hpp"
+
+Animal::Animal() : _name() {
+	std::cout << "Animal " << CYAN << _name;
+	std::cout << RST << " created.\n" << std::endl;
+}
+
+Animal::Animal(std::string name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
+{
+	std::cout << "Animal custom constructor called" << std::endl;
+	std::cout << "Animal " << CYAN << _name;
+	std::cout << RST << " created.\n" << std::endl;
+}
+
+Animal::Animal(const Animal &copy) : _name(copy._name), _hitPoints(copy._hitPoints), _energyPoints(copy._energyPoints), _attackDamage(copy._attackDamage)
+{
+	std::cout << "Animal copy constructor called" << std::endl;
+}
+
+Animal &Animal::operator=(const Animal &other)
+{
+	std::cout << "Animal copy assignment operator called" << std::endl;
+	std::cout << std::endl;
+	if (this != &other)
+	{ // Check for self-assignment
+		this->_name = other._name;
+		this->_hitPoints = other._hitPoints;
+		this->_energyPoints = other._energyPoints;
+		this->_attackDamage = other._attackDamage;
+	}
+	return (*this);
+}
+
+Animal::~Animal()
+{
+	std::cout << "Animal default ~destructor called" << std::endl;
+	std::cout << "Animal " << CYAN << _name;
+	std::cout << RST << " has been destroyed.\n" << std::endl;
+}
+
+bool Animal::isZero(int points)
+{
+	return (points == 0);
+}
+
+void Animal::attack(const std::string &target)
+{
+	if (isZero(_energyPoints))
+	{
+		std::cout << CYAN << this->_name;
+		std::cout << RST << ": I can't attack anymore because ";
+		std::cout << MAGENTA << "I'm too tired." << std::endl;
+		std::cout << CYAN << "\t\t\t( x_x)\n" << RST << std::endl;
+	}
+	else if (isZero(_hitPoints))
+	{
+		std::cout << CYAN << this->_name;
+		std::cout << RST << ": I can't attack anymore because ";
+		std::cout << MAGENTA << "I'm dead." << std::endl;
+		std::cout << CYAN << "\t\t\t( x_x)\n" << RST << std::endl;
+	}
+	else
+	{
+		std::cout << "Animal " << this->_name;
+		std::cout << MAGENTA << " attacks " << RST << target << ", causing ";
+		std::cout << MAGENTA << this->_attackDamage;
+		std::cout << RST << " points of damage!" << std::endl;
+		std::cout << CYAN << this->_name << RST;
+		std::cout << ": FIRE! PEW PEW PEW PEW!\n";
+		std::cout << CYAN << "\t\t\t(∩`-´)⊃━" << BLUE << " ☆ﾟ.*･｡ﾟ\n";
+		std::cout << RST << std::endl;
+		this->_energyPoints--;
+	}
+	std::cout << "(Animal " << this->_name << " has ";
+	std::cout << YELLOW << this->_energyPoints << RST << " _energyPoints and ";
+	std::cout << YELLOW << this->_hitPoints << RST << " _hitPoints left).";
+	std::cout << std::endl;
+	std::cout << "-------------------------\n" << std::endl;
+}
+
+void Animal::takeDamage(unsigned int amount)
+{
+	if (isZero(_energyPoints))
+	{
+		std::cout << CYAN << this->_name;
+		std::cout << RST << ": I can't take damage anymore because ";
+		std::cout << MAGENTA << "I'm too tired." << std::endl;
+		std::cout << CYAN << "\t\t\t( x_x)\n" << RST << std::endl;
+	}
+	else if (isZero(_hitPoints))
+	{
+		std::cout << CYAN << this->_name;
+		std::cout << RST << ": I can't take damage anymore because ";
+		std::cout << MAGENTA << "I'm dead." << std::endl;
+		std::cout << CYAN << "\t\t\t( x_x)\n" << RST << std::endl;
+	}
+	else
+	{
+		std::cout << "Animal " << this->_name;
+		std::cout << " takes " << MAGENTA << amount;
+		std::cout << RST << " damage points." << std::endl;
+		std::cout << CYAN << this->_name;
+		std::cout << RST << ": OUCH!!! That hurts!" << std::endl;
+		std::cout << CYAN << "\t\t\t(╥﹏╥)\n" << RST << std::endl;
+		if (amount > this->_hitPoints)
+			this->_hitPoints = 0;
+		else
+			this->_hitPoints -= amount;
+	}
+	std::cout << "(Animal " << this->_name << " has ";
+	std::cout << YELLOW << this->_energyPoints << RST << " _energyPoints and ";
+	std::cout << YELLOW << this->_hitPoints << RST << " _hitPoints left).";
+	std::cout << std::endl;
+	std::cout << "-------------------------\n"
+				<< std::endl;
+}
+
+void Animal::beRepaired(unsigned int amount)
+{
+	if (isZero(_energyPoints))
+	{
+		std::cout << CYAN << this->_name;
+		std::cout << RST << ": I can't repair myself anymore because ";
+		std::cout << MAGENTA << "I'm too tired." << std::endl;
+		std::cout << CYAN << "\t\t\t( x_x)\n"
+					<< RST << std::endl;
+	}
+	else if (isZero(_hitPoints))
+	{
+		std::cout << CYAN << this->_name;
+		std::cout << RST << ": I can't repair myself anymore because ";
+		std::cout << MAGENTA << "I'm dead." << std::endl;
+		std::cout << CYAN << "\t\t\t( x_x)\n"
+					<< RST << std::endl;
+	}
+	else
+	{
+		std::cout << "Animal " << this->_name;
+		std::cout << GREEN << " repairs itself";
+		std::cout << RST << " by " << GREEN << amount;
+		std::cout << RST << " _hitPoints." << std::endl;
+		std::cout << CYAN << "\t\t\t\\('ヮ')/\n"
+					<< RST << std::endl;
+		this->_hitPoints += amount;
+		this->_energyPoints--;
+	}
+	std::cout << "(Animal " << this->_name << " has ";
+	std::cout << YELLOW << this->_energyPoints << RST << " _energyPoints and ";
+	std::cout << YELLOW << this->_hitPoints << RST << " _hitPoints left).";
+	std::cout << std::endl;
+	std::cout << "-------------------------\n"
+				<< std::endl;
+}
