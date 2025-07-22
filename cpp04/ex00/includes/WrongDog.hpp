@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   WrongDog.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 14:19:23 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/22 16:46:34 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/07/22 14:58:53 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-# define DOG_HPP
+#ifndef WRONGDOG_HPP
+# define WRONGDOG_HPP
 
-# include "Animal.hpp"
+# include "WrongAnimal.hpp"
 
-class Dog : public Animal{
+class WrongDog : public WrongAnimal{
 	public:
-		Dog(); //Default Constructor
-		Dog(const Dog &other); //Copy Constructor
-		Dog &operator=(const Dog &other); //Copy assignment operator
-		virtual ~Dog(); //Default Destructor
+		WrongDog(); //Default Constructor
+		WrongDog(const WrongDog &other); //Copy Constructor
+		WrongDog &operator=(const WrongDog &other); //Copy assignment operator
+		~WrongDog(); //Default Destructor
 
 		void	makeSound() const;
 };

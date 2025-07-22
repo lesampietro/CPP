@@ -1,44 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   Brain.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/22 14:19:04 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/22 15:49:13 by lsampiet         ###   ########.fr       */
+/*   Created: 2025/07/22 16:59:43 by lsampiet          #+#    #+#             */
+/*   Updated: 2025/07/22 17:01:37 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Dog.hpp"
+#include "../includes/Brain.hpp"
 
-Dog::Dog() {
-	this->_type = "Dog";
-	std::cout << GREEN << _type;
-	std::cout << RST << " created.\n" << std::endl;
+Brain::Brain() {}
+
+Brain::Brain(const Brain &copy) {
+	std::cout << "Brain copy constructor called" << std::endl;
 }
 
-Dog::Dog(const Dog &copy) {
-	std::cout << "Dog copy constructor called" << std::endl;
-	this->_type = copy._type;
-}
-
-Dog &Dog::operator=(const Dog &other) {
-	std::cout << "Dog copy assignment operator called" << std::endl;
+Brain &Brain::operator=(const Brain &other) {
+	std::cout << "Brain copy assignment operator called" << std::endl;
 	std::cout << std::endl;
-	if (this != &other)
-	{ // Check for self-assignment
-		this->_type = other._type;
+	if (this != &other) { // Check for self-assignment
+		this->_ideas = other._ideas;
 	}
 	return (*this);
 }
 
-Dog::~Dog() {
+Brain::~Brain() {
 	std::cout << "~Destroying " << GREEN;
 	std::cout << _type << RST << "." << std::endl;
 }
 
-void	Dog::makeSound() const {
+void	Brain::makeSound() const {
 	std::cout << GREEN << this->_type;
-	std::cout << RST << ": Woof! Woof!" << std::endl;
+	std::cout << RST << ": Meow Meow..." << std::endl;
 }

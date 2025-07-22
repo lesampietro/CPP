@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/22 14:19:23 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/22 16:46:34 by lsampiet         ###   ########.fr       */
+/*   Created: 2025/07/22 16:57:08 by lsampiet          #+#    #+#             */
+/*   Updated: 2025/07/22 17:01:41 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-# define DOG_HPP
+#ifndef BRAIN_HPP
+# define BRAIN_HPP
 
 # include "Animal.hpp"
 
-class Dog : public Animal{
-	public:
-		Dog(); //Default Constructor
-		Dog(const Dog &other); //Copy Constructor
-		Dog &operator=(const Dog &other); //Copy assignment operator
-		virtual ~Dog(); //Default Destructor
+class Brain {
+	protected:
+		std::string	_ideas[100];
 
-		void	makeSound() const;
+	public:
+		Brain(); //Default Constructor
+		Brain(const Brain &other); //Copy Constructor
+		Brain &operator=(const Brain &other); //Copy assignment operator
+		virtual ~Brain(); //Default Destructor
 };
 
 #endif

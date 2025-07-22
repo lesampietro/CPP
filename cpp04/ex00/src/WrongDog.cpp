@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   WrongDog.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/22 14:19:04 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/22 15:49:13 by lsampiet         ###   ########.fr       */
+/*   Created: 2025/06/29 21:01:29 by lsampiet          #+#    #+#             */
+/*   Updated: 2025/07/22 16:25:53 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Dog.hpp"
+#include "../includes/WrongDog.hpp"
 
-Dog::Dog() {
-	this->_type = "Dog";
-	std::cout << GREEN << _type;
+WrongDog::WrongDog() {
+	this->_type = "WrongDog";
+	std::cout << MAGENTA << _type;
 	std::cout << RST << " created.\n" << std::endl;
 }
 
-Dog::Dog(const Dog &copy) {
-	std::cout << "Dog copy constructor called" << std::endl;
+WrongDog::WrongDog(const WrongDog &copy) {
+	std::cout << "WrongDog copy constructor called." << std::endl;
 	this->_type = copy._type;
 }
 
-Dog &Dog::operator=(const Dog &other) {
-	std::cout << "Dog copy assignment operator called" << std::endl;
+WrongDog &WrongDog::operator=(const WrongDog &other) {
+	std::cout << "WrongDog copy assignment operator called." << std::endl;
 	std::cout << std::endl;
 	if (this != &other)
 	{ // Check for self-assignment
@@ -33,12 +33,12 @@ Dog &Dog::operator=(const Dog &other) {
 	return (*this);
 }
 
-Dog::~Dog() {
-	std::cout << "~Destroying " << GREEN;
-	std::cout << _type << RST << "." << std::endl;
+WrongDog::~WrongDog() {
+	std::cout << MAGENTA << _type;
+	std::cout << RST << " has been ~destroyed." << std::endl;
 }
 
-void	Dog::makeSound() const {
-	std::cout << GREEN << this->_type;
+void	WrongDog::makeSound() const {
+	std::cout << MAGENTA << this->_type;
 	std::cout << RST << ": Woof! Woof!" << std::endl;
 }

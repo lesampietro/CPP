@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/22 14:19:23 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/22 16:46:34 by lsampiet         ###   ########.fr       */
+/*   Created: 2025/07/22 14:19:20 by lsampiet          #+#    #+#             */
+/*   Updated: 2025/07/22 17:02:28 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-# define DOG_HPP
+#ifndef CAT_HPP
+# define CAT_HPP
 
 # include "Animal.hpp"
 
-class Dog : public Animal{
+class Cat : public Animal{
+	private:
+		Brain* brain;
+
 	public:
-		Dog(); //Default Constructor
-		Dog(const Dog &other); //Copy Constructor
-		Dog &operator=(const Dog &other); //Copy assignment operator
-		virtual ~Dog(); //Default Destructor
+		Cat(); //Default Constructor
+		Cat(const Cat &other); //Copy Constructor
+		Cat &operator=(const Cat &other); //Copy assignment operator
+		virtual ~Cat(); //Default Destructor
 
 		void	makeSound() const;
 };

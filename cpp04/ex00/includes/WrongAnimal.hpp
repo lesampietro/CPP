@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:39 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/22 15:49:52 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/07/22 15:03:39 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef WRONGANIMAL_HPP
+# define WRONGANIMAL_HPP
 
 # include <iostream>
 
@@ -22,18 +22,18 @@
 # define CYAN "\033[0;36m"
 # define RST "\033[0m"
 
-class Animal {
+class WrongAnimal {
 	protected:
 		std::string	_type;
 
 	public:
-		Animal(); //Default Constructor
-		Animal(const Animal &other); //Copy Constructor
-		Animal &operator=(const Animal &other); //Copy assignment operator
-		virtual ~Animal(); //Default Destructor
+		WrongAnimal(); //Default Constructor
+		WrongAnimal(const WrongAnimal &other); //Copy Constructor
+		WrongAnimal &operator=(const WrongAnimal &other); //Copy assignment operator
+		~WrongAnimal(); //Default Destructor
 
-		virtual void		makeSound() const;
-		std::string			getType() const;
+		void		makeSound() const;
+		std::string	getType() const;
 };
 
 #endif

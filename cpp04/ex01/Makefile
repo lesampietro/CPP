@@ -4,7 +4,7 @@ MAG		:= \033[0;35m
 CYAN	:= \033[0;36m
 RST		:= \033[0m
 
-NAME	:= animals
+NAME	:= brain
 CC		:= c++
 CFLAGS	:= -Wall -Wextra -Werror -std=c++98
 SRC_DIR	:= src
