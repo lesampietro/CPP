@@ -6,59 +6,41 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:18 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/22 16:45:52 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/07/22 19:49:38 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/Cat.hpp"
 #include "includes/Dog.hpp"
-#include "includes/WrongCat.hpp"
-#include "includes/WrongDog.hpp"
 
 int	main() {
-	std::cout << YELLOW << "======= BASIC ANIMALS TESTS =======\n" << RST;
-	std::cout << "-------- Creating Animals ---------" << RST << std::endl;
-	const Animal* animal = new Animal();
+	std::cout << YELLOW << "========== BASIC TESTS ==========\n" << RST;
+	std::cout << "--- Creating Array of Animals ---\n" << std::endl;
+	
+	const int	ARRAY_SIZE = 10;
+	int			i = 0;
+	Animal* animals[ARRAY_SIZE];
+	
+	while (i < ARRAY_SIZE) {
+		if (i < ARRAY_SIZE / 2)
+			animals[i] = new Dog();
+		else
+			animals[i] = new Cat ();
+		i++;
+	}
+
+	std::cout << "------- Testing Sounds -------\n" << std::endl;
+	i = 0;
+	while (i < ARRAY_SIZE) {
+		std::cout << "Animal #" << i << ": ";
+		// std::cout << GREEN << animals[i]->getType() << RST << ": ";
+		animals[i]->makeSound();
+		i++;
+	}
+
 	std::cout << std::endl;
-	const Animal* dog = new Dog();
-	const Animal* cat = new Cat();
-
-	std::cout << "------ Checking Animal Types ------" << RST << std::endl;
-	std::cout << "Cat type: " << cat->getType() << "." << std::endl;
-	std::cout << "Dog Type: " << dog->getType() << ".\n" << std::endl;
-
-	std::cout << "----- Checking Animal Sounds ------" << RST << std::endl;
-	cat->makeSound(); //will output the cat sound!
-	dog->makeSound();
-	animal->makeSound();
-	std::cout << std::endl;
-
-	std::cout << "-------- Deleting Animals ---------" << RST << std::endl;
-	delete animal;
-	delete cat;
-	delete dog;
-
-	std::cout << YELLOW << "======= WRONG ANIMALS TESTS =======\n" << RST;
-	std::cout << "------ Creating Wrong Animals -----" << RST << std::endl;
-	const WrongAnimal* animal2 = new WrongAnimal();
-	std::cout << std::endl;
-	const WrongAnimal* dog2 = new WrongDog();
-	const WrongAnimal* cat2 = new WrongCat();
-
-	std::cout << "--- Checking Wrong Animal Types ---" << RST << std::endl;
-	std::cout << "Cat2 type: " << cat2->getType() << "." << std::endl;
-	std::cout << "Dog2 Type: " << dog2->getType() << ".\n" << std::endl;
-
-	std::cout << "--- Checking Wrong Animal Sounds --\n" << RST;
-	cat2->makeSound(); // will output the cat sound!
-	dog2->makeSound();
-	animal2->makeSound();
-	std::cout << std::endl;
-
-	std::cout << "----- Deleting Wrong Animals ------" << RST << std::endl;
-	delete cat2;
-	delete dog2;
-	delete animal2;
+	std::cout << YELLOW << "======= DEEP COPY TESTS =======\n" << RST;
+	// testDeepCopy();
 
 	return 0;
 }
