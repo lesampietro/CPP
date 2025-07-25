@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: leticia-sampietro <leticia-sampietro@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:29 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/22 19:17:30 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/07/25 15:27:40 by leticia-sam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ Animal &Animal::operator=(const Animal &other) {
 }
 
 Animal::~Animal() {
-	std::cout << BLUE << _type;
-	std::cout << RST << " has been ~destroyed.\n" << std::endl;
+	std::cout << BLUE << _type << RST;
 }
 
 void	Animal::makeSound() const {

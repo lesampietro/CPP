@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: leticia-sampietro <leticia-sampietro@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 14:19:04 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/22 15:49:13 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/07/25 14:40:43 by leticia-sam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ Dog::Dog() {
 	std::cout << RST << " created.\n" << std::endl;
 }
 
-Dog::Dog(const Dog &copy) {
+Dog::Dog(const Dog &copy) : Animal(copy) {
 	std::cout << "Dog copy constructor called" << std::endl;
 	this->_type = copy._type;
 }

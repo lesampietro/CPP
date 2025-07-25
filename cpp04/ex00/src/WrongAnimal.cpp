@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   WrongAnimal.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: leticia-sampietro <leticia-sampietro@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:29 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/22 16:11:00 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/07/25 14:54:21 by leticia-sam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ WrongAnimal::~WrongAnimal() {
 
 void	WrongAnimal::makeSound() const {
 	std::cout << BLUE << this->_type;
-	std::cout << RST << ": Wrong Sound GrRrRrrr..." << std::endl;
+	std::cout << RST << ": GrRrRrrr..." << std::endl;
 }
 
 std::string WrongAnimal::getType() const {

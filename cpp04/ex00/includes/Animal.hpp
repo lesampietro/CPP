@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: leticia-sampietro <leticia-sampietro@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:39 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/22 15:49:52 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/07/25 14:53:04 by leticia-sam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,3 +37,9 @@ class Animal {
 };
 
 #endif
+
+
+//Without virtual, C++ decides which function to call based on the pointer type, not the actual object type.
+//Use virtual only in the base class
+
+//When the base class (Animal) ~destructor is called (after being initialized from a derived class) its _type attribute will still have the derived class value ("Cat" or "Dog"). That's why "std::cout << this->type;" will print the correct type even in the base class destructor ("Cat" or "Dog" instead of "Animal").

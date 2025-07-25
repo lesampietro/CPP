@@ -1,43 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   ShallowCat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: leticia-sampietro <leticia-sampietro@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 14:18:31 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/25 14:40:50 by leticia-sam      ###   ########.fr       */
+/*   Updated: 2025/07/25 16:58:09 by leticia-sam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Cat.hpp"
+#include "../includes/ShallowCat.hpp"
 
-Cat::Cat() {
-	this->_type = "Cat";
-	std::cout << GREEN << _type;
-	std::cout << RST << " created.\n" << std::endl;
+ShallowCat::ShallowCat() {
+	this->_brain = new Brain();
+	std::cout << RST << "Created ";
 }
 
-Cat::Cat(const Cat &copy) : Animal(copy) {
-	std::cout << "Cat copy constructor called" << std::endl;
-	this->_type = copy._type;
+ShallowCat::ShallowCat(const ShallowCat &copy){
+	std::cout << "ShallowCat copy constructor called" << std::endl;
+	this->_brain = copy._brain; // Shallow copy of the Brain
+
 }
 
-Cat &Cat::operator=(const Cat &other) {
-	std::cout << "Cat copy assignment operator called" << std::endl;
+ShallowCat &ShallowCat::operator=(const ShallowCat &other) {
+	std::cout << "ShallowCat copy assignment operator called" << std::endl;
 	std::cout << std::endl;
 	if (this != &other) { // Check for self-assignment
-		this->_type = other._type;
+		this->_brain = other._brain; // Shallow copy of the Brain
 	}
 	return (*this);
 }
 
-Cat::~Cat() {
+ShallowCat::~ShallowCat() {
 	std::cout << "~Destroying " << GREEN;
-	std::cout << _type << RST << "." << std::endl;
+	delete _brain;
 }
 
-void	Cat::makeSound() const {
-	std::cout << GREEN << this->_type;
-	std::cout << RST << ": Meow Meow..." << std::endl;
+Brain*	ShallowCat::getBrain() const {
+	return _brain;
 }

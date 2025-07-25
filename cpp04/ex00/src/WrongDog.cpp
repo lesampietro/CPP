@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   WrongDog.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: leticia-sampietro <leticia-sampietro@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:29 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/22 16:25:53 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/07/25 14:41:07 by leticia-sam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ WrongDog::WrongDog() {
 	std::cout << RST << " created.\n" << std::endl;
 }
 
-WrongDog::WrongDog(const WrongDog &copy) {
+WrongDog::WrongDog(const WrongDog &copy) : WrongAnimal(copy) {
 	std::cout << "WrongDog copy constructor called." << std::endl;
 	this->_type = copy._type;
 }

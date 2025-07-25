@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: leticia-sampietro <leticia-sampietro@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:39 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/22 19:18:04 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/07/25 16:05:38 by leticia-sam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@
 # define GREEN "\033[0;32m"
 # define YELLOW "\033[0;33m"
 # define MAGENTA "\033[0;35m"
-#define BLUE "\033[34m"
+# define BLUE "\033[34m"
 # define CYAN "\033[0;36m"
 # define RST "\033[0m"
+
+# define ARRAY_SIZE 8
 
 class Animal {
 	protected:
