@@ -6,15 +6,14 @@
 /*   By: leticia-sampietro <leticia-sampietro@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 14:19:04 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/25 16:12:00 by leticia-sam      ###   ########.fr       */
+/*   Updated: 2025/07/26 19:56:18 by leticia-sam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Dog.hpp"
 
-Dog::Dog() {
+Dog::Dog() : Animal("Dog") {
 	this->_brain = new Brain();
-	this->_type = "Dog";
 	std::cout << RST << "Created ";
 	std::cout << GREEN << _type << RST;
 }
@@ -31,6 +30,7 @@ Dog &Dog::operator=(const Dog &other) {
 	if (this != &other) { // Check for self-assignment
 		delete this->_brain; // Cleans current brain
 		this->_brain = new Brain(*other._brain); // Deep copy of new Brain
+		this->_type = other._type;
 		Animal::operator=(other); // Calls for base-class operator
 	}
 	return (*this);

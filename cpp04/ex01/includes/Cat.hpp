@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: leticia-sampietro <leticia-sampietro@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 14:19:20 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/22 19:26:39 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/07/26 19:10:38 by leticia-sam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class Cat : public Animal{
 		~Cat(); //Default Destructor
 
 		void	makeSound() const;
-		Brain* getBrain() const;
+		Brain* getBrain() const; //Getter
 };
 
 #endif

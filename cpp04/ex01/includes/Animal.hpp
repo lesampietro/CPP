@@ -6,7 +6,7 @@
 /*   By: leticia-sampietro <leticia-sampietro@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:39 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/25 16:05:38 by leticia-sam      ###   ########.fr       */
+/*   Updated: 2025/07/26 20:02:48 by leticia-sam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,20 @@
 # define CYAN "\033[0;36m"
 # define RST "\033[0m"
 
-# define ARRAY_SIZE 8
-
 class Animal {
 	protected:
 		std::string	_type;
 
 	public:
 		Animal(); //Default Constructor
+		Animal(std::string _type); //Param Constructor
 		Animal(const Animal &other); //Copy Constructor
 		Animal &operator=(const Animal &other); //Copy assignment operator
 		virtual ~Animal(); //Default Destructor
 
 		virtual void		makeSound() const;
-		std::string			getType() const;
+		std::string			getType() const; //Getter
+		void    setType(const Animal &other); //Setter
 };
 
 #endif

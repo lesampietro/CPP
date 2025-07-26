@@ -6,12 +6,11 @@
 /*   By: leticia-sampietro <leticia-sampietro@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:18 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/25 17:05:22 by leticia-sam      ###   ########.fr       */
+/*   Updated: 2025/07/26 20:21:41 by leticia-sam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/Cat.hpp"
-#include "includes/ShallowCat.hpp"
 #include "includes/Dog.hpp"
 
 
@@ -58,44 +57,62 @@ void	testDeepCopy() {
 	std::cout << " #2 has been ~destroyed.\n" << std::endl;
 
 	std::cout << YELLOW << "======= TESTING SHALLOW COPY =======\n" << RST;
-	std::cout << "------- Creating Shallow Cats -------\n" << std::endl;
-	ShallowCat* cat1 = new ShallowCat();
-    std::cout << "Shallow Cat #1 created.\n" << std::endl;
+	std::cout << "------- Creating Cats -------\n" << std::endl;
+	Cat* cat1 = new Cat();
+	std::cout << " #1 (To Be Copied).\n" << std::endl;	
+	Cat* shallow = cat1; // Shallow copy
+	std::cout << GREEN << "Cat " << RST << "#2 (Shallow Copy) created.\n";
+	std::cout << std::endl;
+	
+	std::cout << "------- Checking Brain Allocation -------\n" << std::endl;
+	std::cout << GREEN << "Cat " << RST;	
+	std::cout << "#1 Brain Address: " << cat1->getBrain() << std::endl;
+	std::cout << GREEN << "Cat " << RST;
+	std::cout << "#2 Brain Address: " << shallow->getBrain() << std::endl;
+	std::cout << std::endl;
+	
+	std::cout << "------- Testing Shallow Copy -------\n" << std::endl;
+	std::cout << GREEN << "Cat #1 " << RST;
+	std::cout << "Brain First Idea: " << cat1->getBrain()->getIdea(0);
+	std::cout << GREEN << "\nCat #2 " << RST;
+	std::cout << "Brain First Idea: " << shallow->getBrain()->getIdea(0);
+	std::cout << "\n\nChanging Cat #2 ideas..." << std::endl;
+	shallow->getBrain()->setIdea(0, "I'm a cat");
+	std::cout << GREEN << "Cat #1 " << RST;
+	std::cout << "Brain First Idea: " << cat1->getBrain()->getIdea(0);
+	std::cout << GREEN << "\nCat #2 " << RST;
+	std::cout << "Brain First Idea: " << shallow->getBrain()->getIdea(0);
+	std::cout << "\n. . ." << std::endl;
+	std::cout << "\nChanging Cat #1 ideas..." << std::endl;
+	cat1->getBrain()->setIdea(0, "I want to take a nap");
+	std::cout << GREEN << "Cat #1 " << RST;
+	std::cout << "Brain First Idea: " << cat1->getBrain()->getIdea(0);
+	std::cout << GREEN << "\nCat #2 " << RST;
+	std::cout << "Brain First Idea: " << shallow->getBrain()->getIdea(0);
+	std::cout << "\n. . .\n" << std::endl;
 
-    ShallowCat* cat2 = new ShallowCat(*cat1); // Shallow copy
-    std::cout << "Shallow Cat #2 (shallow copy) created.\n" << std::endl;
-
-    std::cout << "------- Checking Brain Allocation -------\n" << std::endl;
-    std::cout << "Cat #1 Brain Address: " << cat1->getBrain() << std::endl;
-    std::cout << "Cat #2 Brain Address: " << cat2->getBrain() << std::endl;
-
-    std::cout << "\n------- Testing Shallow Copy -------\n" << std::endl;
-    std::cout << "Cat #1 Brain Idea: " << cat1->getBrain()->getIdea(0) << std::endl;
-    std::cout << "Cat #2 Brain Idea: " << cat2->getBrain()->getIdea(0) << std::endl;
-	std::cout << "\nChanging ShallowCat #2 ideas..." << std::endl;
-    cat2->getBrain()->setIdea(0, "I want to climb a tree!");
-    std::cout << "Cat #1 Brain Idea: " << cat1->getBrain()->getIdea(0) << std::endl;
-    std::cout << "Cat #2 Brain Idea: " << cat2->getBrain()->getIdea(0) << std::endl;
-
-    std::cout << "\n------- Deleting Cats -------\n" << std::endl;
-    delete cat1; // Deleting cat1 will also delete the shared brain
-    // delete cat2; // Deleting cat2 will cause a double deletion (problematic!)
+	std::cout << "------- Deleting Dogs -------\n" << std::endl;
+	delete cat1;
+	std::cout << " #1 has been ~destroyed.\n" << std::endl;
+	// delete shallow;
+	// std::cout << " #2 has been ~destroyed.\n" << std::endl;
 }
 
 int	main() {
 	std::cout << YELLOW << "========== BASIC TESTS ==========\n" << RST;
 	std::cout << "--- Creating Array of Animals ---\n" << std::endl;
-	int			i = 0;
-	Animal* animals[ARRAY_SIZE];
+	int	i = 0;
+	int	size = 4;
+	Animal* animals[size];
 	
-	while (i < ARRAY_SIZE) {
-		if (i < ARRAY_SIZE / 2){
+	while (i < size) {
+		if (i < size / 2){
 			animals[i] = new Dog();
 			std::cout << " #" << i + 1 << ".\n" << std::endl;	
 		}
 		else {
 			animals[i] = new Cat();
-			std::cout << " #" << (i + 1) - (ARRAY_SIZE / 2);
+			std::cout << " #" << (i + 1) - (size / 2);
 			std::cout << ".\n" << std::endl;		
 		}
 		i++;
@@ -103,7 +120,7 @@ int	main() {
 
 	std::cout << "------- Testing Sounds -------\n" << std::endl;
 	i = 0;
-	while (i < ARRAY_SIZE) {
+	while (i < size) {
 		std::cout << "Animal #" << i + 1 << ": ";
 		animals[i]->makeSound();
 		i++;
@@ -111,15 +128,15 @@ int	main() {
 
 	std::cout << "\n------- Deleting Animals -------\n" << std::endl;
 	i = 0;
-	while (i < ARRAY_SIZE) {
-		if (i < ARRAY_SIZE / 2){	
+	while (i < size) {
+		if (i < size / 2){	
 			delete animals[i];
 			std::cout << " #" << i + 1;
 			std::cout << " has been ~destroyed.\n" << std::endl;
 		}
 		else {
 			delete animals[i];
-			std::cout << " #" << (i + 1) - (ARRAY_SIZE / 2);
+			std::cout << " #" << (i + 1) - (size / 2);
 			std::cout << " has been ~destroyed.\n" << std::endl;
 		}
 		i++;
