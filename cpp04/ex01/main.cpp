@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leticia-sampietro <leticia-sampietro@st    +#+  +:+       +#+        */
+/*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:18 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/26 20:21:41 by leticia-sam      ###   ########.fr       */
+/*   Updated: 2025/07/27 14:02:26 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ void	testDeepCopy() {
 	std::cout << "------- Deleting Dogs -------\n" << std::endl;
 	delete cat1;
 	std::cout << " #1 has been ~destroyed.\n" << std::endl;
+
+	//For error demonstration
 	// delete shallow;
 	// std::cout << " #2 has been ~destroyed.\n" << std::endl;
 }
