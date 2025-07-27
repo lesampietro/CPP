@@ -6,7 +6,7 @@
 /*   By: leticia-sampietro <leticia-sampietro@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:39 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/25 14:53:04 by leticia-sam      ###   ########.fr       */
+/*   Updated: 2025/07/26 19:39:58 by leticia-sam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ class Animal {
 
 	public:
 		Animal(); //Default Constructor
+		Animal(std::string _type); //Param Constructor
 		Animal(const Animal &other); //Copy Constructor
 		Animal &operator=(const Animal &other); //Copy assignment operator
 		virtual ~Animal(); //Default Destructor

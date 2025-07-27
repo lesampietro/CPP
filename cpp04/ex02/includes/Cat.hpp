@@ -6,16 +6,20 @@
 /*   By: leticia-sampietro <leticia-sampietro@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 14:19:20 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/26 19:40:59 by leticia-sam      ###   ########.fr       */
+/*   Updated: 2025/07/26 23:43:07 by leticia-sam      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CAT_HPP
 # define CAT_HPP
 
-# include "Animal.hpp"
+# include "AAnimal.hpp"
+# include "Brain.hpp"
 
-class Cat : public Animal {
+class Cat : public AAnimal{
+	private:
+		Brain* _brain;
+
 	public:
 		Cat(); //Default Constructor
 		Cat(const Cat &other); //Copy Constructor
@@ -23,6 +27,7 @@ class Cat : public Animal {
 		~Cat(); //Default Destructor
 
 		void	makeSound() const;
+		Brain* getBrain() const; //Getter
 };
 
 #endif
