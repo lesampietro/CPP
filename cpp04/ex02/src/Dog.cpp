@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leticia-sampietro <leticia-sampietro@st    +#+  +:+       +#+        */
+/*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 14:19:04 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/26 23:56:13 by leticia-sam      ###   ########.fr       */
+/*   Updated: 2025/07/27 13:56:24 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 Dog::Dog() : AAnimal("Dog") {
 	this->_brain = new Brain();
-	// std::cout << GREEN << _type << RST << std::endl;
-	std::cout << GREEN << "Dog " << RST;
-	std::cout << RST << "has been created.\n" << std::endl;
+	std::cout << GREEN << _type;
+	std::cout << RST << " has been created.\n" << std::endl;
 }
 
 Dog::Dog(const Dog &copy) : AAnimal(copy) {
@@ -44,7 +43,6 @@ Dog::~Dog() {
 }
 
 void	Dog::makeSound() const {
-	std::cout << GREEN << this->_type;
 	std::cout << RST << ": Woof! Woof!" << std::endl;
 }
 

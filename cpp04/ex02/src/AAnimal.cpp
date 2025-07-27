@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AAnimal.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leticia-sampietro <leticia-sampietro@st    +#+  +:+       +#+        */
+/*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:29 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/27 00:05:20 by leticia-sam      ###   ########.fr       */
+/*   Updated: 2025/07/27 13:56:50 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ AAnimal::AAnimal() : _type("AAnimal") {
 	std::cout << RST << " created." << std::endl;
 }
 
-AAnimal::AAnimal(std::string _type) {
+AAnimal::AAnimal(std::string type) : _type(type) {
+	std::cout << RST << "AAnimal of type ";
 	std::cout << BLUE << _type;
 	std::cout << RST << " created." << std::endl;
 }
@@ -38,7 +39,8 @@ AAnimal &AAnimal::operator=(const AAnimal &other) {
 }
 
 AAnimal::~AAnimal() {
-	std::cout << BLUE << "AAnimal" << RST;
+	std::cout << "AAnimal ";
+	std::cout << BLUE << this->_type << RST;
 	std::cout << " destructor called.\n" << std::endl;
 }
 

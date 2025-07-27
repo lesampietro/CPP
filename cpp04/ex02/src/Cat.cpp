@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leticia-sampietro <leticia-sampietro@st    +#+  +:+       +#+        */
+/*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 14:18:31 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/27 00:10:56 by leticia-sam      ###   ########.fr       */
+/*   Updated: 2025/07/27 13:56:27 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 Cat::Cat() : AAnimal("Cat") {
 	this->_brain = new Brain();
-	// std::cout << GREEN << _type << RST << std::endl;
-	std::cout << GREEN << "Cat " << RST;
-	std::cout << RST << "has been created.\n" << std::endl;
+	std::cout << GREEN << this->_type;
+	std::cout << RST << " has been created.\n" << std::endl;
 }
 
 Cat::Cat(const Cat &copy) : AAnimal(copy) {
@@ -39,13 +38,11 @@ Cat &Cat::operator=(const Cat &other) {
 
 Cat::~Cat() {
 	std::cout << "~Destroying " << GREEN;
-	// std::cout << this->_type << RST << "." << std::endl; 
-	std::cout << "Cat" << RST << "." << std::endl;
+	std::cout << this->_type << RST << "." << std::endl; 
 	delete this->_brain;
 }
 
 void	Cat::makeSound() const {
-	std::cout << GREEN << this->_type;
 	std::cout << RST << ": Meow Meow..." << std::endl;
 }
 

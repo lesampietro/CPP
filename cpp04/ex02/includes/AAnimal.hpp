@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AAnimal.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leticia-sampietro <leticia-sampietro@st    +#+  +:+       +#+        */
+/*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:39 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/27 00:00:46 by leticia-sam      ###   ########.fr       */
+/*   Updated: 2025/07/27 13:46:13 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,16 @@
 class AAnimal {
 	protected:
 		std::string	_type;
-		AAnimal(); //Default Constructor		
-
-	public:
+		AAnimal(); //Default Constructor
 		AAnimal(std::string _type); //Param Constructor
 		AAnimal(const AAnimal &other); //Copy Constructor
 		AAnimal &operator=(const AAnimal &other); //Copy assignment operator
+		
+		public:
 		virtual ~AAnimal(); //Default Destructor
-
 		virtual void		makeSound() const = 0; //Pure Virtual Function
 		std::string			getType() const; //Getter
-		void    setType(const AAnimal &other); //Setter
+		void				setType(const AAnimal &other); //Setter
 };
 
 #endif
