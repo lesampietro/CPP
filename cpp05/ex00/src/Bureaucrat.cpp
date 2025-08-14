@@ -6,20 +6,18 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:29 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/29 19:09:33 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/08/14 15:30:00 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat() : _name("Unknown") {
-	this->_grade = 1;
+Bureaucrat::Bureaucrat() : _name("Unknown"), _grade(0) {
 	std::cout << BLUE << this->_name;
 	std::cout << RST << " created." << std::endl;
 }
 
-Bureaucrat::Bureaucrat(std::string name) : _name(name) {
-	this->_grade = 1;
+Bureaucrat::Bureaucrat(std::string name, unsigned int grade) : _name(name), _grade(grade) {
 	std::cout << BLUE << this->_name;
 	std::cout << RST << " created." << std::endl;
 }
@@ -40,7 +38,7 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other) {
 
 Bureaucrat::~Bureaucrat() {
 	std::cout << BLUE << this->_name;
-	std::cout << RST << " has been ~destroyed.\n" << std::endl;
+	std::cout << RST << " has been ~destroyed." << std::endl;
 }
 
 std::string	Bureaucrat::getName() const {
@@ -92,6 +90,5 @@ Bureaucrat	Bureaucrat::operator--(int) {
 
 std::ostream&	operator<<(std::ostream &out, const Bureaucrat &bureau){
 	out << bureau.getName();
-	out << bureau.getGrade();
 	return out;
 }

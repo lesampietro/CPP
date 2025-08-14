@@ -6,7 +6,7 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:39 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/07/29 19:10:36 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/08/14 15:24:00 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class Bureaucrat {
 
 	public:
 		Bureaucrat(); //Default Constructor
-		Bureaucrat(std::string _type); //Param Constructor
+		Bureaucrat(std::string name, unsigned int grade); //Param Constructor
 		Bureaucrat(const Bureaucrat &other); //Copy Constructor
 		Bureaucrat &operator=(const Bureaucrat &other); //Copy assignment operator
 		virtual ~Bureaucrat(); //Default Destructor
