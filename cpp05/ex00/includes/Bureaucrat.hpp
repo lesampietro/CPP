@@ -6,7 +6,7 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:39 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/08/14 15:24:00 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/08/14 18:44:51 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,35 @@ class Bureaucrat {
 		unsigned int	_grade;
 
 	public:
+		//Canonical form constructors, operator and destructor
 		Bureaucrat(); //Default Constructor
 		Bureaucrat(std::string name, unsigned int grade); //Param Constructor
 		Bureaucrat(const Bureaucrat &other); //Copy Constructor
 		Bureaucrat &operator=(const Bureaucrat &other); //Copy assignment operator
-		virtual ~Bureaucrat(); //Default Destructor
+		~Bureaucrat(); //Default Destructor
 
+		//Getters and setters
 		std::string		getName() const;
 		void			setName(const std::string &name);
 		unsigned int	getGrade() const;
 		void			setGrade(unsigned int grade);
 
-		void			GradeTooHighException();
-		void			GradeTooLowException();
+		//Grade manipulation
+		void			incrementGrade();
+		void			decrementGrade();
 
+		//Nested classes for exceptions
+		class GradeTooHighException : public std::exception { //Nested Class
+			public:
+				virtual const char* what() const throw();
+		};
+		
+		class GradeTooLowException : public std::exception { //Nested Class
+		public:
+			virtual const char *what() const throw();
+		};
+
+		//Operators
 		Bureaucrat &operator++();
 		Bureaucrat operator++(int);
 		Bureaucrat &operator--();
@@ -51,5 +66,3 @@ class Bureaucrat {
 		std::ostream	&operator<<(std::ostream &out, const Bureaucrat &bureau);
 
 #endif
-
-// Remember, since grade 1 is the highest and 150 the lowest,incrementing a grade 3 should result in a grade 2 for the bureaucrat.

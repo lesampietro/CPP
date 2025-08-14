@@ -6,20 +6,28 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:29 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/08/14 15:30:00 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/08/14 18:53:01 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat() : _name("Unknown"), _grade(0) {
+Bureaucrat::Bureaucrat() : _name("Unknown"), _grade(1) {
 	std::cout << BLUE << this->_name;
 	std::cout << RST << " created." << std::endl;
 }
 
-Bureaucrat::Bureaucrat(std::string name, unsigned int grade) : _name(name), _grade(grade) {
-	std::cout << BLUE << this->_name;
-	std::cout << RST << " created." << std::endl;
+Bureaucrat::Bureaucrat(std::string name, unsigned int grade) : _name(name) {
+	if (grade > 150)
+		throw GradeTooLowException();
+	else if (grade < 1)
+		throw GradeTooHighException();
+	else {
+		this->_grade = grade;
+		std::cout << BLUE << this->_name << RST;
+		std::cout << "created with grade: ";
+		std::cout << CYAN << this->_grade << RST << std::endl;
+	}
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &copy) : _name(copy._name), _grade(copy._grade) {
@@ -58,12 +66,24 @@ void	Bureaucrat::setGrade(unsigned int grade) {
 	this->_grade = grade;
 }
 
-void	Bureaucrat::GradeTooHighException() {
-	std::cerr << "Error: Grade too high!" << std::endl;
+void	Bureaucrat::incrementGrade() {
+	if (this->_grade <=1)
+		throw GradeTooHighException();
+	this->_grade--;
 }
 
-void	Bureaucrat::GradeTooLowException() {
-	std::cerr << "Error: Grade too low!" << std::endl;
+void	Bureaucrat::decrementGrade() {
+	if (this->_grade >= 150)
+		throw GradeTooLowException();
+	this->_grade++;
+}
+
+const char*	Bureaucrat::GradeTooHighException::what() const throw() {
+	return "Grade is too high (maximum grade is 1)";
+}
+
+const char*	Bureaucrat::GradeTooLowException::what() const throw() {
+	return "Grade is too low (minimum grade is 150)";
 }
 
 Bureaucrat&	Bureaucrat::operator++() {
