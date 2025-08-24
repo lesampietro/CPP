@@ -6,47 +6,61 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:18 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/08/14 18:57:28 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/08/24 17:16:11 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/Bureaucrat.hpp"
 
 int	main() {
-	std::cout << YELLOW << "======== Creating Bureaucrats ========\n";
-	std::cout << RST << "--- Instatiate with highest grade ----\n\n";
+	std::cout << YELLOW << "Instatiate with too low and too high grades\n\n";
 	try {
-		Bureaucrat bob("Bobby", 1);
+		Bureaucrat billy("Billy", 151);
 	}
-	catch (const std::exception &e) {
-		std::cout << "Error: " << e.what() << std::endl;
+	catch (const Bureaucrat::GradeTooHighException &e) {
+		std::cout << MAGENTA << "Error 00: " << RST << e.what() << std::endl;
 	}
-	
-	std::cout << "\n---- Instatiate with lowest grade ----\n\n";
-	try {
-		Bureaucrat billy("Billy", 150);
-	}
-	catch (const std::exception &e) {
-		std::cout << "Error: " << e.what() << std::endl;
-	}
-	
-	std::cout << YELLOW << "\n========= Testing Exceptions =========\n" << RST;
-	std::cout << "----- Throw GradeTooHighException ----\n\n";
-	try {
-		Bureaucrat debby("Debby", 1);
-		debby.incrementGrade();
-	}
-	catch (const std::exception &e) {
-		std::cout << MAGENTA << "Error: " << RST << e.what() << std::endl;
+	catch (const Bureaucrat::GradeTooLowException &e) {
+		std::cout << MAGENTA << "Error 01: " << RST << e.what() << std::endl;
 	}
 
-	std::cout << "\n----- Throw GradeTooLowException -----\n\n";
 	try {
+		Bureaucrat shoshanna("Shoshanna", 0);
+	}
+	catch (const Bureaucrat::GradeTooHighException &e) {
+		std::cout << MAGENTA << "Error 00: " << RST << e.what() << std::endl;
+	}
+	catch (const Bureaucrat::GradeTooLowException &e) {
+		std::cout << MAGENTA << "Error 01: " << RST << e.what() << std::endl;
+	}
+
+	std::cout << YELLOW << "\n______________________________________________\n";
+
+	std::cout << YELLOW << "\nInstatiate with ok grades, but increment/decrement after\n";
+	try {
+		std::cout << std::endl;
+		Bureaucrat debby("Debby", 1);
+		std::cout << "Incrementing _grade by 1" << std::endl;
+		debby.incrementGrade();
+	}
+	catch (const Bureaucrat::GradeTooHighException &e) {
+		std::cout << MAGENTA << "Error 00: " << RST << e.what() << std::endl;
+	}
+	catch (const Bureaucrat::GradeTooLowException &e) {
+		std::cout << MAGENTA << "Error 01: " << RST << e.what() << std::endl;
+	}
+
+	try {
+		std::cout << std::endl;
 		Bureaucrat louie("Louie", 150);
+		std::cout << "Decrementing _grade by 1" << std::endl;
 		louie.decrementGrade();
 	}
-	catch (const std::exception &e) {
-		std::cout << MAGENTA << "Error: " << RST << e.what() << std::endl;
+	catch (const Bureaucrat::GradeTooHighException &e) {
+		std::cout << MAGENTA << "Error 00: " << RST << e.what() << std::endl;
+	}
+	catch (const Bureaucrat::GradeTooLowException &e) {
+		std::cout << MAGENTA << "Error 01: " << RST << e.what() << std::endl;
 	}
 	std::cout << std::endl;
 

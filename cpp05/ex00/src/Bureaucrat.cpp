@@ -6,7 +6,7 @@
 /*   By: lsampiet <lsampiet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:01:29 by lsampiet          #+#    #+#             */
-/*   Updated: 2025/08/14 18:53:01 by lsampiet         ###   ########.fr       */
+/*   Updated: 2025/08/24 17:14:59 by lsampiet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ Bureaucrat::Bureaucrat(std::string name, unsigned int grade) : _name(name) {
 	else {
 		this->_grade = grade;
 		std::cout << BLUE << this->_name << RST;
-		std::cout << "created with grade: ";
+		std::cout << " created with grade: ";
 		std::cout << CYAN << this->_grade << RST << std::endl;
 	}
 }
@@ -67,7 +67,7 @@ void	Bureaucrat::setGrade(unsigned int grade) {
 }
 
 void	Bureaucrat::incrementGrade() {
-	if (this->_grade <=1)
+	if (this->_grade <= 1)
 		throw GradeTooHighException();
 	this->_grade--;
 }
