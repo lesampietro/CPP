@@ -4,7 +4,6 @@
 
 # include "Bureaucrat.hpp"
 
-
 class Form {
 	private:
 		static const int	MIN_GRADE = 150;
@@ -20,13 +19,14 @@ class Form {
 		Form(const Form &other);
 		Form &operator=(const Form &other);
 		~Form();
-
 		
 		// Getters
 		std::string	getName() const;
 		bool		getIsSigned() const;
 		int			getSignGrade() const;
 		int			getExecuteGrade() const;
+
+		void		beSigned(const Bureaucrat &bureau);
 
 		// Nested classes for exceptions
 		class GradeTooHighException : public std::exception {

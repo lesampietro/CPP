@@ -1,66 +1,106 @@
 
-#include "includes/Bureaucrat.hpp"
+#include "includes/Form.hpp"
 
-int	main() {
-	std::cout << YELLOW << "Instatiate with too low and too high grades\n\n";
-	std::cout << RST;
-	try {
-		Bureaucrat billy("Billy", 151);
-	}
-	catch (const Bureaucrat::GradeTooHighException &e) {
-		std::cout << "It was not possible to create bureaucrat..." << std::endl;
-		std::cout << MAGENTA << "Error 00: " << RST << e.what() << std::endl;
-	}
-	catch (const Bureaucrat::GradeTooLowException &e) {
-		std::cout << "It was not possible to create bureaucrat..." << std::endl;
-		std::cout << MAGENTA << "Error 01: " << RST << e.what() << std::endl;
-	}
-	std::cout << YELLOW << "\n//////\n" << RST << std::endl;
-	try {
-		Bureaucrat shoshanna("Shoshanna", 0);
-	}
-	catch (const Bureaucrat::GradeTooHighException &e) {
-		std::cout << "It was not possible to create bureaucrat..." << std::endl;
-		std::cout << MAGENTA << "Error 00: " << RST << e.what() << std::endl;
-	}
-	catch (const Bureaucrat::GradeTooLowException &e) {
-		std::cout << "It was not possible to create bureaucrat..." << std::endl;
-		std::cout << MAGENTA << "Error 01: " << RST << e.what() << std::endl;
-	}
+int main()
+{
 
-	std::cout << YELLOW << "\n______________________________________________\n";
+	// Valid form
+	std::cout << "===== Creating a valid form... =====\n"
+			  << std::endl;
+	Form *validForm = NULL;
+	try
+	{
+		validForm = new Form("ValidForm", 50, 30);
+		std::cout << *validForm << std::endl;
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << "Failed to create validForm: " << e.what() << std::endl;
+	}
+	delete validForm;
+	validForm = NULL;
 
-	std::cout << YELLOW << "\nInstatiate with ok grades, but increment/decrement after\n";
-	try {
-		std::cout << std::endl;
-		Bureaucrat debby("Debby", 1);
-		std::cout << debby << std::endl;
-		std::cout << "Incrementing " << CYAN << debby.getName();
-		std::cout << RST << " _grade by 1" << std::endl;
-		debby.incrementGrade();
+	// Too high grade to sign
+	std::cout << "===== Creating invalid forms... =====\n"
+			  << std::endl;
+	std::cout << "=== Form with a grade 0 to sign." << std::endl;
+
+	Form *badForm = NULL;
+	try
+	{
+		badForm = new Form("TooHighToSign", 0, 50);
 	}
-	catch (const Bureaucrat::GradeTooHighException &e) {
-		std::cout << MAGENTA << "Error 00: " << RST << e.what() << std::endl;
+	catch (const std::exception &e)
+	{
+		std::cerr << "Exception: " << e.what() << std::endl;
 	}
-	catch (const Bureaucrat::GradeTooLowException &e) {
-		std::cout << MAGENTA << "Error 01: " << RST << e.what() << std::endl;
+	delete badForm;
+	badForm = NULL;
+
+	// Too low grade to execute
+	std::cout << "=== Form with a grade 200 to execute." << std::endl;
+	Form *invalidForm = NULL;
+	try
+	{
+		invalidForm = new Form("TooLowToExecute", 100, 200);
 	}
-	std::cout << YELLOW << "\n//////\n";
-	try {
-		std::cout << std::endl;
-		Bureaucrat louie("Louie", 150);
-		std::cout << louie << std::endl;
-		std::cout << "Decrementing " << CYAN << louie.getName();
-		std::cout << RST << " _grade by 1" << std::endl;
-		louie.decrementGrade();
+	catch (const std::exception &e)
+	{
+		std::cerr << "Exception: " << e.what() << std::endl;
 	}
-	catch (const Bureaucrat::GradeTooHighException &e) {
-		std::cout << MAGENTA << "Error 00: " << RST << e.what() << std::endl;
+	delete invalidForm;
+	invalidForm = NULL;
+
+	std::cout << "\n===== Creating valid bureaucrats to sign a valid form... =====\n"
+			  << std::endl;
+
+	std::cout << "=== Bureaucrat grade matches Form's requirements.\n"
+			  << std::endl;
+
+	Bureaucrat *Alice = NULL;
+	Form *form_one = NULL;
+	// Signing with high enough grade
+	try
+	{
+		Alice = new Bureaucrat("Alice", 30);
+		std::cout << *Alice << "\n"
+				  << std::endl;
+		form_one = new Form("THIS_IS_A_FORM", 50, 50);
+		std::cout << *form_one << std::endl;
+		form_one->beSigned(*Alice);
+		std::cout << "Form signed successfully by " << Alice->getName() << std::endl;
+		std::cout << *form_one << std::endl;
 	}
-	catch (const Bureaucrat::GradeTooLowException &e) {
-		std::cout << MAGENTA << "Error 01: " << RST << e.what() << std::endl;
+	catch (const std::exception &e)
+	{
+		std::cerr << "Exception: " << e.what() << std::endl;
 	}
-	std::cout << std::endl;
+	delete Alice;
+	delete form_one;
+
+	std::cout << "\n=== Bureaucrat grade does not match Form's requirements.\n"
+			  << std::endl;
+
+	Bureaucrat *Bob = NULL;
+	Form *form_two = NULL;
+	// Attempt to sign with low grade
+	try
+	{
+		Bob = new Bureaucrat("Bob", 100);
+		std::cout << *Bob << "\n"
+				  << std::endl;
+		form_two = new Form("HELLO_I_AM_A_FORM", 90, 100);
+		std::cout << *form_two << std::endl;
+		form_two->beSigned(*Bob);
+		std::cout << "Form signed successfully by " << Bob->getName() << std::endl;
+		std::cout << *form_two << std::endl;
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << "Exception: " << e.what() << std::endl;
+	}
+	delete Bob;
+	delete form_two;
 
 	return 0;
 }

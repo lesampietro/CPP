@@ -35,7 +35,7 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other) {
 
 Bureaucrat::~Bureaucrat() {
 	std::cout << BLUE << this->_name;
-	std::cout << RST << " has been ~destroyed." << std::endl;
+	std::cout << RST << ": ~Destructor called" << std::endl;
 }
 
 std::string	Bureaucrat::getName() const {
@@ -66,6 +66,18 @@ const char*	Bureaucrat::GradeTooLowException::what() const throw() {
 	return "Grade is too low (minimum grade is 150)";
 }
 
+void	Bureaucrat::signForm(Form &form) {
+	try {
+		form.beSigned(*this);
+		std::cout << CYAN << this->_name << RST;
+		std::cout << " signed " << BLUE << form.getName() << RST << std::endl;
+	}
+	catch (const std::exception &e) {
+		std::cout << CYAN << this->_name << RST;
+		std::cout << " couldn't sign " << BLUE << form.getName();
+		std::cout << RST << std::endl;
+	}
+}
 
 std::ostream&	operator<<(std::ostream &out, const Bureaucrat &bureau){
 	out << CYAN << bureau.getName() << RST << ", bureaucrat grade "; 

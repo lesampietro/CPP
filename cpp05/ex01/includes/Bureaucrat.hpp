@@ -4,6 +4,8 @@
 # include <iostream>
 # include <exception>
 
+# include "Form.hpp"
+
 # define GREEN "\033[0;32m"
 # define YELLOW "\033[0;33m"
 # define MAGENTA "\033[0;35m"
@@ -44,6 +46,8 @@ class Bureaucrat {
 			public:
 				virtual const char *what() const throw();
 		};
+
+		void	signForm(Form &form);
 };
 		std::ostream	&operator<<(std::ostream &out, const Bureaucrat &bureau);
 
