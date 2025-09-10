@@ -1,9 +1,6 @@
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
-# include <iostream>
-# include <exception>
-
 # include "Form.hpp"
 
 # define GREEN "\033[0;32m"

@@ -2,7 +2,10 @@
 #ifndef FORM_HPP
 # define FORM_HPP
 
-# include "Bureaucrat.hpp"
+# include <iostream>
+# include <exception>
+
+class Bureaucrat; //Forward declaration to avoid circular dependency
 
 class Form {
 	private:

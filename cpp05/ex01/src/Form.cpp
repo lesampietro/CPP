@@ -1,5 +1,6 @@
 
 #include "../includes/Form.hpp"
+#include "../includes/Bureaucrat.hpp"
 
 Form::Form() : _name("Unknown"), _isSigned(false), _toSignGrade(-1), _toExecuteGrade(-1) {
 	if (this->_toSignGrade > MIN_GRADE || this->_toExecuteGrade > MIN_GRADE)
@@ -8,7 +9,7 @@ Form::Form() : _name("Unknown"), _isSigned(false), _toSignGrade(-1), _toExecuteG
 		throw GradeTooHighException();
 }
 
-Form::Form(const std::string name, const int toSignGrade, const int toExecuteGrade) : _name("Unknown"), _isSigned(false), _toSignGrade(toSignGrade), _toExecuteGrade(toExecuteGrade) {
+Form::Form(const std::string name, const int toSignGrade, const int toExecuteGrade) : _name(name), _isSigned(false), _toSignGrade(toSignGrade), _toExecuteGrade(toExecuteGrade) {
 	if (this->_toSignGrade > MIN_GRADE || this->_toExecuteGrade > MIN_GRADE)
 		throw GradeTooLowException();
 	else if (this->_toSignGrade < MAX_GRADE || this->_toExecuteGrade > MAX_GRADE)
@@ -72,12 +73,13 @@ std::ostream&	operator<<(std::ostream &out, const Form &form){
 		out << CYAN << form.getSignGrade() << RST << " to sign && grade: ";
 		out << CYAN << form.getExecuteGrade() << RST << " to execute.\n";
 	}
-	else
+	else {
 		out << CYAN << form.getName() << RST;
 		out << ", form is " << MAGENTA << "not signed, " << RST;
 		out << "requires grade: ";
 		out << CYAN << form.getSignGrade() << RST << " to sign && grade: ";
 		out << CYAN << form.getExecuteGrade() << RST << " to execute.\n";
+	}
 
 	return out;
 }
