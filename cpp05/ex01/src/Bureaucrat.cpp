@@ -35,7 +35,7 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other) {
 
 Bureaucrat::~Bureaucrat() {
 	std::cout << BLUE << this->_name;
-	std::cout << RST << ": ~Destructor called" << std::endl;
+	std::cout << RST << " ~Destructor called" << std::endl;
 }
 
 std::string	Bureaucrat::getName() const {
@@ -59,11 +59,11 @@ void	Bureaucrat::decrementGrade() {
 }
 
 const char*	Bureaucrat::GradeTooHighException::what() const throw() {
-	return "Grade is too high (maximum grade is 1)";
+	return "Bureaucrat: Grade is too high (maximum grade is 1)";
 }
 
 const char*	Bureaucrat::GradeTooLowException::what() const throw() {
-	return "Grade is too low (minimum grade is 150)";
+	return "Bureaucrat: Grade is too low (minimum grade is 150)";
 }
 
 void	Bureaucrat::signForm(Form &form) {
@@ -73,9 +73,9 @@ void	Bureaucrat::signForm(Form &form) {
 		std::cout << " signed " << BLUE << form.getName() << RST << std::endl;
 	}
 	catch (const std::exception &e) {
-		std::cout << CYAN << this->_name << RST;
-		std::cout << " couldn't sign " << BLUE << form.getName();
-		std::cout << RST << std::endl;
+        std::cerr << MAGENTA << "Error 02: " << RST << this->_name;
+		std::cerr << " cannot sign " << form.getName();
+		std::cerr << " because " << e.what() << std::endl;
 	}
 }
 

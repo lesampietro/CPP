@@ -12,18 +12,18 @@ Form::Form() : _name("Unknown"), _isSigned(false), _toSignGrade(-1), _toExecuteG
 Form::Form(const std::string name, const int toSignGrade, const int toExecuteGrade) : _name(name), _isSigned(false), _toSignGrade(toSignGrade), _toExecuteGrade(toExecuteGrade) {
 	if (this->_toSignGrade > MIN_GRADE || this->_toExecuteGrade > MIN_GRADE)
 		throw GradeTooLowException();
-	else if (this->_toSignGrade < MAX_GRADE || this->_toExecuteGrade > MAX_GRADE)
+	else if (this->_toSignGrade < MAX_GRADE || this->_toExecuteGrade < MAX_GRADE)
 		throw GradeTooHighException();
 }
 
 Form::Form(const Form &copy) : _name(copy._name), _isSigned(copy._isSigned), _toSignGrade(copy._toSignGrade), _toExecuteGrade(copy._toExecuteGrade) {
 	std::cout << BLUE << this->_name;
-	std::cout << RST << ": Copy constructor called" << std::endl;
+	std::cout << RST << " Copy constructor called" << std::endl;
 }
 
 Form &Form::operator=(const Form &other) {
 	std::cout << BLUE << this->_name;
-	std::cout << RST << ": Copy Assignment called" << std::endl;
+	std::cout << RST << " Copy Assignment called" << std::endl;
 	(void)other;
 	return *this;
 	//_isSigned should be initialized false, and grades cannot be modified.
@@ -31,7 +31,7 @@ Form &Form::operator=(const Form &other) {
 
 Form::~Form() {
 	std::cout << BLUE << this->_name;
-	std::cout << RST << ": ~Destructor called" << std::endl;
+	std::cout << RST << " ~Destructor called" << std::endl;
 }
 
 //Getters
@@ -53,7 +53,9 @@ int	Form::getExecuteGrade() const {
 
 void	Form::beSigned(const Bureaucrat &bureau) {
 	if (bureau.getGrade() > this->_toSignGrade)
-		throw Form::GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
+	else if (this->_isSigned)
+		throw Form::FormAlreadySignedException();
 	this->_isSigned = true;
 }
 
@@ -63,6 +65,10 @@ const char *Form::GradeTooHighException::what() const throw() {
 
 const char *Form::GradeTooLowException::what() const throw() {
 	return "Form: Grade is too low (minimum grade is 150)";
+}
+
+const char *Form::FormAlreadySignedException::what() const throw() {
+	return "Form: Form is already signed";
 }
 
 std::ostream&	operator<<(std::ostream &out, const Form &form){
