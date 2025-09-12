@@ -30,6 +30,7 @@ class AForm {
 		int				getExecuteGrade() const;
 
 		virtual void	beSigned(const Bureaucrat &bureau) = 0;
+		virtual void	execute(const Bureaucrat &bureau) const = 0;
 
 		// Nested classes for exceptions
 		class GradeTooHighException : public std::exception {
@@ -42,7 +43,7 @@ class AForm {
 				virtual const char *what() const throw();
 		};
 
-		class FormAlreadySignedException : public std::exception	{
+		class FormAlreadySignedException : public std::exception {
 			public:
 				virtual const char *what() const throw();
 		};
