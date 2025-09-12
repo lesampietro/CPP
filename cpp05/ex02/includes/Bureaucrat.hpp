@@ -1,7 +1,7 @@
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
-# include "Form.hpp"
+# include "AForm.hpp"
 
 # define GREEN "\033[0;32m"
 # define YELLOW "\033[0;33m"
@@ -44,7 +44,8 @@ class Bureaucrat {
 				virtual const char *what() const throw();
 		};
 
-		void	signForm(Form &form);
+		void	signForm(AForm &form);
+		void	executeForm(AForm &form);
 };
 		std::ostream	&operator<<(std::ostream &out, const Bureaucrat &bureau);
 

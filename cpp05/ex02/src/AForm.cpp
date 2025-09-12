@@ -51,18 +51,6 @@ int	AForm::getExecuteGrade() const {
 	return this->_toExecuteGrade;
 }
 
-void	AForm::beSigned(const Bureaucrat &bureau) {
-	if (bureau.getGrade() > this->_toSignGrade)
-		throw Bureaucrat::GradeTooLowException();
-	else if (this->_isSigned)
-		throw AForm::FormAlreadySignedException();
-	this->_isSigned = true;
-}
-
-void	AForm::execute(const Bureaucrat &bureau) const {
-
-}
-
 const char *AForm::GradeTooHighException::what() const throw() {
 	return "AForm: Grade is too high (maximum grade is 1)";
 }

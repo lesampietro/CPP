@@ -30,6 +30,15 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {
 	std::cout << RST << " ~Destructor called" << std::endl;
 }
 
+void ShrubberyCreationForm::beSigned(const Bureaucrat &bureau)
+{
+	if (bureau.getGrade() > this->getSignGrade())
+		throw Bureaucrat::GradeTooLowException();
+	else if (this->getIsSigned())
+		throw AForm::FormAlreadySignedException();
+	// this-setIsSigned() = true; CRIAR
+}
+
 void ShrubberyCreationForm::execute(const Bureaucrat &executor) const {
-	
+
 }
