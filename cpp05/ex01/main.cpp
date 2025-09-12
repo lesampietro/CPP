@@ -3,7 +3,7 @@
 #include "includes/Bureaucrat.hpp"
 
 int main() {
-	std::cout << YELLOW << "=== Creating forms with invalid grades ===\n";
+	std::cout << YELLOW << "Creating forms with invalid grades\n";
 	std::cout << RST << std::endl;
 
 	try {
@@ -49,8 +49,9 @@ int main() {
 		std::cout << MAGENTA << "Error 01: " << RST << e.what() << std::endl;
 	}
 
-	std::cout << YELLOW << "\n========= Testing Form signing ===========\n";
-	std::cout << RST << std::endl;
+	std::cout << YELLOW << "\n______________________________________________\n";
+
+	std::cout << "Testing Form signing\n" << RST << std::endl;
 
 	Bureaucrat john("John", 50); // Bureaucrat with grade 50
 	Bureaucrat alice("Alice", 10); // Bureaucrat with grade 10

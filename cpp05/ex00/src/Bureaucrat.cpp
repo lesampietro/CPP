@@ -2,8 +2,8 @@
 #include "../includes/Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat() : _name("Unknown"), _grade(1) {
-	// std::cout << BLUE << this->_name;
-	// std::cout << RST << " created." << std::endl;
+	std::cout << BLUE << this->_name;
+	std::cout << RST << " created." << std::endl;
 }
 
 Bureaucrat::Bureaucrat(std::string name, unsigned int grade) : _name(name) {
@@ -13,9 +13,8 @@ Bureaucrat::Bureaucrat(std::string name, unsigned int grade) : _name(name) {
 		throw GradeTooHighException();
 	else {
 		this->_grade = grade;
-		// std::cout << BLUE << this->_name << RST;
-		// std::cout << " created with grade: ";
-		// std::cout << CYAN << this->_grade << RST << std::endl;
+	std::cout << BLUE << this->_name;
+	std::cout << RST << " created." << std::endl;
 	}
 }
 
@@ -27,7 +26,6 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other) {
 	std::cout << "Bureaucrat copy assignment operator called." << std::endl;
 	std::cout << std::endl;
 	if (this != &other) { // Check for self-assignment
-		// this->_name = other._name;
 		this->_grade = other._grade;
 	}
 	return (*this);
