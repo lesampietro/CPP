@@ -1,14 +1,13 @@
 #include "../includes/RobotomyRequestForm.hpp"
 #include "../includes/Bureaucrat.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm(const std::string &target) : AForm("ShruberryCreation", 145, 137) {
-	// No need to initialize _isSigned here, because it's already set on the base class's constructor as false
-	// The required _toSign and _toExecute grades are hardcoded into the constructor and therefore passed to the base class, which will validate and throw if the grades do not match valid range
-	std::cout << BLUE << this->getName();
+RobotomyRequestForm::RobotomyRequestForm(const std::string &target) : AForm("RobotomyRequestForm", target, 72, 45)
+{
+	std::cout << BLUE << this->getName() << " \"" << this->getTarget() << "\"";
 	std::cout << RST << " Constructor called" << std::endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &copy) : AForm(copy), _target(copy._target) {
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &copy) : AForm(copy) {
 	std::cout << BLUE << this->getName();
 	std::cout << RST << " Copy constructor called" << std::endl;
 }
@@ -18,10 +17,8 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &o
 	std::cout << RST << " Copy Assignment called" << std::endl;
 	if (this != &other) {
 		AForm::operator=(other);
-		_target = other._target;
 	}
 	return *this;
-	//_isSigned should be initialized false, and grades cannot be modified.
 }
 
 RobotomyRequestForm::~RobotomyRequestForm() {
@@ -29,6 +26,38 @@ RobotomyRequestForm::~RobotomyRequestForm() {
 	std::cout << RST << " ~Destructor called" << std::endl;
 }
 
-void RobotomyRequestForm::execute(const Bureaucrat &executor) const {
-	
+void RobotomyRequestForm::beSigned(const Bureaucrat &bureau)
+{
+	if (bureau.getGrade() > this->getSignGrade())
+		throw Bureaucrat::GradeTooLowException();
+	else if (this->getIsSigned())
+		throw AForm::FormAlreadySignedException();
+	this->setIsSigned(true);
+}
+
+void RobotomyRequestForm::execute(const Bureaucrat &executor) {
+	if (executor.getGrade() > this->getExecuteGrade())
+		throw GradeTooLowException();
+	else if (not this->getIsSigned())
+		throw FormNotSignedException();
+	else {
+		std::cout << "* DRILLING NOISES *\n" << std::endl;
+		std::cout << "        _____ .*." << std::endl;
+		std::cout << "       /|||||\\´<<<==[ ROBOT-DRILL ]" << std::endl;
+		std::cout << "      ( o _ o )`*" << std::endl;
+		std::cout << "      |  > <  |\n" << std::endl;
+		// Get current time and use seconds for 50% probability
+		time_t currentTime = time(0);
+		if (currentTime % 2 == 0)
+		{
+			std::cout << CYAN << this->getTarget() << RST;
+			std::cout << " has been robotomized"; 
+			std::cout << GREEN << " successfully!" << RST << std::endl;
+		}
+		else
+		{
+			std::cout << "Robotomy " << MAGENTA << "failed" << RST << " on ";
+			std::cout << CYAN << this->getTarget() << RST << "!" << std::endl;
+		}
+	}
 }

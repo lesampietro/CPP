@@ -4,22 +4,21 @@
 
 # include <iostream>
 # include <exception>
+# include <ctime>	// for time()
+# include <cstdlib>	// for srand() and rand()
 # include "AForm.hpp"
 
 class Bureaucrat;
 
 class RobotomyRequestForm : public AForm {
-	private:
-		std::string _target;
-
 	public:
 		RobotomyRequestForm(const std::string &target);
 		RobotomyRequestForm(const RobotomyRequestForm &other);
 		RobotomyRequestForm &operator=(const RobotomyRequestForm &other);
 		~RobotomyRequestForm();
 
-		// void	beSigned(const Bureaucrat &bureau);
-		void	execute(const Bureaucrat& bureau) const;
+		void	beSigned(const Bureaucrat &bureau);
+		void	execute(const Bureaucrat &bureau);
 };
 
 #endif

@@ -1,14 +1,12 @@
 #include "../includes/PresidentialPardonForm.hpp"
 #include "../includes/Bureaucrat.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm(const std::string &target) : AForm("ShruberryCreation", 145, 137) {
-	// No need to initialize _isSigned here, because it's already set on the base class's constructor as false
-	// The required _toSign and _toExecute grades are hardcoded into the constructor and therefore passed to the base class, which will validate and throw if the grades do not match valid range
+PresidentialPardonForm::PresidentialPardonForm(const std::string &target) : AForm("PresidentialPardonForm", target, 145, 137) {
 	std::cout << BLUE << this->getName();
 	std::cout << RST << " Constructor called" << std::endl;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &copy) : AForm(copy), _target(copy._target) {
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &copy) : AForm(copy) {
 	std::cout << BLUE << this->getName();
 	std::cout << RST << " Copy constructor called" << std::endl;
 }
@@ -18,7 +16,6 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPard
 	std::cout << RST << " Copy Assignment called" << std::endl;
 	if (this != &other) {
 		AForm::operator=(other);
-		_target = other._target;
 	}
 	return *this;
 	//_isSigned should be initialized false, and grades cannot be modified.
@@ -29,6 +26,20 @@ PresidentialPardonForm::~PresidentialPardonForm() {
 	std::cout << RST << " ~Destructor called" << std::endl;
 }
 
-void PresidentialPardonForm::execute(const Bureaucrat &executor) const {
+void PresidentialPardonForm::beSigned(const Bureaucrat &bureau) {
+	if (bureau.getGrade() > this->getSignGrade())
+		throw Bureaucrat::GradeTooLowException();
+	else if (this->getIsSigned())
+		throw AForm::FormAlreadySignedException();
+	this->setIsSigned(true);
+}
+
+void PresidentialPardonForm::execute(const Bureaucrat &executor) {
+	if (executor.getGrade() > this->getExecuteGrade())
+		throw GradeTooLowException();
+	else if (not this->getIsSigned())
+		throw FormNotSignedException();
+	else {
 	
+	}
 }

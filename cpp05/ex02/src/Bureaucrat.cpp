@@ -68,8 +68,9 @@ const char*	Bureaucrat::GradeTooLowException::what() const throw() {
 void	Bureaucrat::signForm(AForm &form) {
 	try {
 		form.beSigned(*this);
-		std::cout << CYAN << this->_name << RST;
-		std::cout << " signed " << BLUE << form.getName() << RST << std::endl;
+		std::cout << CYAN << this->_name << RST << " signs ";
+		std::cout << CYAN << form.getName() << RST;
+		std::cout << RST << std::endl;
 	}
 	catch (const std::exception &e) {
 		std::cerr << MAGENTA << "Error 02: " << RST << this->_name;
@@ -82,14 +83,15 @@ void Bureaucrat::executeForm(AForm &form)
 {
 	try
 	{
+		std::cout << CYAN << this->_name << RST << " executes ";
+		std::cout << CYAN << form.getName() << RST;
+		std::cout << RST << std::endl;
 		form.execute(*this);
-		// std::cout << CYAN << this->_name << RST;
-		// std::cout << " signed " << BLUE << form.getName() << RST << std::endl;
 	}
 	catch (const std::exception &e)
 	{
-		std::cerr << MAGENTA << "Error 02: " << RST << this->_name;
-		std::cerr << " cannot sign " << form.getName();
+		std::cerr << MAGENTA << "Error 03: " << RST << this->_name;
+		std::cerr << " cannot execute " << form.getName() << RST;
 		std::cerr << " because " << e.what() << std::endl;
 	}
 }

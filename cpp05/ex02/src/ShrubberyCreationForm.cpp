@@ -2,14 +2,14 @@
 #include "../includes/ShrubberyCreationForm.hpp"
 #include "../includes/Bureaucrat.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShruberryCreation", 145, 137) {
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target) : AForm("ShrubberyCreationForm", target, 145, 137) {
 	// No need to initialize _isSigned here, because it's already set on the base class's constructor as false
 	// The required _toSign and _toExecute grades are hardcoded into the constructor and therefore passed to the base class, which will validate and throw if the grades do not match valid range
-	std::cout << BLUE << this->getName();
+	std::cout << BLUE << this->getName() << " \"" << this->getTarget() << "\"";
 	std::cout << RST << " Constructor called" << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &copy) : AForm(copy), _target(copy._target) {
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &copy) : AForm(copy) {
 	std::cout << BLUE << this->getName();
 	std::cout << RST << " Copy constructor called" << std::endl;
 }
@@ -19,7 +19,6 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 	std::cout << RST << " Copy Assignment called" << std::endl;
 	if (this != &other) {
 		AForm::operator=(other);
-		_target = other._target;
 	}
 	return *this;
 	//_isSigned should be initialized false, and grades cannot be modified.
@@ -39,20 +38,25 @@ void ShrubberyCreationForm::beSigned(const Bureaucrat &bureau)
 	this->setIsSigned(true);
 }
 
-void ShrubberyCreationForm::execute(const Bureaucrat &executor) const {
+void ShrubberyCreationForm::execute(const Bureaucrat &executor) {
 	if (executor.getGrade() > this->getExecuteGrade())
 		throw GradeTooLowException();
+	else if (not this->getIsSigned())
+		throw FormNotSignedException();
 	else {
-		std::cout << GREEN << "               ,@@@@@@@," << std::endl;
-		std::cout << "       ,,,.   ,@@@@@@/@@,  .oo8888o." << std::endl;
-		std::cout << "    ,&%%&%&&%,@@@@@/@@@@@@,8888\\88/8o" << std::endl;
-		std::cout << "   ,%&\\%&&%&&%,@@@\\@@@/@@@88\\88888/88'" << std::endl;
-		std::cout << "   %&&%&%&/%&&%@@\\@@/ /@@@88888\\88888'" << std::endl;
-		std::cout << "   %&&%/ %&%%&&@@\\ V /@@' `88\\8 `/88'" << std::endl;
-		std::cout << "   `&%\\ ` /%&'    |.|        \\ '|8'" << std::endl;
-		std::cout << "       |o|        | |         | |" << std::endl;
-		std::cout << "       |.|        | |         | |" << std::endl;
-		std::cout << "     \\/ ._\\//_/__/  ,\\_//___\\/.  \\_//__/_";
-		std::cout << RST << std::endl;
+		std::string name = this->getTarget() + "_shrubbery";
+		std::ofstream outfile(name.c_str());
+		outfile << "               ,@@@@@@@," << std::endl;
+		outfile << "       ,,,.   ,@@@@@@/@@,  .oo8888o." << std::endl;
+		outfile << "    ,&%%&%&&%,@@@@@/@@@@@@,8888\\88/8o" << std::endl;
+		outfile << "   ,%&\\%&&%&&%,@@@\\@@@/@@@88\\88888/88'" << std::endl;
+		outfile << "   %&&%&%&/%&&%@@\\@@/ /@@@88888\\88888'" << std::endl;
+		outfile << "   %&&%/ %&%%&&@@\\ V /@@' `88\\8 `/88'" << std::endl;
+		outfile << "   `&%\\ ` /%&'    |.|        \\ '|8'" << std::endl;
+		outfile << "       |o|        | |         | |" << std::endl;
+		outfile << "       |.|        | |         | |" << std::endl;
+		outfile << "     \\/ ._\\//_/__/  ,\\_//___\\/.  \\_//__/_";
+		outfile << std::endl;
+		outfile.close();
 	}
 }

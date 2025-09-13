@@ -2,14 +2,15 @@
 #include "../includes/AForm.hpp"
 #include "../includes/Bureaucrat.hpp"
 
-AForm::AForm() : _name("Unknown"), _isSigned(false), _toSignGrade(-1), _toExecuteGrade(-1) {
+AForm::AForm() : _name("Unknown"), _target("Empty"), _isSigned(false), _toSignGrade(-1), _toExecuteGrade(-1) {
 	if (this->_toSignGrade > MIN_GRADE || this->_toExecuteGrade > MIN_GRADE)
 		throw GradeTooLowException();
 	else if (this->_toSignGrade < MAX_GRADE || this->_toExecuteGrade > MAX_GRADE)
 		throw GradeTooHighException();
 }
 
-AForm::AForm(const std::string name, const int toSignGrade, const int toExecuteGrade) : _name(name), _isSigned(false), _toSignGrade(toSignGrade), _toExecuteGrade(toExecuteGrade) {
+AForm::AForm(const std::string name, const std::string target, const int toSignGrade, const int toExecuteGrade) : _name(name), _target(target), _isSigned(false), _toSignGrade(toSignGrade), _toExecuteGrade(toExecuteGrade)
+{
 	if (this->_toSignGrade > MIN_GRADE || this->_toExecuteGrade > MIN_GRADE)
 		throw GradeTooLowException();
 	else if (this->_toSignGrade < MAX_GRADE || this->_toExecuteGrade < MAX_GRADE)
@@ -39,6 +40,10 @@ std::string	AForm::getName() const {
 	return this->_name;
 }
 
+std::string AForm::getTarget() const {
+	return this->_target;
+}
+
 bool	AForm::getIsSigned() const{
 	return this->_isSigned;
 }
@@ -56,28 +61,32 @@ bool	AForm::setIsSigned(const bool signState) {
 }
 
 const char *AForm::GradeTooHighException::what() const throw() {
-	return "AForm: Grade is too high (maximum grade is 1)";
+	return "Form: Grade is too high (maximum grade is 1)";
 }
 
 const char *AForm::GradeTooLowException::what() const throw() {
-	return "AForm: Grade is too low (minimum grade is 150)";
+	return "Form: Grade is too low (minimum grade is 150)";
 }
 
 const char *AForm::FormAlreadySignedException::what() const throw() {
-	return "Form: Form is already signed";
+	return "Form: is already signed";
+}
+
+const char *AForm::FormNotSignedException::what() const throw() {
+	return "Form: is not signed";
 }
 
 std::ostream&	operator<<(std::ostream &out, const AForm &form){
 	if (form.getIsSigned()) {
-		out << CYAN << form.getName() << RST;
-		out << ", form is " << GREEN << "signed, " << RST;
+		out << CYAN << form.getTarget() << "_shrubbery " << RST;
+		out << ", is " << GREEN << "signed, " << RST;
 		out << "requires grade: ";
 		out << CYAN << form.getSignGrade() << RST << " to sign && grade: ";
 		out << CYAN << form.getExecuteGrade() << RST << " to execute.\n";
 	}
 	else {
-		out << CYAN << form.getName() << RST;
-		out << ", form is " << MAGENTA << "not signed, " << RST;
+		out << CYAN << form.getTarget() << "_shrubbery " << RST;
+		out << ", is " << MAGENTA << "not signed, " << RST;
 		out << "requires grade: ";
 		out << CYAN << form.getSignGrade() << RST << " to sign && grade: ";
 		out << CYAN << form.getExecuteGrade() << RST << " to execute.\n";
