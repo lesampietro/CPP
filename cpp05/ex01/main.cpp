@@ -59,54 +59,30 @@ int main() {
 	Form form5("Form5", 30, 20); // Form with signing grade 30
 	Form form6("Form6", 5, 20);  // Form with signing grade 5
 
-	try {
-		std::cout << john.getName() << " attempts to sign ";
-		std::cout << form5.getName() << "...\n";
-		john.signForm(form5); // John does not sufficient grade to sign
-	} catch (const Form::GradeTooLowException &e) {
-		std::cerr << MAGENTA << "Error 00: " << RST << e.what() << std::endl;
-	} catch (const Form::FormAlreadySignedException &e) {
-		std::cerr << MAGENTA << "Error 01: " << RST << e.what() << std::endl;
-	}
+	std::cout << john.getName() << " attempts to sign ";
+	std::cout << form5.getName() << "...\n";
+	john.signForm(form5); // John does not sufficient grade to sign
 	std::cout << john;
 	std::cout << form5 << std::endl;
 	std::cout << YELLOW << "//////" << RST << std::endl;
 
-	try {
-		std::cout << john.getName() << " attempts to sign ";
-		std::cout << form6.getName() << "...\n";
-		john.signForm(form6); // John does not have sufficient grade to sign
-	} catch (const Form::GradeTooLowException &e) {
-		std::cerr << MAGENTA << "Error 00: " << RST << e.what() << std::endl;
-	} catch (const Form::FormAlreadySignedException &e) {
-		std::cerr << MAGENTA << "Error 01: " << RST << e.what() << std::endl;
-	}
+	std::cout << john.getName() << " attempts to sign ";
+	std::cout << form6.getName() << "...\n";
+	john.signForm(form6); // John does not have sufficient grade to sign
 	std::cout << john;
 	std::cout << form6 << std::endl;
 	std::cout << YELLOW << "//////" << RST << std::endl;
 
-	try {
-		std::cout << alice.getName() << " attempts to sign ";
-		std::cout << form5.getName() << "...\n";
-		alice.signForm(form5); // Alice has sufficient grade to sign
-	} catch (const Form::GradeTooLowException &e) {
-		std::cerr << MAGENTA << "Error 00: " << RST << e.what() << std::endl;
-	} catch (const Form::FormAlreadySignedException &e) {
-		std::cerr << MAGENTA << "Error 01: " << RST << e.what() << std::endl;
-	}
+	std::cout << alice.getName() << " attempts to sign ";
+	std::cout << form5.getName() << "...\n";
+	alice.signForm(form5); // Alice has sufficient grade to sign
 	std::cout << alice;
 	std::cout << form5 << std::endl;
 	std::cout << YELLOW << "//////" << RST << std::endl;
 
-	try {
-		std::cout << alice.getName() << " attempts to sign ";
-		std::cout << form5.getName() << "...\n";
-		alice.signForm(form5); // Form5 is already signed by John
-	} catch (const Form::GradeTooLowException &e) {
-		std::cerr << MAGENTA << "Error 00: " << RST << e.what() << std::endl;
-	} catch (const Form::FormAlreadySignedException &e) {
-		std::cerr << MAGENTA << "Error 01: " << RST << e.what() << std::endl;
-	}
+	std::cout << alice.getName() << " attempts to sign ";
+	std::cout << form5.getName() << "...\n";
+	alice.signForm(form5); // Form5 is already signed by John"
 	std::cout << std::endl;
 
 	return 0;

@@ -78,14 +78,14 @@ const char *AForm::FormNotSignedException::what() const throw() {
 
 std::ostream&	operator<<(std::ostream &out, const AForm &form){
 	if (form.getIsSigned()) {
-		out << CYAN << form.getTarget() << "_shrubbery " << RST;
+		out << CYAN << form.getName() << RST;
 		out << ", is " << GREEN << "signed, " << RST;
 		out << "requires grade: ";
 		out << CYAN << form.getSignGrade() << RST << " to sign && grade: ";
 		out << CYAN << form.getExecuteGrade() << RST << " to execute.\n";
 	}
 	else {
-		out << CYAN << form.getTarget() << "_shrubbery " << RST;
+		out << CYAN << form.getName() << RST;
 		out << ", is " << MAGENTA << "not signed, " << RST;
 		out << "requires grade: ";
 		out << CYAN << form.getSignGrade() << RST << " to sign && grade: ";

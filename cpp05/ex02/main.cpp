@@ -1,6 +1,7 @@
 
 #include "includes/ShrubberyCreationForm.hpp"
 #include "includes/RobotomyRequestForm.hpp"
+#include "includes/PresidentialPardonForm.hpp"
 #include "includes/Bureaucrat.hpp"
 
 int main() {
@@ -36,7 +37,22 @@ int main() {
 	std::cout << YELLOW << "______________________________________________\n";
 	std::cout << YELLOW << "Testing Robotomy Form\n";
 	RobotomyRequestForm robotomy1("Jorginho");
+	std::cout << robotomy1 << std::endl;
 	betty.signForm(robotomy1);
 	betty.executeForm(robotomy1);
+	
+	
+	std::cout << YELLOW << "______________________________________________\n";
+	std::cout << YELLOW << "Testing Presidential Pardon Form\n";
+	PresidentialPardonForm pardon1("Anitta");
+	std::cout << pardon1 << std::endl;
+	betty.signForm(pardon1);
+	betty.executeForm(pardon1);
+
+	Bureaucrat luna("Luna", 5);
+	luna.signForm(pardon1);
+	luna.executeForm(pardon1);
+	std::cout << YELLOW << "______________________________________________\n";
+
 	return 0;
 }

@@ -40,7 +40,7 @@ void ShrubberyCreationForm::beSigned(const Bureaucrat &bureau)
 
 void ShrubberyCreationForm::execute(const Bureaucrat &executor) {
 	if (executor.getGrade() > this->getExecuteGrade())
-		throw GradeTooLowException();
+		throw Bureaucrat::InsufficientGradeException();
 	else if (not this->getIsSigned())
 		throw FormNotSignedException();
 	else {

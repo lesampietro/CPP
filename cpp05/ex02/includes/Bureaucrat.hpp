@@ -34,12 +34,17 @@ class Bureaucrat {
 		void			decrementGrade();
 
 		//Nested classes for exceptions
-		class GradeTooHighException : public std::exception { //Nested Class
+		class GradeTooHighException : public std::exception {
 			public:
 				virtual const char* what() const throw();
 		};
 		
-		class GradeTooLowException : public std::exception { //Nested Class
+		class GradeTooLowException : public std::exception {
+			public:
+				virtual const char *what() const throw();
+		};
+
+		class InsufficientGradeException : public std::exception {
 			public:
 				virtual const char *what() const throw();
 		};
