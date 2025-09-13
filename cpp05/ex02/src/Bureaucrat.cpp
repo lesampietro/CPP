@@ -82,9 +82,9 @@ void Bureaucrat::executeForm(AForm &form)
 {
 	try
 	{
-		form.beSigned(*this);
-		std::cout << CYAN << this->_name << RST;
-		std::cout << " signed " << BLUE << form.getName() << RST << std::endl;
+		form.execute(*this);
+		// std::cout << CYAN << this->_name << RST;
+		// std::cout << " signed " << BLUE << form.getName() << RST << std::endl;
 	}
 	catch (const std::exception &e)
 	{

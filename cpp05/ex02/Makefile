@@ -4,7 +4,7 @@ MAG		:= \033[0;35m
 CYAN	:= \033[0;36m
 RST		:= \033[0m
 
-NAME	:= form
+NAME	:= execform
 CC		:= c++
 CFLAGS	:= -Wall -Wextra -Werror -std=c++98
 SRC_DIR	:= src
@@ -12,7 +12,8 @@ INC_DIR	:= includes
 BIN_DIR	:= bin
 SRCS	:= main.cpp \
 			$(SRC_DIR)/Bureaucrat.cpp \
-			$(SRC_DIR)/Form.cpp
+			$(SRC_DIR)/AForm.cpp \
+			$(SRC_DIR)/ShrubberyCreationForm.cpp
 
 OBJS	:= $(patsubst $(SRC_DIR)/%.cpp,$(BIN_DIR)/%.o,$(SRCS))
 

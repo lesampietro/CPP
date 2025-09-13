@@ -51,6 +51,10 @@ int	AForm::getExecuteGrade() const {
 	return this->_toExecuteGrade;
 }
 
+bool	AForm::setIsSigned(const bool signState) {
+	return this->_isSigned = signState;
+}
+
 const char *AForm::GradeTooHighException::what() const throw() {
 	return "AForm: Grade is too high (maximum grade is 1)";
 }

@@ -29,6 +29,9 @@ class AForm {
 		int				getSignGrade() const;
 		int				getExecuteGrade() const;
 
+		// Setters
+		bool			setIsSigned(const bool signState);
+
 		virtual void	beSigned(const Bureaucrat &bureau) = 0;
 		virtual void	execute(const Bureaucrat &bureau) const = 0;
 
