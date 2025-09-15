@@ -24,7 +24,6 @@ Bureaucrat::Bureaucrat(const Bureaucrat &copy) : _name(copy._name), _grade(copy.
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other) {
 	std::cout << "Bureaucrat copy assignment operator called." << std::endl;
-	std::cout << std::endl;
 	if (this != &other) { // Check for self-assignment
 		// this->_name = other._name;
 		this->_grade = other._grade;
