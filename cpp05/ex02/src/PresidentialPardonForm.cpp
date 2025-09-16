@@ -2,8 +2,7 @@
 #include "../includes/Bureaucrat.hpp"
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string &target) : AForm("PresidentialPardonForm", target, 25, 5) {
-	std::cout << BLUE << this->getName();
-	std::cout << RST << " Constructor called" << std::endl;
+	std::cout << this->getName() << " Constructor called" << std::endl;
 }
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &copy) : AForm(copy) {
@@ -28,7 +27,7 @@ PresidentialPardonForm::~PresidentialPardonForm() {
 
 void PresidentialPardonForm::beSigned(const Bureaucrat &bureau) {
 	if (bureau.getGrade() > this->getSignGrade())
-		throw Bureaucrat::GradeTooLowException();
+		throw Bureaucrat::InsufficientGradeException();
 	else if (this->getIsSigned())
 		throw AForm::FormAlreadySignedException();
 	this->setIsSigned(true);
@@ -40,7 +39,10 @@ void PresidentialPardonForm::execute(const Bureaucrat &executor) {
 	else if (not this->getIsSigned())
 		throw FormNotSignedException();
 	else {
-		std::cout << "Attention: " << CYAN << this->getTarget() << RST;
-		std::cout << " has been pardoned by Zaphod Beeblebrox." << std::endl;
+		std::cout << "\n======================================================" << std::endl;
+		std::cout << "||              * PRESIDENTIAL PARDON *             ||" << std::endl;
+		std::cout << "||  " << CYAN << this->getTarget() << RST;
+		std::cout << " has been pardoned by Zaphod Beeblebrox." << "  ||" << std::endl;
+		std::cout << "======================================================\n" << std::endl;
 	}
 }

@@ -5,8 +5,8 @@
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target) : AForm("ShrubberyCreationForm", target, 145, 137) {
 	// No need to initialize _isSigned here, because it's already set on the base class's constructor as false
 	// The required _toSign and _toExecute grades are hardcoded into the constructor and therefore passed to the base class, which will validate and throw if the grades do not match valid range
-	std::cout << BLUE << this->getName() << " \"" << this->getTarget() << "\"";
-	std::cout << RST << " Constructor called" << std::endl;
+	std::cout << this->getName() ;
+	std::cout << " Constructor called" << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &copy) : AForm(copy) {
@@ -32,7 +32,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {
 void ShrubberyCreationForm::beSigned(const Bureaucrat &bureau)
 {
 	if (bureau.getGrade() > this->getSignGrade())
-		throw Bureaucrat::GradeTooLowException();
+		throw Bureaucrat::InsufficientGradeException();
 	else if (this->getIsSigned())
 		throw AForm::FormAlreadySignedException();
 	this->setIsSigned(true);

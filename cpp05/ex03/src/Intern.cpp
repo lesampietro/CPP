@@ -23,7 +23,7 @@ Intern::~Intern() {
 }
 
 const char *Intern::FormException::what() const throw() {
-	return "Form: doesn't exist";
+	return "Form: there is no Form with that name.";
 }
 
 AForm	*Intern::makeForm(const std::string &formName, const std::string &target) {
@@ -55,6 +55,7 @@ AForm	*Intern::makeForm(const std::string &formName, const std::string &target) 
 			return new PresidentialPardonForm(target);
 		default:
 			throw FormException();
+			return NULL;
 	}
 
 }

@@ -3,8 +3,7 @@
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string &target) : AForm("RobotomyRequestForm", target, 72, 45)
 {
-	std::cout << BLUE << this->getName() << " \"" << this->getTarget() << "\"";
-	std::cout << RST << " Constructor called" << std::endl;
+	std::cout << this->getName() << " Constructor called" << std::endl;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &copy) : AForm(copy) {
@@ -29,7 +28,7 @@ RobotomyRequestForm::~RobotomyRequestForm() {
 void RobotomyRequestForm::beSigned(const Bureaucrat &bureau)
 {
 	if (bureau.getGrade() > this->getSignGrade())
-		throw Bureaucrat::GradeTooLowException();
+		throw Bureaucrat::InsufficientGradeException();
 	else if (this->getIsSigned())
 		throw AForm::FormAlreadySignedException();
 	this->setIsSigned(true);
@@ -41,7 +40,7 @@ void RobotomyRequestForm::execute(const Bureaucrat &executor) {
 	else if (not this->getIsSigned())
 		throw FormNotSignedException();
 	else {
-		std::cout << "* DRILLING NOISES *\n" << std::endl;
+		std::cout << "\n* DRILLING NOISES *\n" << std::endl;
 		std::cout << "        _____ .*." << std::endl;
 		std::cout << "       /|||||\\´<<<==[ ROBOT-DRILL ]" << std::endl;
 		std::cout << "      ( o _ o )`*" << std::endl;
@@ -53,11 +52,13 @@ void RobotomyRequestForm::execute(const Bureaucrat &executor) {
 			std::cout << CYAN << this->getTarget() << RST;
 			std::cout << " has been robotomized"; 
 			std::cout << GREEN << " successfully!" << RST << std::endl;
+			std::cout << "---------------------------\n" << std::endl;
 		}
 		else
 		{
 			std::cout << "Robotomy " << MAGENTA << "failed" << RST << " on ";
 			std::cout << CYAN << this->getTarget() << RST << "!" << std::endl;
+			std::cout << "---------------------------\n" << std::endl;
 		}
 	}
 }

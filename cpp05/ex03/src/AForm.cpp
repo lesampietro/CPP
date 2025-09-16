@@ -31,8 +31,8 @@ AForm &AForm::operator=(const AForm &other) {
 }
 
 AForm::~AForm() {
-	std::cout << BLUE << this->_name;
-	std::cout << RST << " ~Destructor called" << std::endl;
+	// std::cout << BLUE << this->_name;
+	// std::cout << RST << " ~Destructor called" << std::endl;
 }
 
 //Getters
@@ -79,6 +79,7 @@ const char *AForm::FormNotSignedException::what() const throw() {
 std::ostream&	operator<<(std::ostream &out, const AForm &form){
 	if (form.getIsSigned()) {
 		out << CYAN << form.getName() << RST;
+		out << " has target \"" << form.getTarget() << "\"" RST;
 		out << ", is " << GREEN << "signed, " << RST;
 		out << "requires grade: ";
 		out << CYAN << form.getSignGrade() << RST << " to sign && grade: ";
@@ -86,6 +87,7 @@ std::ostream&	operator<<(std::ostream &out, const AForm &form){
 	}
 	else {
 		out << CYAN << form.getName() << RST;
+		out << " has target \"" << form.getTarget() << "\"" RST;
 		out << ", is " << MAGENTA << "not signed, " << RST;
 		out << "requires grade: ";
 		out << CYAN << form.getSignGrade() << RST << " to sign && grade: ";

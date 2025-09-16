@@ -40,7 +40,11 @@ clean:
 
 fclean: clean
 	@echo "Cleaning executable..."
-	@rm -f $(NAME)
+	@if ls *_shrubbery 1> /dev/null 2>&1; then \
+		echo "Cleaning ShrubberyCreationForm output..."; \
+		rm -f *_shrubbery; \
+	fi
+	@rm -f $(NAME) *_shrubbery
 
 re: fclean all
 

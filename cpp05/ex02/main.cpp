@@ -5,7 +5,10 @@
 #include "includes/Bureaucrat.hpp"
 
 int main() {
-	std::cout << YELLOW << "Testing Shrubbery Form\n";
+	int testNumber = 0;
+	std::cout << YELLOW << "============== TESTING FORMS ===============\n";
+	std::cout << "////// TEST #0" << ++testNumber << RST << std::endl;
+	std::cout << "Testing Shrubbery Form: Bureacrat WITH enough grade to sign and execute...\n";
 	std::cout << RST << std::endl;
 
 	ShrubberyCreationForm	shrub1("garden");
@@ -15,13 +18,13 @@ int main() {
 
 	std::cout << betty.getName() << " attempts to sign and execute ";
 	std::cout << shrub1.getName() << "...\n";
-	betty.executeForm(shrub1);
 	betty.signForm(shrub1);
+	betty.executeForm(shrub1);
 	std::cout << shrub1 << std::endl;
 	betty.executeForm(shrub1);
 
-	std::cout << YELLOW << "//////\n" << RST << std::endl;
-
+	std::cout << YELLOW << "////// TEST #0" << ++testNumber << RST << std::endl;
+	std::cout << "Testing Shrubbery Form: Bureacrat WITHOUT enough grade to sign and execute...\n";
 	Bureaucrat jorginho("Jorginho", 150);
 	ShrubberyCreationForm shrub2("forest");
 	
@@ -34,17 +37,17 @@ int main() {
 	std::cout << shrub2 << std::endl;
 	jorginho.executeForm(shrub2);
 
-	std::cout << YELLOW << "______________________________________________\n";
-	std::cout << YELLOW << "Testing Robotomy Form\n";
+	std::cout << YELLOW << "////// TEST #0" << ++testNumber << RST << std::endl;
+	std::cout << "Testing Robotomy Form: Bureacrat WITH enough grade to sign and execute...\n";
 	RobotomyRequestForm robotomy1("Jorginho");
 	std::cout << robotomy1 << std::endl;
 	betty.signForm(robotomy1);
 	betty.executeForm(robotomy1);
 	
 	
-	std::cout << YELLOW << "______________________________________________\n";
-	std::cout << YELLOW << "Testing Presidential Pardon Form\n";
-	PresidentialPardonForm pardon1("Anitta");
+	std::cout << YELLOW << "////// TEST #0" << ++testNumber << RST << std::endl;
+	std::cout << "Testing Presidential Form: Bureacrat WITH enough grade to sign and execute...\n";
+	PresidentialPardonForm pardon1("Marvin");
 	std::cout << pardon1 << std::endl;
 	betty.signForm(pardon1);
 	betty.executeForm(pardon1);
@@ -52,7 +55,7 @@ int main() {
 	Bureaucrat luna("Luna", 5);
 	luna.signForm(pardon1);
 	luna.executeForm(pardon1);
-	std::cout << YELLOW << "______________________________________________\n";
+	std::cout << YELLOW << "______________________________________________\n";std::cout << std::endl;
 
 	return 0;
 }
