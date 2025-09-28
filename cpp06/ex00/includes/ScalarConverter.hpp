@@ -3,6 +3,7 @@
 
 # include <iostream>
 # include <stdlib.h>
+# include <cmath>
 
 # define GREEN "\033[0;32m"
 # define YELLOW "\033[0;33m"
@@ -21,10 +22,17 @@ class ScalarConverter {
 	static void convert(const std::string &literal);
 };
 
-bool isEmpty(const std::string &literal); //edge case
-bool isChar(const std::string &literal);
-bool isInt(const std::string &literal);
-bool isFloat(const std::string &literal);
-bool isDouble(const std::string &literal);
+bool	isEmpty(const std::string &literal); //edge case
+bool	isChar(const std::string &literal);
+//Tratar espaços?? Sinais??
+bool	isInt(const std::string &literal);
+bool	isFloat(const std::string &literal);
+bool	isDouble(const std::string &literal);
+// bool isPseudoLiteral(const std::string &literal);
+
 
 #endif
+
+// Scalar types are fundamental data types in C++ that represent single (non-composite) values, that is, they store only one value at a time. Thay also can be copied bit by bit and have a fixed memmory size
+
+// A static member function in C++ is a function that can be called without creating an object. Only has access to static data members or other static functions. It's Useful when a function’s logic is independent of object state.
