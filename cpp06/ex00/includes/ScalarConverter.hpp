@@ -13,13 +13,14 @@
 # define RST "\033[0m"
 
 class ScalarConverter {
-	public:
-	ScalarConverter();
-	ScalarConverter(const ScalarConverter &copy);
-	ScalarConverter &operator=(const ScalarConverter &other);
-	~ScalarConverter();
+	private: //non instantiable
+		ScalarConverter();
+		ScalarConverter(const ScalarConverter &copy);
+		ScalarConverter &operator=(const ScalarConverter &other);
+		~ScalarConverter();
 
-	static void convert(const std::string &literal);
+	public:
+		static void convert(const std::string &literal);
 };
 
 bool	isEmpty(const std::string &literal); //edge case
@@ -27,7 +28,7 @@ bool	isChar(const std::string &literal);
 bool	isInt(const std::string &literal);
 bool	isFloat(const std::string &literal);
 bool	isDouble(const std::string &literal);
-bool isPseudoLiteral(const std::string &literal);
+bool	isPseudoLiteral(const std::string &literal);
 
 
 #endif
