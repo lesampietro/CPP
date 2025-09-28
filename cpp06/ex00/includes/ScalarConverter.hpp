@@ -24,11 +24,10 @@ class ScalarConverter {
 
 bool	isEmpty(const std::string &literal); //edge case
 bool	isChar(const std::string &literal);
-//Tratar espaços?? Sinais??
 bool	isInt(const std::string &literal);
 bool	isFloat(const std::string &literal);
 bool	isDouble(const std::string &literal);
-// bool isPseudoLiteral(const std::string &literal);
+bool isPseudoLiteral(const std::string &literal);
 
 
 #endif

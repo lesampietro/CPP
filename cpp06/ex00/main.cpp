@@ -9,8 +9,9 @@ int main(int argc, char** argv)
 		std::cout << "Example: " << argv[0] << " 42.0f" << std::endl;
 		return 1;
 	}
-	else
-		ScalarConverter::convert(argv[1]);
+
+	std::string literal = argv[1];
+	ScalarConverter::convert(literal);
 
 	return 0;
 }
