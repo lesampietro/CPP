@@ -17,6 +17,14 @@ void ScalarConverter::convert(const std::string &literal)
 {
 	if (isEmpty(literal)) 
 		std::cout << MAGENTA << "Error: " << RST << "string is Empty" << std::endl;
+	else if (isChar(literal))
+		std::cout << "Literal is a " << GREEN << "*char*" << RST << std::endl;
+	else if (isInt(literal))
+		std::cout << "Literal is an " << GREEN << "*int*" << RST << std::endl;
+	else if (isFloat(literal))
+		std::cout << "Literal is a " << GREEN << "*float*" << RST << std::endl;
+	else if (isDouble(literal))
+		std::cout << "Literal is a " << GREEN << "*double*" << RST << std::endl;
 	// c = char(lit)
 	// int
 	// float
