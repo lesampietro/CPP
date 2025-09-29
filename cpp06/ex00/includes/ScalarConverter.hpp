@@ -1,9 +1,10 @@
 #ifndef SCALARCONVERTER_HPP
 # define SCALARCONVERTER_HPP
 
-# include <iostream>
-# include <stdlib.h>
-# include <cmath>
+# include <iostream> // std::cout, std::endl
+# include <stdlib.h> // strtol(), strtof(), strtod()
+# include <limits.h> // INT_MAX, INT_MIN
+# include <cctype> // isprint(), isdigit()
 
 # define GREEN "\033[0;32m"
 # define YELLOW "\033[0;33m"
@@ -29,6 +30,7 @@ bool	isInt(const std::string &literal);
 bool	isFloat(const std::string &literal);
 bool	isDouble(const std::string &literal);
 bool	isPseudoLiteral(const std::string &literal);
+bool	isImpossibleInt(const int value);
 
 
 #endif
