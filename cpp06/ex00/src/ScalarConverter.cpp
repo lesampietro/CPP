@@ -15,9 +15,6 @@ ScalarConverter::~ScalarConverter() {}
 
 void ScalarConverter::convert(const std::string &literal)
 {
-	// bool	impossibleInt = false;
-	// bool	impossibleChar = false;
-
 	if (isEmpty(literal)) 
 		std::cout << MAGENTA << "Error: " << RST << "string is Empty" << std::endl;
 	else if (isChar(literal)) {
@@ -52,37 +49,38 @@ void ScalarConverter::convert(const std::string &literal)
 	else if (isFloat(literal)) {
 		char *endptr;
 		float f = strtof(literal.c_str(), &endptr);
-		if (!static_cast<int>(f))
-		{
+		if (f < 0 || f > 127 || f < static_cast<float>(INT_MIN) || f > static_cast<float>(INT_MAX))
 			std::cout << "char: impossible" << std::endl;
-			std::cout << "int: impossible" << std::endl;
-		}
-		else {
+		else
+		{
 			if (isprint(static_cast<unsigned char>(f)))
-				std::cout << "char: '" << f << "'" << std::endl;
+				std::cout << "char: '" << static_cast<char>(f) << "'" << std::endl;
 			else
 				std::cout << "char: non displayable" << std::endl;
-			std::cout << "int: " << static_cast<int>(f) << std::endl;
 		}
+		if (f < static_cast<float>(INT_MIN) || f > static_cast<float>(INT_MAX))
+			std::cout << "int: impossible" << std::endl;
+		else
+			std::cout << "int: " << static_cast<int>(f) << std::endl;
 		std::cout << "float: " << f << "f" << std::endl;
 		std::cout << "double: " << static_cast<double>(f) << std::endl;
 	}
 	else if (isDouble(literal)) {
 		char *endptr;
 		double d = strtod(literal.c_str(), &endptr);
-		if (!static_cast<int>(d))
-		{
+		if (d < 0 || d > 127 || d < static_cast<double>(INT_MIN) || d > static_cast<double>(INT_MAX))
 			std::cout << "char: impossible" << std::endl;
-			std::cout << "int: impossible" << std::endl;
-		}
 		else
 		{
 			if (isprint(static_cast<unsigned char>(d)))
-				std::cout << "char: '" << d << "'" << std::endl;
+				std::cout << "char: '" << static_cast<char>(d) << "'" << std::endl;
 			else
 				std::cout << "char: non displayable" << std::endl;
-			std::cout << "int: " << static_cast<int>(d) << std::endl;
 		}
+		if (d < static_cast<double>(INT_MIN) || d > static_cast<double>(INT_MAX))
+			std::cout << "int: impossible" << std::endl;
+		else
+			std::cout << "int: " << static_cast<int>(d) << std::endl;
 		std::cout << "float: " << d << "f" << std::endl;
 		std::cout << "double: " << static_cast<double>(d) << std::endl;
 	}
