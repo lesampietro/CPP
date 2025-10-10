@@ -2,7 +2,8 @@
 # define SCALARCONVERTER_HPP
 
 # include <iostream> // std::cout, std::endl
-# include <stdlib.h> // strtol(), strtof(), strtod()
+// #include <stdlib.h>	 // strtol(), strtof(), strtod()
+# include <cstdlib>	 // strtol(), strtof(), strtod()
 # include <limits.h> // INT_MAX, INT_MIN
 # include <cctype> // isprint(), isdigit()
 

@@ -15,6 +15,9 @@ ScalarConverter::~ScalarConverter() {}
 
 void ScalarConverter::convert(const std::string &literal)
 {
+	// bool	impossibleInt = false;
+	// bool	impossibleChar = false;
+
 	if (isEmpty(literal)) 
 		std::cout << MAGENTA << "Error: " << RST << "string is Empty" << std::endl;
 	else if (isChar(literal)) {
@@ -30,24 +33,26 @@ void ScalarConverter::convert(const std::string &literal)
 	else if (isInt(literal)) {
 		char *endptr;
 		long value = strtol(literal.c_str(), &endptr, 10);
-		if (isImpossibleInt(static_cast<int>(value))) {
+		if (value < 0 || value > 127 || value < INT_MIN || value > INT_MAX)
 			std::cout << "char: impossible" << std::endl;
-			std::cout << "int: impossible" << std::endl;
-		}
-		else {
+		else
+		{
 			if (isprint(static_cast<unsigned char>(value)))
-				std::cout << "char: '" << value << "'" << std::endl;
+				std::cout << "char: '" << static_cast<char>(value) << "'" << std::endl;
 			else
 				std::cout << "char: non displayable" << std::endl;
-			std::cout << "int: " << static_cast<int>(value) << std::endl;
 		}
+		if (value < INT_MIN || value > INT_MAX)
+			std::cout << "int: impossible" << std::endl;
+		else
+			std::cout << "int: " << static_cast<int>(value) << std::endl;
 		std::cout << "float: " << static_cast<float>(value) << "f" << std::endl;
 		std::cout << "double: " << static_cast<double>(value) << std::endl;
 	}
 	else if (isFloat(literal)) {
 		char *endptr;
 		float f = strtof(literal.c_str(), &endptr);
-		if (isImpossibleInt(static_cast<int>(f)))
+		if (!static_cast<int>(f))
 		{
 			std::cout << "char: impossible" << std::endl;
 			std::cout << "int: impossible" << std::endl;
@@ -65,7 +70,7 @@ void ScalarConverter::convert(const std::string &literal)
 	else if (isDouble(literal)) {
 		char *endptr;
 		double d = strtod(literal.c_str(), &endptr);
-		if (isImpossibleInt(static_cast<int>(d)))
+		if (!static_cast<int>(d))
 		{
 			std::cout << "char: impossible" << std::endl;
 			std::cout << "int: impossible" << std::endl;
@@ -97,9 +102,11 @@ void ScalarConverter::convert(const std::string &literal)
 			std::cout << "double: -inf" << std::endl;
 		}
 	}
-	else
-		std::cout << "Not a literal" << std::endl;
+	else {
+		std::cout << "Not a literal." << std::endl;
+		std::cout << "If you're using a special char, please consider using \" \"" << std::endl;
 	}
+}
 
 bool	isEmpty(const std::string &literal){
 	return literal.empty();
@@ -130,8 +137,4 @@ bool isPseudoLiteral(const std::string &literal) {
 	return (literal == "nanf" || literal == "nan" ||
 			literal == "+inff" || literal == "+inf" ||
 			literal == "-inff" || literal == "-inf");
-}
-
-bool isImpossibleInt(const int value) {
-	return (value > INT_MAX || value < INT_MIN);
 }
