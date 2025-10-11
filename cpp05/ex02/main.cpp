@@ -23,7 +23,7 @@ int main() {
 	std::cout << shrub1 << std::endl;
 	betty.executeForm(shrub1);
 
-	std::cout << YELLOW << "////// TEST #0" << ++testNumber << RST << std::endl;
+	std::cout << YELLOW << "\n////// TEST #0" << ++testNumber << RST << std::endl;
 	std::cout << "Testing Shrubbery Form: Bureacrat WITHOUT enough grade to sign and execute...\n";
 	Bureaucrat jorginho("Jorginho", 150);
 	ShrubberyCreationForm shrub2("forest");
@@ -37,7 +37,7 @@ int main() {
 	std::cout << shrub2 << std::endl;
 	jorginho.executeForm(shrub2);
 
-	std::cout << YELLOW << "////// TEST #0" << ++testNumber << RST << std::endl;
+	std::cout << YELLOW << "\n////// TEST #0" << ++testNumber << RST << std::endl;
 	std::cout << "Testing Robotomy Form: Bureacrat WITH enough grade to sign and execute...\n";
 	RobotomyRequestForm robotomy1("Jorginho");
 	std::cout << robotomy1 << std::endl;
@@ -45,7 +45,7 @@ int main() {
 	betty.executeForm(robotomy1);
 	
 	
-	std::cout << YELLOW << "////// TEST #0" << ++testNumber << RST << std::endl;
+	std::cout << YELLOW << "\n////// TEST #0" << ++testNumber << RST << std::endl;
 	std::cout << "Testing Presidential Form: Bureacrat WITH enough grade to sign and execute...\n";
 	PresidentialPardonForm pardon1("Marvin");
 	std::cout << pardon1 << std::endl;

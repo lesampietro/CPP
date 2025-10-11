@@ -3,9 +3,6 @@
 
 # include "Base.hpp"
 
-class B : public Base {
-	public:
-		virtual ~Base();
-};
+class B : public Base {};
 
 #endif

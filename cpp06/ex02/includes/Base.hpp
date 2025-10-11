@@ -1,8 +1,12 @@
 #ifndef BASE_HPP
 # define BASE_HPP
 
-# include <stdint.h> //uintptr_t
 # include <iostream>
+# include <cstdlib> //rand(), srand()
+# include <ctime> //time()
+# include "A.hpp"
+# include "B.hpp"
+# include "C.hpp"
 
 # define GREEN "\033[0;32m"
 # define YELLOW "\033[0;33m"
@@ -14,6 +18,10 @@
 class Base {
 	public:
 		virtual ~Base();
+
+		static Base *generate(void);
+		static void identify(Base *p);
+		static void identify(Base &p);
 	
 };
 

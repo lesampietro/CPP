@@ -30,3 +30,19 @@ The value of the number is the mantissa times 2^x, where x is the exponent.
 *** Representação de números fixed-point: ***
 
 Um número fixed-point usa um número inteiro para representar tanto a parte inteira quanto a parte fracionária de um número real. Isso é feito implicitamente, reservando um número fixo de bits para a parte fracionária.
+
+---------------------------------------------------------------------------
+
+*** C++ literals ***
+Values such as numbers, characters or string characters whose values are self-evident are know as literals
+
+Integer literals:
+We can write an integer literal using decimal, octal, or hexadecimal notation
+- Decimal - "normal representation"
+- Octal - Integer literals that begin with 0 (zero) are interpreted as octal
+- Hexadecimal - Integer literals that begin with either 0x or 0X are interpreted as hexadecimal 
+
+Different interpretations of the same number:
+	decimal:		25
+	octal:			031
+	hexadecimal:	0x19
