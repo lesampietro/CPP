@@ -2,10 +2,10 @@
 # define SCALARCONVERTER_HPP
 
 # include <iostream> // std::cout, std::endl
-// #include <stdlib.h>	 // strtol(), strtof(), strtod()
 # include <cstdlib>	 // strtol(), strtof(), strtod()
-# include <limits.h> // INT_MAX, INT_MIN
+# include <limits> // Para std::numeric_limits
 # include <cctype> // isprint(), isdigit()
+# include <iomanip>
 
 # define GREEN "\033[0;32m"
 # define YELLOW "\033[0;33m"

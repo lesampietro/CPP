@@ -16,59 +16,65 @@ ScalarConverter::~ScalarConverter() {}
 void ScalarConverter::convert(const std::string &literal)
 {
 	if (isEmpty(literal)) 
-		std::cout << MAGENTA << "Error: " << RST << "string is Empty" << std::endl;
+	std::cout << MAGENTA << "Error: " << RST << "string is Empty" << std::endl;
 	else if (isChar(literal)) {
 		char c = literal[0];
 		if (isprint(static_cast<unsigned char>(c)))
-			std::cout << "char: '" << c << "'" << std::endl;
+		std::cout << "char: '" << c << "'" << std::endl;
 		else
-			std::cout << "char: non displayable" << std::endl;
+		std::cout << "char: non displayable" << std::endl;
 		std::cout << "int: " << static_cast<int>(c) << std::endl;
-		std::cout << "float: " << static_cast<float>(c) << "f" << std::endl;
+		std::cout << "float: " << static_cast<float>(c) << std::endl;
 		std::cout << "double: " << static_cast<double>(c) << std::endl;
 	}
 	else if (isInt(literal)) {
+		std::cout << std::fixed;
 		char *endptr;
-		long value = strtol(literal.c_str(), &endptr, 10);
-		if (value < 0 || value > 127 || value < INT_MIN || value > INT_MAX)
+		long i = strtol(literal.c_str(), &endptr, 10);
+		if (i < 0 || i > 127)
 			std::cout << "char: impossible" << std::endl;
 		else
 		{
-			if (isprint(static_cast<unsigned char>(value)))
-				std::cout << "char: '" << static_cast<char>(value) << "'" << std::endl;
+			if (isprint(static_cast<unsigned char>(i)))
+				std::cout << "char: '" << static_cast<char>(i) << "'" << std::endl;
 			else
 				std::cout << "char: non displayable" << std::endl;
 		}
-		if (value < INT_MIN || value > INT_MAX)
+		if (i < std::numeric_limits<int>::min() \
+			|| i > std::numeric_limits<int>::max())
 			std::cout << "int: impossible" << std::endl;
 		else
-			std::cout << "int: " << static_cast<int>(value) << std::endl;
-		std::cout << "float: " << static_cast<float>(value) << "f" << std::endl;
-		std::cout << "double: " << static_cast<double>(value) << std::endl;
+			std::cout << "int: " << static_cast<int>(i) << std::endl;
+		std::cout << "float: " << std::setprecision(1) << static_cast<float>(i) << "f" << std::endl;
+		std::cout << "double: " << std::setprecision(1) << static_cast<double>(i) << std::endl;
 	}
 	else if (isFloat(literal)) {
+		std::cout << std::fixed;
 		char *endptr;
 		float f = strtof(literal.c_str(), &endptr);
-		if (f < 0 || f > 127 || f < static_cast<float>(INT_MIN) || f > static_cast<float>(INT_MAX))
+		if (f < 0 || f > 127)
 			std::cout << "char: impossible" << std::endl;
 		else
 		{
 			if (isprint(static_cast<unsigned char>(f)))
-				std::cout << "char: '" << static_cast<char>(f) << "'" << std::endl;
+			std::cout << "char: '" << static_cast<char>(f) << "'" << std::endl;
 			else
-				std::cout << "char: non displayable" << std::endl;
+			std::cout << "char: non displayable" << std::endl;
 		}
-		if (f < static_cast<float>(INT_MIN) || f > static_cast<float>(INT_MAX))
+		if (f < static_cast<float>(std::numeric_limits<int>::min()) \
+		|| f > static_cast<float>(std::numeric_limits<int>::max()))
 			std::cout << "int: impossible" << std::endl;
-		else
-			std::cout << "int: " << static_cast<int>(f) << std::endl;
-		std::cout << "float: " << f << "f" << std::endl;
-		std::cout << "double: " << static_cast<double>(f) << std::endl;
+		else {
+			std::cout << "\nint: " << static_cast<int>(f) << std::endl;
+		}
+		std::cout << "float: " << std::setprecision(1) << f << "f" << std::endl;
+		std::cout << "double: " << std::setprecision(1) << static_cast<double>(f) << std::endl;
 	}
 	else if (isDouble(literal)) {
+		std::cout << std::fixed;
 		char *endptr;
 		double d = strtod(literal.c_str(), &endptr);
-		if (d < 0 || d > 127 || d < static_cast<double>(INT_MIN) || d > static_cast<double>(INT_MAX))
+		if (d < 0 || d > 127)
 			std::cout << "char: impossible" << std::endl;
 		else
 		{
@@ -77,12 +83,12 @@ void ScalarConverter::convert(const std::string &literal)
 			else
 				std::cout << "char: non displayable" << std::endl;
 		}
-		if (d < static_cast<double>(INT_MIN) || d > static_cast<double>(INT_MAX))
+		if (d < static_cast<double>(std::numeric_limits<int>::min()) || d > static_cast<double>(std::numeric_limits<int>::max()))
 			std::cout << "int: impossible" << std::endl;
 		else
 			std::cout << "int: " << static_cast<int>(d) << std::endl;
-		std::cout << "float: " << d << "f" << std::endl;
-		std::cout << "double: " << static_cast<double>(d) << std::endl;
+		std::cout << "float: " << std::setprecision(1) << static_cast<float>(d) << "f" << std::endl;
+		std::cout << "double: " << std::setprecision(1) << d << std::endl;
 	}
 	else if (isPseudoLiteral(literal)) {
 		std::cout << "char: impossible" << std::endl;
