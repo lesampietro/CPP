@@ -57,15 +57,15 @@ void ScalarConverter::convert(const std::string &literal)
 		else
 		{
 			if (isprint(static_cast<unsigned char>(f)))
-			std::cout << "char: '" << static_cast<char>(f) << "'" << std::endl;
+				std::cout << "char: '" << static_cast<char>(f) << "'" << std::endl;
 			else
-			std::cout << "char: non displayable" << std::endl;
+				std::cout << "char: non displayable" << std::endl;
 		}
 		if (f < static_cast<float>(std::numeric_limits<int>::min()) \
 		|| f > static_cast<float>(std::numeric_limits<int>::max()))
 			std::cout << "int: impossible" << std::endl;
 		else {
-			std::cout << "\nint: " << static_cast<int>(f) << std::endl;
+			std::cout << "int: " << static_cast<int>(f) << std::endl;
 		}
 		std::cout << "float: " << std::setprecision(1) << f << "f" << std::endl;
 		std::cout << "double: " << std::setprecision(1) << static_cast<double>(f) << std::endl;
@@ -127,8 +127,15 @@ bool	isInt(const std::string &literal){
 }
 
 bool	isFloat(const std::string &literal){
-	return (literal.find('f') != std::string::npos &&
-			literal.find('.') != std::string::npos); //Returns true if finds "." AND "f" on the string
+	if (literal.find('.') == std::string::npos)
+		return (false);
+	if ((literal[literal.length() - 1]) != 'f')
+		return (false);
+
+	std::string without_f = literal.substr(0, literal.length() - 1);
+	char *endptr;
+	strtof(without_f.c_str(), &endptr);
+	return (*endptr == '\0');
 }
 
 bool	isDouble(const std::string &literal){
