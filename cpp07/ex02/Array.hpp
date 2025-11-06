@@ -11,9 +11,9 @@
 # define RST "\033[0m"
 
 template <typename T>
-void iter()
-{
-
+class Array {
+    public:
+    
 }
 
 #endif
