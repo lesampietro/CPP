@@ -29,6 +29,7 @@ Array<T>::Array(const Array &copy)
 
 template <typename T>
 Array<T>::~Array() {
+	std::cout << BLU << "~Destructor called" << RST << std::endl;
 	delete[] this->_array;
 }
 
@@ -48,7 +49,7 @@ Array<T> &Array<T>::operator=(const Array &other) {
 template <typename T>
 T &Array<T>::operator[](unsigned int index) {
 	if (index >= this->_size)
-		throw std::out_of_range("Error: Forbidden memory access");
+		throw std::out_of_range("Forbidden memory access");
 	return this->_array[index];
 }
 

@@ -16,7 +16,8 @@ int main( void ) {
 	std::cout << GRN << "Passing function that modifies the parmeters...";
 	std::cout << RST << " (NON CONST)" << std::endl;
 	::iter(arr, 5, &printModifiedInt);
-	std::cout << std::endl;
+
+	std::cout << "_________________________________________\n" << std::endl;
 
 	std::cout << "===== Creating array of std::strings =====" << std::endl;
 	std::string strArr[3] = {"Hello", "World", "!"};

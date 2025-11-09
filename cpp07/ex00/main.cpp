@@ -1,10 +1,11 @@
 #include "whatever.hpp"
 
 int main( void ) {
+
+	std::cout << "======== Testing with integers ========" << std::endl;
 	int a = 2;
 	int b = 3;
 
-	std::cout << "======== Testing with integers ========" << std::endl;
 	std::cout << CYN << "a = " << RST << a;
 	std::cout << ", " << CYN << "b = " << RST << b << std::endl;
 	
@@ -13,11 +14,13 @@ int main( void ) {
 	std::cout << ", " << CYN << "b = " << RST << b << std::endl;
 	std::cout << CYN << "min( a, b ) = " << RST << ::min( a, b ) << std::endl;
 	std::cout << CYN << "max( a, b ) = " << RST << ::max( a, b ) << std::endl;
-	
+
+	std::cout << "_________________________________________" << std::endl;
+
+	std::cout << "\n======== Testing with strings ========" << std::endl;
 	std::string c = "chaine1";
 	std::string d = "chaine2";
 	
-	std::cout << "\n======== Testing with strings ========" << std::endl;
 	std::cout << CYN << "c = " << RST << c;
 	std::cout << ", " << CYN << "d = " << RST << d << std::endl;
 	

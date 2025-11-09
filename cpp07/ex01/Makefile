@@ -7,12 +7,10 @@ RST		:= \033[0m
 NAME	:= iter
 CC		:= c++
 CFLAGS	:= -Wall -Wextra -Werror -std=c++98
-SRC_DIR	:= src
-INC_DIR	:= includes
 BIN_DIR	:= bin
 SRCS	:= main.cpp
 
-OBJS	:= $(patsubst $(SRC_DIR)/%.cpp,$(BIN_DIR)/%.o,$(SRCS))
+OBJS	:= $(patsubst %.cpp,$(BIN_DIR)/%.o,$(SRCS))
 
 all: $(BIN_DIR) $(NAME)
 
@@ -24,9 +22,9 @@ $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) -o $@ $^
 	@echo "\n$(CYAN)----- $(MAG)❤ $(GREEN)$(NAME) compiled! $(MAG)❤ $(CYAN)-----$(RST)\n"
 
-$(BIN_DIR)/%.o: $(SRC_DIR)/%.cpp | $(BIN_DIR)
+$(BIN_DIR)/%.o: %.cpp | $(BIN_DIR)
 	@echo "Compiling $<..."
-	@$(CC) $(CFLAGS) -I $(INC_DIR) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@echo "Cleaning objects..."
