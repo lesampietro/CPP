@@ -47,8 +47,8 @@ std::ostream &operator<<(std::ostream &os, const MutantStack<T> &other) {
 
 	os << "Mutant Stack: {";
 	while (itinit != itend) {
-		os << *it;
-		it++;
+		os << *itinit;
+		itinit++;
 		if (itinit != itend)
 			os << ", ";
 	}
