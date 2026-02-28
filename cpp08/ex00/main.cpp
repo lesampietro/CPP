@@ -46,5 +46,5 @@ int main(void)
     std::cout << YLW << "\n======== Testing empty container ========" << RST << std::endl;
     easyfind(emptyVec, 5);
 
-    return 0;
+    return (0);
 }

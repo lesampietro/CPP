@@ -18,7 +18,7 @@
 
 class	Span {
 	private:
-		unsigned int		_n;
+		unsigned int		_size;
 		std::vector<int>	_container;
 	
 	public:
@@ -28,9 +28,30 @@ class	Span {
 		Span &operator=(const Span &other);
 		~Span();
 
-		void	addNumber(unsigned int number);
+		void	addNumber(const int number);
+		
+		// Template to accept an iterator interval
+        template <typename Iterator>
+        void	addMultipleNumbers(Iterator begin, Iterator end) {
+            for (Iterator it = begin; it != end; ++it) {
+                addNumber(*it);
+            }
+        }
+
 		int		shortestSpan();
 		int		longestSpan();
+
+		// Nested classes for exceptions
+		class ContainerFullException : public std::exception {
+			public:
+				virtual const char *what() const throw();
+		};
+
+		class InsufficientValuesException : public std::exception {
+			public:
+				virtual const char *what() const throw();
+		};
+
 };
 
 #endif
