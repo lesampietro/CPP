@@ -29,33 +29,33 @@ int main(void) {
             try {
                 std::string input;
                 std::getline(std::cin, input);
-                // Check for empty input
-                if (input.empty()) {
+                if (std::cin.eof())
+                {
+                    std::cout << "\n";
+                    std::cout << MGNT << "Ctrl+D - Program exited" << RST << std::endl;
+                    return (1);
+                }
+                else if (input.empty()) {
                     throw Span::InvalidValueException();
                 }
-                
-                // Check for non-numeric characters
                 for (size_t i = 0; i < input.length(); ++i) {
                     if (!isdigit(input[i])) {
                         throw Span::InvalidValueException();
                     }
                 }
-                
-                // Convert to long to check overflow before converting to int
                 long temp = atol(input.c_str());
-                
-                if (temp <= 0 || temp > std::numeric_limits<int>::max()) {
+                if (temp <= 0 || temp > 1000000) {
                     throw Span::InvalidValueException();
                 }
-                
                 val = static_cast<int>(temp);
+
                 break;
             } catch (const Span::InvalidValueException &e) {
                 std::cout << MGNT << "ERROR: " << RST << e.what() << std::endl;
-                continue;
+                continue ;
             } catch (const std::exception &e) {
                 std::cout << MGNT << "ERROR: Invalid input" << RST << std::endl;
-                continue;
+                continue ;
             }
         }
 
