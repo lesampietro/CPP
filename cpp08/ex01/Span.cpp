@@ -32,7 +32,7 @@ void	Span::addNumber(const int number) {
         throw ContainerFullException();
 	else {
 		_container.push_back(number);
-		// std::cout << "Adding " << number << " to the container" << std::endl;
+		std::cout << "Adding " << number << " to the container" << std::endl;
 	}
 }		
 
@@ -52,7 +52,6 @@ int		Span::shortestSpan() {
 	return (minSpan);
 }
 
-
 int		Span::longestSpan() {
 	if (this->_container.size() < 2) {
 		throw InsufficientValuesException();
@@ -69,4 +68,8 @@ const char*	Span::ContainerFullException::what() const throw() {
 
 const char*	Span::InsufficientValuesException::what() const throw() {
 	return "To find a span, the container should have at least 2 stored values.";
+}
+
+const char*	Span::InvalidValueException::what() const throw() {
+	return "Invalid value. Please enter a positive value within integer bounds.";
 }

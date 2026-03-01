@@ -20,63 +20,100 @@
 int main(void) {
     srand(time(0));
     
-    std::cout << BLU << "=== TESTE 1: Container com 10000 números ===" << RST << std::endl;
+    std::cout << YLW << "\n======== Testing Container with customized numbers ========" << RST << std::endl;
     
-    Span sp(10000);
+    int val = 0;
+    while (1) {
+        std::cout << "Hello! Please insert a positive value to be the size of your container:" << RST << std::endl;
+        try {
+            std::string input;
+            std::getline(std::cin, input);
+             // Check for empty input
+        if (input.empty()) {
+            throw Span::InvalidValueException();
+        }
+        
+        // Check for non-numeric characters
+        for (size_t i = 0; i < input.length(); ++i) {
+            if (!isdigit(input[i])) {
+                throw Span::InvalidValueException();
+            }
+        }
+        
+        // Convert to long to check overflow before converting to int
+        long temp = atol(input.c_str());
+        
+        if (temp <= 0 || temp > std::numeric_limits<int>::max()) {
+            throw Span::InvalidValueException();
+        }
+        
+        val = static_cast<int>(temp);
+        break;
+        
+    } catch (const Span::InvalidValueException &e) {
+        std::cout << MGNT << "ERROR: " << RST << e.what() << std::endl;
+        continue;
+    } catch (const std::exception &e) {
+        std::cout << MGNT << "ERROR: Invalid input" << RST << std::endl;
+        continue;
+    }
+}
+
+    Span bigCont(val);
     std::vector<int> numbers;
     
-    // Gera 10000 números aleatórios
-    for (int i = 0; i < 10000; ++i) {
-        numbers.push_back(rand() % 100000);
+    // Generates 'val' random numbers
+    for (int i = 0; i < val; ++i) {
+        numbers.push_back(rand() % (val * 10));
     }
     
-    // Adiciona todos de uma vez usando addMultipleNumbers
-    sp.addMultipleNumbers(numbers.begin(), numbers.end());
-    std::cout << GRN << "✓ 10000 números adicionados com sucesso!" << RST << std::endl;
+    // Adds a batch of numbers to the container
+    bigCont.addMultipleNumbers(numbers.begin(), numbers.end());
+    std::cout << GRN << "Success: " << RST << val << " numbers added to the container" << std::endl;
     
     try {
-        std::cout << YLW << "Shortest Span: " << RST << sp.shortestSpan() << std::endl;
-        std::cout << YLW << "Longest Span: " << RST << sp.longestSpan() << std::endl;
+        std::cout << "Shortest Span: " << RST << bigCont.shortestSpan() << std::endl;
+        std::cout << "Longest Span: " << RST << bigCont.longestSpan() << std::endl;
     } catch (const Span::InsufficientValuesException &e) {
         std::cout << MGNT << "ERROR: " << RST << e.what() << std::endl;
     }
     
-    std::cout << std::endl << BLU << "=== TESTE 2: Container pequeno (SUBJECT) ===" << RST << std::endl;
+    std::cout << YLW << "\n======== Testing Small Container (subject test) ========" << RST << std::endl;
     
-    Span sp2(5);
-    sp2.addNumber(6);
-    sp2.addNumber(3);
-    sp2.addNumber(17);
-    sp2.addNumber(9);
-    sp2.addNumber(11);
+    Span smallCont(5);
+    smallCont.addNumber(6);
+    smallCont.addNumber(3);
+    smallCont.addNumber(17);
+    smallCont.addNumber(9);
+    smallCont.addNumber(11);
     
     try {
-        std::cout << YLW << "Shortest Span: " << RST << sp2.shortestSpan() << std::endl;
-        std::cout << YLW << "Longest Span: " << RST << sp2.longestSpan() << std::endl;
+        std::cout << "\nShortest Span: " << RST << smallCont.shortestSpan() << std::endl;
+        std::cout << "Longest Span: " << RST << smallCont.longestSpan() << std::endl;
     } catch (const Span::InsufficientValuesException &e) {
         std::cout << MGNT << "ERROR: " << RST << e.what() << std::endl;
     }
+
+    std::cout << YLW << "\n======== Testing Full Container Exception ========" << RST << std::endl;
     
-    std::cout << std::endl << BLU << "=== TESTE 3: Container cheio (exceção) ===" << RST << std::endl;
-    
-    Span sp3(3);
-    sp3.addNumber(1);
-    sp3.addNumber(2);
-    sp3.addNumber(3);
+    Span fullCont(3);
+    fullCont.addNumber(1);
+    fullCont.addNumber(2);
+    fullCont.addNumber(3);
     
     try {
-        sp3.addNumber(4);
+        fullCont.addNumber(4);
     } catch (const Span::ContainerFullException &e) {
         std::cout << MGNT << "ERROR: " << RST << e.what() << std::endl;
     }
     
-    std::cout << std::endl << BLU << "=== TESTE 4: Valores insuficientes ===" << RST << std::endl;
+    std::cout << YLW << "\n======== Testing Insufficient Stored Values Exception ========" << RST << std::endl;
     
-    Span sp4(5);
-    sp4.addNumber(42);
+    Span tooSmallCont(5);
+    tooSmallCont.addNumber(42);
     
     try {
-        sp4.shortestSpan();
+        tooSmallCont.shortestSpan();
     } catch (const Span::InsufficientValuesException &e) {
         std::cout << MGNT << "ERROR: " << RST << e.what() << std::endl;
     }

@@ -2,12 +2,15 @@
 # define SPAN_HPP
 
 # include <iostream>
+# include <limits>
+# include <cctype>
+# include <algorithm>
+# include <string>
 # include <vector>
 # include <deque>
 # include <list>
 # include <stack>
 # include <queue>
-# include <algorithm>
 
 # define GRN "\033[0;32m"
 # define YLW "\033[0;33m"
@@ -30,7 +33,8 @@ class	Span {
 
 		void	addNumber(const int number);
 		
-		// Template to accept an iterator interval
+		// Template to accept an iterator interval.
+		// It must be implemented in the header file because of the way C++ handles templates: it is not compiled until instantiation.
         template <typename Iterator>
         void	addMultipleNumbers(Iterator begin, Iterator end) {
             for (Iterator it = begin; it != end; ++it) {
@@ -52,6 +56,12 @@ class	Span {
 				virtual const char *what() const throw();
 		};
 
+		class InvalidValueException : public std::exception {
+			public:
+				virtual const char *what() const throw();
+		};
 };
+
+
 
 #endif
