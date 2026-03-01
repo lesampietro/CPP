@@ -23,9 +23,9 @@ class	Span {
 	private:
 		unsigned int		_size;
 		std::vector<int>	_container;
+		Span();
 	
 	public:
-		Span();
 		Span(unsigned int n);
 		Span(const Span &copy);
 		Span &operator=(const Span &other);

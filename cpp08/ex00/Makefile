@@ -6,7 +6,7 @@ RST		:= \033[0m
 
 NAME	:= easyfind
 CC		:= c++
-CFLAGS	:= -Wall -Wextra -Werror -std=c++11
+CFLAGS	:= -Wall -Wextra -Werror -std=c++98
 BIN_DIR	:= bin
 SRCS	:= main.cpp
 
