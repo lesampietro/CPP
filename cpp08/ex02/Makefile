@@ -9,7 +9,7 @@ CC		:= c++
 CFLAGS	:= -Wall -Wextra -Werror -std=c++98
 BIN_DIR	:= bin
 SRCS	:= main.cpp \
-		   Span.cpp
+# 		   MutantStack.cpp
 
 OBJS	:= $(patsubst %.cpp,$(BIN_DIR)/%.o,$(SRCS))
 
