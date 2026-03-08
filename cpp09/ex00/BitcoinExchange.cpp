@@ -65,18 +65,37 @@ bool BitCoinExchange::isValideValue(const std::string &value) const {
     } catch (const std::exception &e) {
         return false;
     }
-    return true;   
+    return true;
 }
 
 float BitCoinExchange::stringToFloat(const std::string &str) const {
     char *endptr;
     errno = 0; // Reset errno before conversion
-    float value = std::strtof(str.c_str(), &endptr);
+    float result = std::strtof(str.c_str(), &endptr);
     
     if (errno != 0 || endptr == str.c_str() || *endptr != '\0') {
         throw std::invalid_argument("Invalid float value: " + str);
     }
-    return value;
+    return result;
+}
+
+double BitCoinExchange::getExchangeRate(const std::string &date) const {
+    if (_data.empty())
+        throw std::runtime_error("database is empty");
+
+    std::map<std::string, double>::const_iterator it = _data.lower_bound(date);
+
+    if (it != _data.end() && it->first == date)
+        return it->second;
+
+    // Subject behavior: use closest previous date
+    if (it == _data.begin())
+        throw std::runtime_error("no earlier date in database");
+
+    if (it == _data.end() || it->first != date)
+        --it;
+
+    return it->second;
 }
 
 void BitCoinExchange::loadDatabase(const std::string &filename) {
