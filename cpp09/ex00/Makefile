@@ -8,7 +8,8 @@ NAME	:= btc
 CC		:= c++
 CFLAGS	:= -Wall -Wextra -Werror -std=c++98
 BIN_DIR	:= bin
-SRCS	:= main.cpp
+SRCS	:= main.cpp \
+			BitcoinExchange.cpp
 
 OBJS	:= $(patsubst %.cpp,$(BIN_DIR)/%.o,$(SRCS))
 
