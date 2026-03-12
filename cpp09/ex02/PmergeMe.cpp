@@ -16,69 +16,130 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& other) {
 	return *this;
 }
 
-void PmergeMe::merge(std::vector<int>& arr, std::vector<int>& left, std::vector<int>& right) {
-	arr.clear();
-	std::vector<int>::iterator left_it = left.begin();
-	std::vector<int>::iterator right_it = right.begin();
+void PmergeMe::fordJohnsonSort(std::vector<int>& arr) {
+    if (arr.size() < 2) return;
 
-	while (left_it != left.end() && right_it != right.end()) {
-		if (*left_it < *right_it) {
-			arr.push_back(*left_it);
-			left_it++;
-		} else {
-			arr.push_back(*right_it);
-			right_it++;
-		}
-	}
-	arr.insert(arr.end(), left_it, left.end());
-	arr.insert(arr.end(), right_it, right.end());
+    typedef std::vector<int> IntVector;
+    typedef std::vector<IntVector> VectorOfPairs;
+
+    VectorOfPairs pairs;
+    int stray = -1;
+    if (arr.size() % 2 != 0) {
+        stray = arr.back();
+        arr.pop_back();
+    }
+
+    for (size_t i = 0; i < arr.size(); i += 2) {
+        IntVector pair;
+        pair.push_back(arr[i]);
+        pair.push_back(arr[i+1]);
+        if (pair[0] < pair[1]) {
+            std::swap(pair[0], pair[1]);
+        }
+        pairs.push_back(pair);
+    }
+
+    IntVector mainChain, pendingChain;
+    for (size_t i = 0; i < pairs.size(); ++i) {
+        mainChain.push_back(pairs[i][0]);
+        pendingChain.push_back(pairs[i][1]);
+    }
+
+    fordJohnsonSort(mainChain);
+
+    // Jacobsthal sequence generation
+    std::vector<int> jacobsthal;
+    jacobsthal.push_back(0);
+    jacobsthal.push_back(1);
+    int last = 1, before_last = 0;
+    while (static_cast<size_t>(last) < pendingChain.size()) {
+        int next = last + 2 * before_last;
+        before_last = last;
+        last = next;
+        jacobsthal.push_back(last);
+    }
+
+    // Insertion using Jacobsthal sequence
+    for (size_t i = 1; i < jacobsthal.size(); ++i) {
+        int end = jacobsthal[i];
+        int start = jacobsthal[i-1];
+        for (int j = end - 1; j >= start; --j) {
+            if (static_cast<size_t>(j) < pendingChain.size()) {
+                IntVector::iterator it = std::lower_bound(mainChain.begin(), mainChain.end(), pendingChain[j]);
+                mainChain.insert(it, pendingChain[j]);
+            }
+        }
+    }
+
+    if (stray != -1) {
+        IntVector::iterator it = std::lower_bound(mainChain.begin(), mainChain.end(), stray);
+        mainChain.insert(it, stray);
+    }
+
+    arr = mainChain;
 }
 
-void PmergeMe::mergeInsertSort(std::vector<int>& arr) {
-	if (arr.size() <= 1)
-		return;
+void PmergeMe::fordJohnsonSort(std::deque<int>& arr) {
+    if (arr.size() < 2) return;
 
-	int mid = arr.size() / 2;
-	std::vector<int> left(arr.begin(), arr.begin() + mid);
-	std::vector<int> right(arr.begin() + mid, arr.end());
+    typedef std::deque<int> IntDeque;
+    typedef std::deque<IntDeque> DequeOfPairs;
 
-	mergeInsertSort(left);
-	mergeInsertSort(right);
-	merge(arr, left, right);
-}
+    DequeOfPairs pairs;
+    int stray = -1;
+    if (arr.size() % 2 != 0) {
+        stray = arr.back();
+        arr.pop_back();
+    }
 
-void PmergeMe::merge(std::deque<int>& arr, std::deque<int>& left, std::deque<int>& right) {
-	arr.clear();
-	std::deque<int>::iterator left_it = left.begin();
-	std::deque<int>::iterator right_it = right.begin();
+    for (size_t i = 0; i < arr.size(); i += 2) {
+        IntDeque pair;
+        pair.push_back(arr[i]);
+        pair.push_back(arr[i+1]);
+        if (pair[0] < pair[1]) {
+            std::swap(pair[0], pair[1]);
+        }
+        pairs.push_back(pair);
+    }
 
-	while (left_it != left.end() && right_it != right.end()) {
-		if (*left_it < *right_it) {
-			arr.push_back(*left_it);
-			left_it++;
-		} else {
-			arr.push_back(*right_it);
-			right_it++;
-		}
-	}
-	arr.insert(arr.end(), left_it, left.end());
-	arr.insert(arr.end(), right_it, right.end());
-}
+    IntDeque mainChain, pendingChain;
+    for (size_t i = 0; i < pairs.size(); ++i) {
+        mainChain.push_back(pairs[i][0]);
+        pendingChain.push_back(pairs[i][1]);
+    }
 
-void PmergeMe::mergeInsertSort(std::deque<int>& arr) {
-	if (arr.size() <= 1)
-		return;
+    fordJohnsonSort(mainChain);
 
-	int mid = arr.size() / 2;
-	std::deque<int> left;
-	std::deque<int> right;
-    std::copy(arr.begin(), arr.begin() + mid, std::back_inserter(left));
-    std::copy(arr.begin() + mid, arr.end(), std::back_inserter(right));
+    // Jacobsthal sequence generation
+    std::vector<int> jacobsthal;
+    jacobsthal.push_back(0);
+    jacobsthal.push_back(1);
+    int last = 1, before_last = 0;
+    while (static_cast<size_t>(last) < pendingChain.size()) {
+        int next = last + 2 * before_last;
+        before_last = last;
+        last = next;
+        jacobsthal.push_back(last);
+    }
 
+    // Insertion using Jacobsthal sequence
+    for (size_t i = 1; i < jacobsthal.size(); ++i) {
+        int end = jacobsthal[i];
+        int start = jacobsthal[i-1];
+        for (int j = end - 1; j >= start; --j) {
+            if (static_cast<size_t>(j) < pendingChain.size()) {
+                IntDeque::iterator it = std::lower_bound(mainChain.begin(), mainChain.end(), pendingChain[j]);
+                mainChain.insert(it, pendingChain[j]);
+            }
+        }
+    }
 
-	mergeInsertSort(left);
-	mergeInsertSort(right);
-	merge(arr, left, right);
+    if (stray != -1) {
+        IntDeque::iterator it = std::lower_bound(mainChain.begin(), mainChain.end(), stray);
+        mainChain.insert(it, stray);
+    }
+
+    arr = mainChain;
 }
 
 void PmergeMe::sort(int argc, char **argv) {
@@ -91,7 +152,7 @@ void PmergeMe::sort(int argc, char **argv) {
 			}
 		}
 		long num = std::atol(argv[i]);
-		if (num > 2147483647)
+		if (num > 2147483647 )
 		{
 			std::cout << "Error: Invalid input" << std::endl;
 			return;
@@ -116,7 +177,7 @@ void PmergeMe::sort(int argc, char **argv) {
 	std::cout << std::endl;
 
 	clock_t start_vec = clock();
-	mergeInsertSort(_vec);
+	fordJohnsonSort(_vec);
 	clock_t end_vec = clock();
 	double time_vec = static_cast<double>(end_vec - start_vec) / CLOCKS_PER_SEC * 1000000;
 
@@ -127,7 +188,7 @@ void PmergeMe::sort(int argc, char **argv) {
 	std::cout << std::endl;
 
 	clock_t start_deq = clock();
-	mergeInsertSort(_deq);
+	fordJohnsonSort(_deq);
 	clock_t end_deq = clock();
 	double time_deq = static_cast<double>(end_deq - start_deq) / CLOCKS_PER_SEC * 1000000;
 

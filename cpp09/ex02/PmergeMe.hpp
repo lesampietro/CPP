@@ -19,10 +19,8 @@ class PmergeMe {
 		PmergeMe(const PmergeMe& other);
 		PmergeMe& operator=(const PmergeMe& other);
 
-		void mergeInsertSort(std::vector<int>& arr);
-		void merge(std::vector<int>& arr, std::vector<int>& left, std::vector<int>& right);
-		void mergeInsertSort(std::deque<int>& arr);
-		void merge(std::deque<int>& arr, std::deque<int>& left, std::deque<int>& right);
+		void fordJohnsonSort(std::vector<int>& arr);
+		void fordJohnsonSort(std::deque<int>& arr);
 
 	public:
 		PmergeMe();
