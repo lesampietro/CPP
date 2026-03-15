@@ -26,15 +26,16 @@ class PmergeMe {
 		PmergeMe(const PmergeMe& other);
 		PmergeMe& operator=(const PmergeMe& other);
 
-		void fordJohnsonAlgorithm(std::vector<int>& sequence);
-		void fordJohnsonAlgorithm(std::deque<int>& sequence);
-
-	public:
+		void	fordJohnsonAlgorithm(std::vector<int>& sequence);
+		void	fordJohnsonAlgorithm(std::deque<int>& sequence);
+		double	convertTime(clock_t start, clock_t end);
+		void	validateInput(int argc, char **argv);
+		
+		public:
 		PmergeMe();
 		~PmergeMe();
-
-		void mergeInsertSort(int argc, char **argv);
-		double convertTime(clock_t start, clock_t end);
+		
+		void	mergeInsertSort(int argc, char **argv);
 };
 
 #endif

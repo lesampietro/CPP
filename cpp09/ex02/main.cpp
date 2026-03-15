@@ -1,15 +1,11 @@
 #include "PmergeMe.hpp"
 
 int main(int argc, char **argv) {
-	if (argc <= 2) {
-		std::cout << MGNT << "Error: Not enough arguments." << RST << std::endl;
-		std::cout << "Please insert a sequence of positive integers." << std::endl;
-		return 1;
+	try {
+		PmergeMe obj;
+		obj.mergeInsertSort(argc, argv);
+	} catch (const std::exception& e) {
+		std::cerr << MGNT << "Error: " << RST << e.what() << std::endl;
 	}
-
-	PmergeMe obj;
-	obj.mergeInsertSort(argc, argv);
-
 	return 0;
 }
-

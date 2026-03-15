@@ -16,6 +16,39 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& other) {
 	return *this;
 }
 
+void PmergeMe::validateInput(int argc, char **argv) {
+    // Input validation and initialization
+    if (argc <= 2) {
+        throw std::runtime_error("Not enough arguments. Please insert a sequence of positive numbers.");
+	}
+	for (int i = 1; i < argc; ++i) {
+		std::string arg = argv[i];
+        // Validates that the argument has only digits and therefore is positive
+		for (size_t j = 0; j < arg.size(); ++j) {
+			if (!std::isdigit(arg[j])) {
+				throw std::runtime_error("Invalid input. There are invalid characters or negative numbers.");
+			}
+		}
+		long num = std::atol(argv[i]);
+        // Validates that the argument fits within the maximum value of an int
+		if (num > std::numeric_limits<int>::max())
+		{
+			throw std::runtime_error("Invalid input. The number is too large.");
+		}
+		_vec.push_back(static_cast<int>(num));
+		_deq.push_back(static_cast<int>(num));
+	}
+        // Validates that there are no duplicated values in the input
+	std::vector<int> sorted_vec = _vec;
+	std::sort(sorted_vec.begin(), sorted_vec.end()); // Using std::sort to sort the vector for easier duplicate detection
+	for (size_t i = 0; i < sorted_vec.size() - 1; ++i) {
+		if (sorted_vec[i] == sorted_vec[i+1]) {
+			throw std::runtime_error("Duplicated values.");
+		}
+	}
+}
+
+
 void PmergeMe::fordJohnsonAlgorithm(std::vector<int>& sequence) {
     if (sequence.size() <= 1) {
         return; // Base case: a sequence of 0 or 1 elements is already sorted
@@ -34,17 +67,15 @@ void PmergeMe::fordJohnsonAlgorithm(std::vector<int>& sequence) {
     typedef std::vector<std::pair<int, int> > vectorOfPairs;
     // Could also be created as std::vector<intVector> vectorOfPairs.
     
-    std::cout << "Sequence size: " << sequence.size() << std::endl; // Debugging line to show the size of the sequence being processed
     vectorOfPairs pairs;
     for (size_t i = 0; i < sequence.size(); i += 2) {
         std::pair<int,int> intPair(sequence[i], sequence[i+1]);
         if (intPair.first < intPair.second) {
             std::swap(intPair.first, intPair.second);
         }
-        std::cout << "Pair: (" << intPair.first << ", " << intPair.second << ")" << std::endl; // Debugging line to show the pairs being created
         pairs.push_back(intPair);
     }
-    std::cout << "Total pairs created: " << pairs.size() << std::endl;
+
     // Create the main chain and pending chain from the pairs. The main chain will contain the larger elements of each pair, while the pending chain will contain the smaller elements.
     typedef std::vector<int> intVector; // type alias for better readability
     intVector mainChain, pendingChain;
@@ -52,14 +83,8 @@ void PmergeMe::fordJohnsonAlgorithm(std::vector<int>& sequence) {
         mainChain.push_back(pairs[i].first);
         pendingChain.push_back(pairs[i].second);
     }
-    static int recursion_depth = 1;
-    std::cout << GRN << "----------RECURSION: 0" << recursion_depth++ << std::endl << RST <<std::endl;
     fordJohnsonAlgorithm(mainChain);
     
-    std::cout << "Elements in initial mainChain:" << std::endl;
-    for (size_t i = 0; i < mainChain.size(); ++i) {
-        std::cout << mainChain[i] << " "; // Debugging line to show the elements in the main chain after insertion
-    }
     // Jacobsthal sequence generation
     std::vector<int> jacobsthal;
     jacobsthal.push_back(0);
@@ -72,15 +97,6 @@ void PmergeMe::fordJohnsonAlgorithm(std::vector<int>& sequence) {
         jacobsthal.push_back(last);
     }
     
-    std::cout << YLW << "\n----------RECURSION (GOING BACK): 0" << --recursion_depth << RST;
-    std::cout << "\n----------CHECKING PENDING CHAIN----------" << std::endl;
-    std::cout << "Pending chain size: " << pendingChain.size() << std::endl; // Debugging line to show the size of the pending chain being processed
-    std::cout << "Pending chain elements: " << std::endl;
-    for (size_t i = 0; i < pendingChain.size(); ++i) {
-        std::cout << pendingChain[i] << " "; // Debugging line to show the elements in the pending chain being inserted
-    }
-    std::cout << MGNT << "\nStray element: " << RST << stray << std::endl; 
-    std::cout << "\n----------INSERTION USING JACOBSTHAL SEQUENCE" << std::endl;
     // Insertion using Jacobsthal sequence
     for (size_t i = 1; i < jacobsthal.size(); ++i) { // piruetas mentais
         int end = jacobsthal[i];
@@ -89,22 +105,15 @@ void PmergeMe::fordJohnsonAlgorithm(std::vector<int>& sequence) {
             if (static_cast<size_t>(j) < pendingChain.size()) {
                 intVector::iterator it = std::lower_bound(mainChain.begin(), mainChain.end(), pendingChain[j]);
                 mainChain.insert(it, pendingChain[j]);
-                std::cout << "Inserting " << pendingChain[j] << " at position " << (it - mainChain.begin()) << std::endl;
             }
         }
     }
     if (stray != -1) {
         intVector::iterator it = std::lower_bound(mainChain.begin(), mainChain.end(), stray);
         mainChain.insert(it, stray);
-        std::cout << "Inserting " << stray << " at position " << (it - mainChain.begin()) << std::endl;
     }
 
     sequence = mainChain;
-    std::cout << "\n----------CHECKING MAIN CHAIN----------" << std::endl;
-    std::cout << "Main chain size: " << mainChain.size() << std::endl; // Debugging line to show the size of the main chain being processed
-    for (size_t i = 0; i < mainChain.size(); ++i) {
-        std::cout << "Main chain element " << i << ": " << mainChain[i] << std::endl; // Debugging line to show the elements in the main chain after insertion
-    }
 }
 
 void PmergeMe::fordJohnsonAlgorithm(std::deque<int>& sequence) {
@@ -170,38 +179,8 @@ void PmergeMe::fordJohnsonAlgorithm(std::deque<int>& sequence) {
 }
 
 void PmergeMe::mergeInsertSort(int argc, char **argv) {
-    // Input validation and initialization
-	for (int i = 1; i < argc; ++i) {
-		std::string arg = argv[i];
-        // Validates that the argument has only digits and therefore is positive
-		for (size_t j = 0; j < arg.size(); ++j) {
-			if (!std::isdigit(arg[j])) {
-				std::cout << MGNT << "Error: Invalid input." << RST << std::endl;
-                std::cout << "There are invalid characters or negative numbers." << std::endl;
-				return;
-			}
-		}
-		long num = std::atol(argv[i]);
-        // Validates that the argument fits within the maximum value of an int
-		if (num > std::numeric_limits<int>::max())
-		{
-			std::cout << MGNT << "Error: Invalid input." << RST << std::endl;
-            std::cout << "Valid integers go up to " << std::numeric_limits<int>::max() << "." << std::endl;
-			return;
-		}
-		_vec.push_back(static_cast<int>(num));
-		_deq.push_back(static_cast<int>(num));
-	}
+    validateInput(argc, argv);
 
-    // Validates that there are no duplicated values in the input
-	std::vector<int> sorted_vec = _vec;
-	std::sort(sorted_vec.begin(), sorted_vec.end()); // Using std::sort to sort the vector for easier duplicate detection
-	for (size_t i = 0; i < sorted_vec.size() - 1; ++i) {
-		if (sorted_vec[i] == sorted_vec[i+1]) {
-			std::cout << MGNT << "Error: Duplicated values." << RST << std::endl;
-			return;
-		}
-	}
 
     // Prints the original sequence
 	std::cout << YLW << "Before: " << RST;

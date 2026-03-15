@@ -34,7 +34,7 @@ $(BIN_DIR)/%.o: %.cpp | $(BIN_DIR)
 
 fclean: clean
 	@echo "Cleaning executable..."
-	@rm -f $(NAME)
+	@rm -rf $(NAME) $(BIN_DIR)
 
 re: fclean all
 
