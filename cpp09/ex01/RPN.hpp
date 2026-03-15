@@ -16,27 +16,25 @@
 
 class ReversePolishNotation {
     private:
-        std::stack<int> _numbers;
+        std::stack<int> _operands;
+        int _result;
 
-        bool isValidNumber(const std::string &str) const;
-        bool isValidOperator(const std::string &str) const;
-        int convertNumber(const std::string &str) const;
-        int performOperation(int operand1, int operand2, const std::string &op) const;
-        int calculateRPN(const std::string &expression);
-
-    public:
         ReversePolishNotation();
-        ReversePolishNotation(const std::string &expression);
         ReversePolishNotation(const ReversePolishNotation &other);
         ReversePolishNotation &operator=(const ReversePolishNotation &other);
+
+        bool isValidNumber(const char num) const;
+        bool isValidOperator(const char op) const;
+        int  convertNumber(const std::string &str) const;
+        int  performOperation(int operand1, int operand2, const char op) const;
+        int  calculateRPN(const std::string &expression);
+        
+        public:
+        ReversePolishNotation(const std::string &expression);
         ~ReversePolishNotation();
+        
+        int  getResult() const;
 
-        // int     calculateRPN(const std::string &expression);
-
-        class RPNException : public std::exception {
-            public:
-                virtual const char* what() const throw();
-        };
 };
 
 

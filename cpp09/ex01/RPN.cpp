@@ -13,97 +13,73 @@ ReversePolishNotation::ReversePolishNotation(const ReversePolishNotation &other)
 
 ReversePolishNotation &ReversePolishNotation::operator=(const ReversePolishNotation &other) {
     if (this != &other) {
-        this->_numbers = other._numbers;
+        this->_operands = other._operands;
     }
     return *this;
 }
 
 ReversePolishNotation::~ReversePolishNotation() {}
 
-
-bool ReversePolishNotation::isValidNumber(const std::string &str) const {
-    if (str.empty()) {
-        return false;
-    }
-    for (size_t i = 0; i < str.size(); ++i) {
-        if (!std::isdigit(str[i]))
-            return false;
-    }
-    if (str.size() > 1 && str[0] == '0') {
-        return false; // Leading zeros are not allowed
-    }
-    if (str.size() > 1 && str[0] == '-' && std::isdigit(str[1])) {
-        return false; // Negative numbers are not allowed
-    }
-    if (str.size() > 1 && str[0] == '+' && std::isdigit(str[1])) {
-        return false; // Positive sign is not allowed
-    }
-    const int number = convertNumber(str);
-    if (number < 0 || number > 9) {
-        std::cerr << MGNT << "Error: Invalid number: '" << str << RST;
-        std::cerr <<  "'. Only single-digit numbers are allowed." << std::endl;
-        return false;
-    }
-    return true;
+bool ReversePolishNotation::isValidNumber(const char num) const {
+    return (num >= '0' && num <= '9');
 }
 
-int ReversePolishNotation::convertNumber(const std::string &str) const {
-    int number = 0;
-    for (size_t i = 0; i < str.size(); ++i) {
-        number = number * 10 + (str[i] - '0');
-    }
-    return number;
-}
-
-bool ReversePolishNotation::isValidOperator(const std::string &str) const {
-    if (str.size() != 1) {
-        return false;
-    }
-    char op = str[0];
+bool ReversePolishNotation::isValidOperator(const char op) const {
     return op == '+' || op == '-' || op == '*' || op == '/';
 }
 
-int ReversePolishNotation::performOperation(int operand1, int operand2, const std::string &op) const {
-    if (op == "+") {
-        return operand1 + operand2;
-    } else if (op == "-") {
-        return operand1 - operand2;
-    } else if (op == "*") {
-        return operand1 * operand2;
-    } else if (op == "/") {
-        return operand1 / operand2;
+int ReversePolishNotation::performOperation(int operandL, int operandR, char op) const {
+    switch (op) {
+        case '+': 
+            return operandL + operandR;
+        case '-': 
+            return operandL - operandR;
+        case '*': 
+            return operandL * operandR;
+        case '/':
+            if (operandR == 0) {
+                throw std::invalid_argument("Division by zero is not allowed.");
+            }
+            return operandL / operandR;
+        default:
+            throw std::invalid_argument("Invalid operator");
     }
-    throw RPNException();
-}
-
-// ReversePolishNotation::RPNException::~RPNException() throw() {}
-
-const char* ReversePolishNotation::RPNException::what() const throw() {
-    return "Error";
 }
 
 int ReversePolishNotation::calculateRPN(const std::string& expression) {
+    // Making sure the stack is clear before processing the expression
+    while (!_operands.empty()) {
+        _operands.pop();
+    }
+
     std::istringstream iss(expression);
     std::string token;
-
+    
     while (iss >> token) {
-        if (isValidNumber(token)) {
-            _numbers.push(convertNumber(token));
-        } else if (isValidOperator(token)) {
-            if (_numbers.size() < 2) {
-                throw RPNException();
+        if (token.length() == 1 && isValidNumber(token[0])) {
+            _operands.push(token[0] - '0');
+        } else if (token.length() == 1 && isValidOperator(token[0])) {
+            if (_operands.size() < 2) {
+                throw std::invalid_argument("Invalid expression: not enough operands.");
             }
-            int operand2 = _numbers.top(); _numbers.pop();
-            int operand1 = _numbers.top(); _numbers.pop();
-            int result = performOperation(operand1, operand2, token);
-            _numbers.push(result);
+            int operandR = _operands.top(); 
+            _operands.pop();
+            int operandL = _operands.top();
+            _operands.pop();
+            _operands.push(performOperation(operandL, operandR, token[0]));
         } else {
-            throw RPNException();
+            throw std::invalid_argument("Invalid token: " + token);
         }
     }
+    this->_result = _operands.top(); // Update result after each token is processed
+    return this->_result;
 
-    if (_numbers.size() != 1) {
-        throw RPNException();
+    if (_operands.size() != 1) {
+        throw std::invalid_argument("Invalid expression: too many operands.");
     }
-    return _numbers.top();
+    return _operands.top();
+}
+
+int ReversePolishNotation::getResult() const {
+    return this->_result;
 }

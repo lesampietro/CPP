@@ -42,7 +42,7 @@ void BitCoinExchange::Exchange(std::ifstream &inputFile) {
             std::cerr << MGNT << "Error: bad input => " << dateStr << RST << std::endl;
             continue;
         }
-        if (!isValidValue(valueStr, value)) { //isVaidValue already outputs error message depending on each case
+        if (!isValidValue(valueStr, value)) { //isValidValue already outputs error message depending on each case
             continue;
         }
 
