@@ -4,7 +4,7 @@
 # include <iostream>
 # include <fstream>
 # include <string>
-# include <vector>
+# include <stack>
 # include <stdexcept>
 
 # define GRN "\033[0;32m"
@@ -16,27 +16,28 @@
 
 class ReversePolishNotation {
     private:
-        std::vector<int, int> _factors;
-        ReversePolishNotation(); 
+        std::stack<int> _numbers;
 
-        void evaluate();
-        bool isOperator(const std::string& token);
-        void performOperation(const std::string& op);
+        bool isValidNumber(const std::string &str) const;
+        bool isValidOperator(const std::string &str) const;
+        int convertNumber(const std::string &str) const;
+        int performOperation(int operand1, int operand2, const std::string &op) const;
+        int calculateRPN(const std::string &expression);
 
     public:
+        ReversePolishNotation();
         ReversePolishNotation(const std::string &expression);
         ReversePolishNotation(const ReversePolishNotation &other);
         ReversePolishNotation &operator=(const ReversePolishNotation &other);
         ~ReversePolishNotation();
 
-        bool isValidNumber(const std::string &str) const;
-        bool isValidOperator(const std::string &str) const;
-        void calculateRPN(const std::string &expression);
+        // int     calculateRPN(const std::string &expression);
 
         class RPNException : public std::exception {
             public:
                 virtual const char* what() const throw();
         };
 };
+
 
 #endif
