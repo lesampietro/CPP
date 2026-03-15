@@ -2,14 +2,21 @@
 # define PMERGEME_HPP
 
 # include <iostream>
+# include <iomanip>
+# include <limits>
+# include <ctime>
 # include <string>
 # include <vector>
 # include <deque>
-# include <sys/time.h>
 # include <algorithm>
 # include <iterator>
-# include <sstream>
-# include <stdexcept>
+
+# define GRN "\033[0;32m"
+# define YLW "\033[0;33m"
+# define MGNT "\033[0;35m"
+# define BLU "\033[34m"
+# define CYN "\033[0;36m"
+# define RST "\033[0m"
 
 class PmergeMe {
 	private:
@@ -19,14 +26,15 @@ class PmergeMe {
 		PmergeMe(const PmergeMe& other);
 		PmergeMe& operator=(const PmergeMe& other);
 
-		void fordJohnsonSort(std::vector<int>& arr);
-		void fordJohnsonSort(std::deque<int>& arr);
+		void fordJohnsonAlgorithm(std::vector<int>& sequence);
+		void fordJohnsonAlgorithm(std::deque<int>& sequence);
 
 	public:
 		PmergeMe();
 		~PmergeMe();
 
-		void sort(int argc, char **argv);
+		void mergeInsertSort(int argc, char **argv);
+		double convertTime(clock_t start, clock_t end);
 };
 
 #endif
