@@ -47,6 +47,10 @@ int ReversePolishNotation::performOperation(int operandL, int operandR, char op)
 }
 
 int ReversePolishNotation::calculateRPN(const std::string& expression) {
+    if (expression.empty() || expression.find_first_not_of(' ') == std::string::npos) {
+        throw std::invalid_argument("Expression cannot be empty.");
+    }
+
     // Making sure the stack is clear before processing the expression
     while (!_operands.empty()) {
         _operands.pop();
@@ -54,7 +58,7 @@ int ReversePolishNotation::calculateRPN(const std::string& expression) {
 
     std::istringstream iss(expression);
     std::string token;
-    
+
     while (iss >> token) {
         if (token.length() == 1 && isValidNumber(token[0])) {
             _operands.push(token[0] - '0');
@@ -68,8 +72,11 @@ int ReversePolishNotation::calculateRPN(const std::string& expression) {
             _operands.pop();
             _operands.push(performOperation(operandL, operandR, token[0]));
         } else {
-            throw std::invalid_argument("Invalid token: " + token);
+            throw std::invalid_argument("Invalid token");
         }
+    }
+    if (_operands.size() != 1) {
+        throw std::invalid_argument("Invalid expression: too many operands/too few operators.");
     }
     this->_result = _operands.top(); // Update result after each token is processed
     return this->_result;

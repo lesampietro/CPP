@@ -27,14 +27,13 @@ $(BIN_DIR)/%.o: %.cpp | $(BIN_DIR)
 	@echo "Compiling $<..."
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-.PHONY: all clean fclean re
-
+clean:
 	@echo "Cleaning objects..."
 	@rm -rf $(BIN_DIR)
 
 fclean: clean
 	@echo "Cleaning executable..."
-	@rm -rf $(NAME) $(BIN_DIR)
+	@rm -f $(NAME)
 
 re: fclean all
 

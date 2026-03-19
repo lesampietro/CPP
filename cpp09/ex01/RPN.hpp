@@ -17,7 +17,7 @@
 class ReversePolishNotation {
     private:
         std::stack<int> _operands;
-        int _result;
+        int             _result;
 
         ReversePolishNotation();
         ReversePolishNotation(const ReversePolishNotation &other);
